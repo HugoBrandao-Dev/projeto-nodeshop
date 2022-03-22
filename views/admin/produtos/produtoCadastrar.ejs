@@ -1,0 +1,34 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+<main class="principal">
+	<h2>Cadastrar produto</h2>
+	<hr>
+	<form action="salvar" method="post">
+		<label>Marca:</label>
+		<input type="text" name="iptMarca">
+
+		<label>Modelo/Produto:</label>
+		<input type="text" name="iptProduto">
+
+		<label>Ano de fabricação:</label>
+		<input type="number" name="iptFabricacao">
+
+		<label>Garantia da loja:</label>		
+		<input type="number" name="iptGarantiaLoja">
+
+		<label>Garantia da fabricante:</label>
+		<input type="number" name="iptGarantiaFabricante">
+
+		<label>Categoria:</label>
+		<select name="sltCategoria">
+			<option value="eletrodomestico">Eletrodoméstico</option>
+			<option value="eletronico">Eletrônico</option>
+		</select>
+
+		<label>Estoque:</label>
+		<input type="number" name="iptEstoque">
+
+		<button type="submit" class="btn-add">Cadastrar</button>
+	</form>
+</main>
+<%- include('../../partials/footer.ejs') %>

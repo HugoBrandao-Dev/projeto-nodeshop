@@ -1,0 +1,28 @@
+.btn-add {
+	background-color: rgb(96, 199, 96);
+	color: #fff;
+}
+
+form {
+	width: 50%;
+	margin: 0 auto;
+}
+
+form label {
+	float: left;
+}
+
+form input, form select {
+	width: 100%;
+	border-bottom: 2px solid #333;
+	margin-bottom: 18px;
+	float: left;
+}
+
+form select {
+	border: 2px solid #333;
+}
+
+form button {
+	float: right;
+}

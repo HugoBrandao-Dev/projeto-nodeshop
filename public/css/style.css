@@ -27,6 +27,13 @@ h2 {
 	color: #333;
 }
 
+hr {
+	border: none;
+	background-color: #13c7ae;
+	height: 2px;
+	margin: 18px 0;
+}
+
 p {
 	font-size: 1em;
 	text-indent: 50px;
@@ -35,6 +42,7 @@ p {
 
 button, a {
 	cursor: pointer;
+	padding: 5px 10px;
 }
 
 /* CABEÇALHO */

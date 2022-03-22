@@ -1,13 +1,20 @@
 <nav class="menu">
 	<ul>
-		<li><a href="#">Home</a></li>
-		<li><a href="#">Produtos</a></li>
-		<li><a href="#">Serviços</a></li>
-		<li><a href="#">Contato</a></li>
+		<% if (!admin) { %>
+			<li><a href="/">Home</a></li>
+			<li><a href="/produtos">Produtos</a></li>
+			<li><a href="/servicos">Serviços</a></li>
+			<li><a href="/contato">Contato</a></li>
+		<% } else { %>
+			<li><a href="/admin/produtos">Produtos</a></li>
+			<li><a href="/admin/servicos">Serviços</a></li>
+		<% } %>
 	</ul>
-	<div class="social-icons">
-		<a href="#" class="btn-facebook"><i class="fab fa-facebook fa-lg"></i></a>
-		<a href="#" class="btn-twitter"><i class="fab fa-twitter fa-lg"></i></a>
-		<a href="#" class="btn-google"><i class="fab fa-google fa-lg"></i></a>
-	</div>
+	<% if (!admin) { %>
+		<div class="social-icons">
+			<a href="#" class="btn-facebook"><i class="fab fa-facebook fa-lg"></i></a>
+			<a href="#" class="btn-twitter"><i class="fab fa-twitter fa-lg"></i></a>
+			<a href="#" class="btn-google"><i class="fab fa-google fa-lg"></i></a>
+		</div>
+	<% } %>
 </nav>
