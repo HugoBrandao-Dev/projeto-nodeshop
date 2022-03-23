@@ -1,0 +1,17 @@
+<%- include('../../partials/header.ejs') %>
+	<%- include('../../partials/navbar.ejs') %>
+		<main class="principal">
+			<h2>Informações</h2>
+			<hr>
+			<p>Categoria: <%= produto.categoria %></p>
+			<p>Tipo: <%= produto.tipo %></p>
+			<p>Marca: <%= produto.marca %></p>
+			<p>Modelo: <%= produto.modelo %></p>
+			<p>Fabricação: <%= produto.fabricacao, %></p>
+			<p>Garantia da loja: <%= produto.garantiaLoja, %> ano(s)</p>
+			<p>Garantia do fabricante: <%= produto.garantiaFabricante %> ano(s)</p>
+			<p>Estoque: <%= produto.estoque %></p>
+			<p>Preço: <%= produto.preco %></p>
+			<a href="/admin/produtos" class="btn-info right">Voltar</a>
+		</main>
+		<%- include('../../partials/footer.ejs') %>

@@ -3,7 +3,7 @@
 <main class="principal">
 	<h2>Cadastrar produto</h2>
 	<hr>
-	<form action="salvar" method="post">
+	<form action="/admin/produto/atualizar/<%= produto.id %>" method="post">
 		<label>Categoria:</label>
 		<select name="sltCategoria">
 			<option value="0">Eletrodoméstico</option>
@@ -30,8 +30,8 @@
 				<option value="8">Mouse & Teclado</option>
 				<option value="9">Caixa de Som</option>
 			</optgroup>
-			<option value="6">Televisor</option>
-			<option value="7">Monitor</option>
+			<option value="10">Televisor</option>
+			<option value="11">Monitor</option>
 		</select>
 
 		<label>Marca:</label>
@@ -42,22 +42,22 @@
 		</select>
 
 		<label>Modelo/Produto:</label>
-		<input type="text" name="iptModelo">
+		<input type="text" name="iptModelo" value="<%= produto.modelo %>">
 
 		<label>Ano de fabricação:</label>
-		<input type="number" name="iptFabricacao">
+		<input type="number" name="iptFabricacao" value="<%= produto.fabricacao %>">
 
 		<label>Garantia da loja (anos):</label>
-		<input type="number" name="iptGarantiaLoja">
+		<input type="number" name="iptGarantiaLoja" value="<%= produto.garantiaLoja %>">
 
 		<label>Garantia da fabricante (anos):</label>
-		<input type="number" name="iptGarantiaFabricante">
+		<input type="number" name="iptGarantiaFabricante" value="<%= produto.garantiaFabricante %>">
 
 		<label>Estoque:</label>
-		<input type="number" name="iptEstoque">
+		<input type="number" name="iptEstoque" value="<%= produto.estoque %>">
 
 		<label>Preço</label>
-		<input type="text" name="iptPreco">
+		<input type="text" name="iptPreco" value="<%= produto.preco %>">
 
 		<button type="submit" class="btn-add">Cadastrar</button>
 	</form>

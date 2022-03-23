@@ -1,7 +1,42 @@
+.btn-add, .btn-editar, .btn-deletar, .btn-info {
+	color: #fff
+}
+
 .btn-add {
 	background-color: rgb(96, 199, 96);
-	color: #fff;
 }
+
+.btn-editar {
+	background-color: rgb(218, 218, 20);
+}
+
+.btn-deletar {
+	background-color: red;
+}
+
+.btn-info {
+	background-color: rgb(79, 161, 216);
+}
+
+.btn-redondo {
+	height: 30px;
+	width: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+}
+
+.btn-lista {
+	display: inline-block;
+	margin-top: 18px;
+}
+
+.right {
+	float: right;
+}
+
+/* Formulários */
 
 form {
 	width: 50%;
@@ -25,4 +60,23 @@ form select {
 
 form button {
 	float: right;
+}
+
+/* Tabelas */
+
+table {
+	margin: 0 auto;
+	border-collapse: collapse;
+}
+
+table tr th {
+	font-weight: bold;
+}
+
+table tr {
+	border-bottom: 2px solid #333;
+}
+
+table tr th, table tr td {
+	padding: 10px 20px;
 }
