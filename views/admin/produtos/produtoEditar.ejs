@@ -53,13 +53,16 @@
 		<label>Garantia da fabricante (anos):</label>
 		<input type="number" name="iptGarantiaFabricante" value="<%= produto.garantiaFabricante %>">
 
+		<label>Descrição:</label>
+		<textarea name="textDescricao"cols="30" rows="10" placeholder="Descrição do produto"><%= produto.descricao %></textarea>
+
 		<label>Estoque:</label>
 		<input type="number" name="iptEstoque" value="<%= produto.estoque %>">
 
 		<label>Preço</label>
 		<input type="text" name="iptPreco" value="<%= produto.preco %>">
 
-		<button type="submit" class="btn-add">Cadastrar</button>
+		<button type="submit" class="btn-editar">Atualizar</button>
 	</form>
 </main>
 <%- include('../../partials/footer.ejs') %>

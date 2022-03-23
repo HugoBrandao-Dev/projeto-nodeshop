@@ -3,15 +3,26 @@
 		<main class="principal">
 			<h2>Informações</h2>
 			<hr>
-			<p>Categoria: <%= produto.categoria %></p>
-			<p>Tipo: <%= produto.tipo %></p>
-			<p>Marca: <%= produto.marca %></p>
-			<p>Modelo: <%= produto.modelo %></p>
-			<p>Fabricação: <%= produto.fabricacao, %></p>
-			<p>Garantia da loja: <%= produto.garantiaLoja, %> ano(s)</p>
-			<p>Garantia do fabricante: <%= produto.garantiaFabricante %> ano(s)</p>
-			<p>Estoque: <%= produto.estoque %></p>
-			<p>Preço: <%= produto.preco %></p>
+			<label>Categoria:</label>
+				<p><%= produto.categoria %></p>
+			<label>Tipo:</label>
+				<p><%= produto.tipo %></p>
+			<label>Marca:</label>
+				<p><%= produto.marca %></p>
+			<label>Modelo:</label>
+				<p><%= produto.modelo %></p>
+			<label>Fabricação:</label>
+				<p><%= produto.fabricacao, %></p>
+			<label>Garantia da loja:</label>
+				<p><%= produto.garantiaLoja, %> ano(s)</p>
+			<label>Garantia do fabricante:</label>
+				<p><%= produto.garantiaFabricante %> ano(s)</p>
+			<label>Estoque:</label>
+				<p><%= produto.estoque %></p>
+			<label>Preço:</label>
+				<p><%= produto.preco %></p>
+			<label>Descrição:</label>
+			<p><%= produto.descricao %></p>
 			<a href="/admin/produtos" class="btn-info right">Voltar</a>
 		</main>
 		<%- include('../../partials/footer.ejs') %>

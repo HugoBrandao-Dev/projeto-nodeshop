@@ -43,19 +43,22 @@ form {
 	margin: 0 auto;
 }
 
-form label {
+form label, form input, form select, form textarea {
+	width: 100%;
 	float: left;
+}
+
+form input, form select, form textarea {
+	margin-bottom: 18px;
 }
 
 form input, form select {
-	width: 100%;
 	border-bottom: 2px solid #333;
-	margin-bottom: 18px;
-	float: left;
 }
 
-form select {
+form select, form textarea {
 	border: 2px solid #333;
+	resize: none;
 }
 
 form button {
