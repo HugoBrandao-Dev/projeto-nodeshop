@@ -37,4 +37,10 @@ router.get('/admin/servico/novo', (req, res) => {
 	res.render('admin/servicos/servicoCadastrar', { admin: 1 })
 })
 
+router.get('/admin/servico/:id', (req, res) => {
+	let id = req.params.id
+	let servico = servicos.filter(servico => servico.id == id)[0]
+	res.render('admin/servicos/servicoInfo', { admin: 1, servico })
+})
+
 module.exports = router

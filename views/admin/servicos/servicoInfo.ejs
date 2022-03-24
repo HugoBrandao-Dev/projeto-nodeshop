@@ -1,0 +1,14 @@
+<%- include('../../partials/header.ejs') %>
+	<%- include('../../partials/navbar.ejs') %>
+		<main class="principal">
+			<h2>Informações</h2>
+			<hr>
+			<label>Serviço:</label>
+				<p><%= servico.servico %></p>
+			<label>Responsáveis:</label>
+				<p><%= servico.responsaveis %></p>
+			<label>Descrição:</label>
+				<p><%= servico.descricao %></p>
+			<a href="/admin/servicos" class="btn-info right">Voltar</a>
+		</main>
+		<%- include('../../partials/footer.ejs') %>
