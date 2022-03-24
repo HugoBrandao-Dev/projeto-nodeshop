@@ -33,4 +33,8 @@ router.get('/admin/servico/edit/:id', (req, res) => {
 	res.render('admin/servicos/servicoEditar', { admin: 1, servico })
 })
 
+router.get('/admin/servico/novo', (req, res) => {
+	res.render('admin/servicos/servicoCadastrar', { admin: 1 })
+})
+
 module.exports = router
