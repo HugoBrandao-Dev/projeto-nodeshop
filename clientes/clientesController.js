@@ -78,4 +78,10 @@ router.get('/admin/cliente/edit/:id', (req, res) => {
 	res.render('admin/clientes/clienteEditar', { admin: 1, cliente})
 })
 
+router.get('/admin/cliente/:id', (req, res) => {
+	let id = req.params.id
+	let cliente = clientes.filter(cliente => cliente.id == id)[0]
+	res.render('admin/clientes/clienteInfo', { admin: 1, cliente})
+})
+
 module.exports = router
