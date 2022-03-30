@@ -37,6 +37,18 @@ router.get('/admin/servico/novo', (req, res) => {
 	res.render('admin/servicos/servicoCadastrar', { admin: 1 })
 })
 
+router.post('/admin/servico/salvar', (req, res) => {
+	let servico = req.body.iptServico
+	let responsaveis = req.body.iptResponsaveis
+	let descricao = req.body.textDescricao
+
+	res.json({
+		servico,
+		responsaveis,
+		descricao
+	})
+})
+
 router.get('/admin/servico/:id', (req, res) => {
 	let id = req.params.id
 	let servico = servicos.filter(servico => servico.id == id)[0]
