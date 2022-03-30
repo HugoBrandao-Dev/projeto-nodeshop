@@ -1,0 +1,46 @@
+<%- include('../../partials/header.ejs') %>
+	<%- include('../../partials/navbar.ejs') %>
+		<main class="principal">
+			<h2>Cadastrar funcionário</h2>
+			<hr>
+			<form action="salvar" method="POST">
+				<label>Nome:</label>
+				<input type="text" name="iptNome">
+
+				<label>CPF:</label>
+				<input type="text" name="iptCpf">
+
+				<label>Nascimento:</label>
+				<input type="date" name="iptNascimento">
+
+				<label>Endereço:</label>
+				<input type="text" name="iptEndereco">
+
+				<label>Email:</label>
+				<input type="text" name="iptEmail">
+
+				<label>Telefone:</label>
+				<input type="text" name="iptTelefone">
+
+				<label>Celular:</label>
+				<input type="text" name="iptCelular">
+
+				<label>Setor:</label>
+				<select name="iptSetor">
+					<option value="0">Atendimento</option>
+					<option value="1">Assistência técnica</option>
+					<option value="2">Gerência</option>
+				</select>
+
+				<label>Cargo:</label>
+				<select name="iptCargo">
+					<option value="0">Atendente</option>
+					<option value="1">Técnico(a) assistênte</option>
+					<option value="2">Gerente</option>
+				</select>
+
+
+				<button type="submit" class="btn-add right">Cadastrar</button>
+			</form>
+		</main>
+		<%- include('../../partials/footer.ejs') %>
