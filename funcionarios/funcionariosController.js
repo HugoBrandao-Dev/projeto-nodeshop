@@ -91,4 +91,10 @@ router.get('/admin/funcionario/edit/:id', (req, res) => {
 	res.render('admin/funcionarios/funcionarioEditar', { admin: 1, funcionario })
 })
 
+router.get('/admin/funcionario/:id', (req, res) => {
+	let id = req.params.id
+	let funcionario = funcionarios.filter(funcionario => funcionario.id == id)[0]
+	res.render('admin/funcionarios/funcionarioInfo', { admin: 1, funcionario })
+})
+
 module.exports = router

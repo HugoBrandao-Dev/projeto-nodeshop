@@ -1,0 +1,38 @@
+<%- include('../../partials/header.ejs') %>
+	<%- include('../../partials/navbar.ejs') %>
+		<main class="principal">
+			<h2>Informações do funcionario</h2>
+			<hr>
+			<label>ID:</label>
+			<p><%= funcionario.id %></p>
+
+			<label>Nome:</label>
+			<p><%= funcionario.nome %></p>
+
+			<label>CPF:</label>
+			<p><%= funcionario.cpf %></p>
+
+			<label>Data de nascimento:</label>
+			<p><%= funcionario.nascimento %></p>
+
+			<label>Endereço:</label>
+			<p><%= funcionario.endereco %></p>
+
+			<label>Email:</label>
+			<p><%= funcionario.email %></p>
+
+			<label>Telefone:</label>
+			<p><%= funcionario.telefone %></p>
+
+			<label>Celular:</label>
+			<p><%= funcionario.celular %></p>
+
+			<label>Setor:</label>
+			<p><%= funcionario.setor %></p>
+
+			<label>Cargo:</label>
+			<p><%= funcionario.cargo %></p>
+
+			<a href="/admin/funcionarios" class="btn-info right">Voltar</a>
+		</main>
+		<%- include('../../partials/footer.ejs') %>
