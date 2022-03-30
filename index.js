@@ -11,11 +11,13 @@ app.use(express.json())
 const produtosController = require('./produtos/produtosController')
 const servicosController = require('./servicos/servicosController')
 const funcionariosController = require('./funcionarios/funcionariosController')
+const clientesController = require('./clientes/clientesController')
 
 // Configurações dos Controllers
 app.use('/', produtosController)
 app.use('/', servicosController)
 app.use('/', funcionariosController)
+app.use('/', clientesController)
 
 app.get('/', (req, res) => {
 	res.render('index', {admin: 0})

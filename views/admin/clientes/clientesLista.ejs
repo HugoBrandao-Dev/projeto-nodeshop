@@ -1,0 +1,46 @@
+<%- include('../../partials/header.ejs') %>
+	<%- include('../../partials/navbar.ejs') %>
+		<main class="principal">
+			<h2>Clientes</h2>
+			<a href="/admin/cliente/novo" class="btn-add btn-lista">Novo cliente</a>
+			<hr>
+			<table>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>Email</th>
+						<th>Telefone</th>
+						<th>Celular</th>
+						<th>Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% clientes.forEach(cliente => { %>
+						<tr>
+							<td>
+								<%= cliente.id %>
+							</td>
+							<td>
+								<%= cliente.nome %>
+							</td>							
+							<td>
+								<%= cliente.email %>
+							</td>
+							<td>
+								<%= cliente.telefone %>
+							</td>
+							<td>
+								<%= cliente.celular %>
+							</td>
+							<td style="display: flex;">
+								<a href="/admin/cliente/edit/<%= cliente.id %>" class="btn-redondo btn-editar" title="Editar cliente"><i class="fa fa-edit"></i></a>
+								<a href="#" class="btn-redondo btn-deletar" title="Deletar cliente"><i class="fa fa-eraser"></i></a>
+								<a href="/admin/cliente/<%= cliente.id %>" class="btn-redondo btn-info" title="Informações do cliente"><i class="fa fa-info-circle"></i></a>
+							</td>
+						</tr>
+						<% }) %>
+				</tbody>
+			</table>
+		</main>
+		<%- include('../../partials/footer.ejs') %>
