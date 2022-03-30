@@ -1,0 +1,46 @@
+<%- include('../../partials/header.ejs') %>
+	<%- include('../../partials/navbar.ejs') %>
+		<main class="principal">
+			<h2>Cadastrar funcionário</h2>
+			<hr>
+			<form action="/admin/funcionario/salvar" method="POST">
+				<label>Nome:</label>
+				<input type="text" name="iptNome" value="<%= funcionario.nome %>">
+
+				<label>CPF:</label>
+				<input type="text" name="iptCpf" value="<%= funcionario.cpf %>">
+
+				<label>Nascimento:</label>
+				<input type="date" name="iptNascimento" value="<%= funcionario.nascimento %>">
+
+				<label>Endereço:</label>
+				<input type="text" name="iptEndereco" value="<%= funcionario.endereco %>">
+
+				<label>Email:</label>
+				<input type="email" name="iptEmail" value="<%= funcionario.email %>">
+
+				<label>Telefone:</label>
+				<input type="tel" name="iptTelefone" value="<%= funcionario.telefone %>">
+
+				<label>Celular:</label>
+				<input type="tel" name="iptCelular" value="<%= funcionario.celular %>">
+
+				<label>Setor:</label>
+				<select name="iptSetor" value="<%= funcionario.setor %>">
+					<option value="0">Atendimento</option>
+					<option value="1">Assistência técnica</option>
+					<option value="2">Gerência</option>
+				</select>
+
+				<label>Cargo:</label>
+				<select name="iptCargo" value="<%= funcionario.cargo %>">
+					<option value="0">Atendente</option>
+					<option value="1">Técnico(a) assistênte</option>
+					<option value="2">Gerente</option>
+				</select>
+
+
+				<button type="submit" class="btn-add right">Cadastrar</button>
+			</form>
+		</main>
+		<%- include('../../partials/footer.ejs') %>
