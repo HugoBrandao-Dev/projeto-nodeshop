@@ -30,6 +30,38 @@ let produtos = [
 	}
 ]
 
+let tipos = [
+	{
+		id: 0,
+		tipo: 'notebook'
+	},
+	{
+		id: 1,
+		tipo: 'geladeira'
+	},
+	{
+		id: 2,
+		tipo: 'panela de presssão'
+	}
+]
+
+let marcas = [
+	{
+		id: 0,
+		marca: 'Dell'
+	},
+	{
+		id: 1,
+		marca: 'HP'
+	},
+	{
+		id: 2,
+		marca: 'Eletrolux'
+	}
+]
+
+// Rotas do Administrador
+
 router.get('/admin/produtos', (req, res) => {
 
 	res.render('admin/produtos/produtosLista', { admin: 1, produtos })
@@ -102,6 +134,20 @@ router.post('/admin/produto/atualizar/:id', (req, res) => {
 		estoque,
 		preco
 	})
+})
+
+router.get('/admin/produtos/opcoes', (req, res) => {
+	res.render('admin/produtos/produtoOpcao', { admin: 1, tipos, marcas})
+})
+
+router.post('/admin/produtos/opcoes/salvar/tipo', (req, res) => {
+	let nome = req.body.iptNome
+	res.json({ nome })
+})
+
+router.post('/admin/produtos/opcoes/salvar/marca', (req, res) => {
+	let nome = req.body.iptNome
+	res.json({ nome })
 })
 
 module.exports = router

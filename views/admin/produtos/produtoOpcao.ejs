@@ -1,0 +1,64 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+<main class="principal">
+	<h2>Opções para produtos</h2>
+	<hr>
+	<ul class="opcao-lista">
+		<li class="opcao-item"><button type="button" id="btnTipo" class="btn-opcao liTipo btn-opcao-selecionada">Tipo</button></li>
+		<li class="opcao-item"><button type="button" id="btnMarca" class="btn-opcao liMarca">Marca</button></li>
+	</ul>
+	<form method="POST" class="form-tipo">
+		<section id="tipo">
+			<table class="table-opcoes">
+				<thead>
+					<tr>
+						<td>ID</td>
+						<td>Tipo</td>
+					</tr>
+				</thead>
+				<tbody>
+					<% tipos.forEach(tipo => { %>
+						<tr>
+							<td><%= tipo.id %></td>
+							<td><%= tipo.tipo %></td>
+						</tr>
+					<% }) %>
+				</tbody>
+			</table>	
+			
+			<label>Novo tipo:</label>
+			<div class="btn-right input-inline">
+				<input type="text" name="iptNome" placeholder="Tipo de produto">
+				<button type="submit" class="btn-add" formaction="/admin/produtos/opcoes/salvar/tipo">Cadastrar</button>
+			</div>
+		</section>
+		</form>
+		<form method="POST">
+		<section id="marca">
+			<table class="table-opcoes">
+				<thead>
+					<tr>
+						<td>ID</td>
+						<td>Tipo</td>
+					</tr>
+				</thead>
+				<tbody>
+					<% marcas.forEach(marca => { %>
+						<tr>
+							<td><%= marca.id %></td>
+							<td><%= marca.marca %></td>
+						</tr>
+					<% }) %>
+				</tbody>
+			</table>
+	
+			<label>Nova marca:</label>
+			<div class="btn-right input-inline">
+				<input type="text" name="iptNome" placeholder="Marca de produto">
+				<button type="submit" class="btn-add" formaction="/admin/produtos/opcoes/salvar/marca">Cadastrar</button>
+			</div>
+		</section>
+	</form>
+</main>
+<script src="/js/produtoOpcao.js"></script>
+<%- include('../../partials/footer.ejs') %>

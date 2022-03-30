@@ -45,6 +45,23 @@ button, a {
 	padding: 5px 10px;
 }
 
+.input-inline {
+	width: 100%;
+}
+
+.input-inline input {
+	width: 80%;
+	border: none;
+	padding: 5px 10px;
+	background-color: #f2f2f2;
+}
+
+.input-inline button {
+	width: 20%;
+	border: none;
+
+}
+
 /* CABEÇALHO */
 
 .cabecalho {

@@ -1,5 +1,9 @@
-.btn-add, .btn-editar, .btn-deletar, .btn-info {
+.btn-add, .btn-editar, .btn-deletar, .btn-info, .btn-opcao-selecionada{
 	color: #fff
+}
+
+.btn-info, .btn-opcao-selecionada {
+	background-color: rgb(79, 161, 216);
 }
 
 .btn-add {
@@ -14,10 +18,6 @@
 	background-color: red;
 }
 
-.btn-info {
-	background-color: rgb(79, 161, 216);
-}
-
 .btn-redondo {
 	height: 30px;
 	width: 30px;
@@ -27,13 +27,30 @@
 	border-radius: 50%;
 }
 
+.small-info {
+	font-size: 9pt;
+}
+
+.small-info a {
+	text-decoration: underline;
+	color: rgb(79, 161, 216);
+}
+
 .btn-lista {
 	display: inline-block;
 	margin-top: 18px;
 }
 
-.right {
+.btn-right, .btn-left {
+	width: 100%;
+}
+
+.right, .btn-right button {
 	float: right;
+}
+
+.left, .btn-left button {
+	float: left;
 }
 
 /* Formulários */
@@ -61,10 +78,6 @@ form select, form textarea {
 	resize: none;
 }
 
-form button {
-	float: right;
-}
-
 /* Tabelas */
 
 table {
@@ -82,4 +95,50 @@ table tr {
 
 table tr th, table tr td {
 	padding: 10px 20px;
+}
+
+.radios .radios-radio input {
+	float: left;
+	width: 5%;
+}
+
+.table-opcoes {
+	width: 100%;
+	margin-bottom: 18px;
+}
+
+/* Formulário de cadastro de uma nova Opção de seleção (tipo e marca) */
+
+.opcao-lista {
+	width: 20%;
+	margin: 0 auto;
+}
+
+.opcao-item {
+	text-align: center;
+	width: 50%;
+	float: left;
+}
+
+.opcao-item .btn-opcao {
+	width: 100%;
+	border: 2px solid rgb(79, 161, 216);
+	margin-bottom: 18px;
+}
+
+.opcao-item .liTipo {
+	border-right: none;	
+	border-radius: 5px 0 0 5px;
+}
+
+.opcao-item .liMarca {	
+	border-radius: 0 5px 5px 0;
+}
+
+#tipo {
+	display: block;
+}
+
+#marca {
+	display: none;
 }
