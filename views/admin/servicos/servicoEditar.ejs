@@ -3,14 +3,14 @@
 <main class="principal">
 	<h2>Editar serviço</h2>
 	<hr>
-	<form action="" method="post">
+	<form action="/admin/servico/atualizar" method="post">
 		<label>Serviço</label>
 		<input type="text" name="iptServico" value="<%= servico.servico %>">
 		<label>Responsáveis</label>
 		<input type="text" name="iptResponsaveis" value="<%= servico.responsaveis %>">
 		<label>Descrição</label>
 		<textarea name="textDescricao" cols="30" rows="10"><%= servico.descricao %></textarea>
-		<button type="submit" class="btn-atualizar">Atualizar</button>
+		<button type="submit" class="btn-editar">Atualizar</button>
 	</form>
 </main>
 <%- include('../../partials/footer.ejs') %>
