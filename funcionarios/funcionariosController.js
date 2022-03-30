@@ -23,7 +23,7 @@ let funcionarios = [
 		email: 'dinora_oliveira@gmail.com',
 		telefone: '5522222222222',
 		celular: '5522222222223',
-		setor: 'Assitência técnica',
+		setor: 'Assistência técnica',
 		cargo: 'Técnico(a) assistente'
 	},
 	{
@@ -35,7 +35,7 @@ let funcionarios = [
 		email: 'josias_cruz@hotmail.com',
 		telefone: '5533333333333',
 		celular: '5533333333334',
-		setor: 'Assitência técnica',
+		setor: 'Assistência técnica',
 		cargo: 'Técnico(a) assistente'
 	},
 	{
@@ -89,6 +89,12 @@ router.get('/admin/funcionario/edit/:id', (req, res) => {
 	let id = req.params.id
 	let funcionario = funcionarios.filter(funcionario => funcionario.id == id)[0]
 	res.render('admin/funcionarios/funcionarioEditar', { admin: 1, funcionario })
+})
+
+router.get('/admin/funcionario/:id', (req, res) => {
+	let id = req.params.id
+	let funcionario = funcionarios.filter(funcionario => funcionario.id == id)[0]
+	res.render('admin/funcionarios/funcionarioInfo', { admin: 1, funcionario })
 })
 
 module.exports = router
