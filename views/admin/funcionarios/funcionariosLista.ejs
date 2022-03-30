@@ -1,0 +1,54 @@
+<%- include('../../partials/header.ejs') %>
+	<%- include('../../partials/navbar.ejs') %>
+		<main class="principal">
+			<h2>Funcionários</h2>
+			<a href="/admin/funcionarios/novo" class="btn-add btn-lista">Novo funcionário</a>
+			<hr>
+			<table>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>Email</th>
+						<th>Telefone</th>
+						<th>Celular</th>
+						<th>Setor</th>
+						<th>Cargo</th>
+						<th>Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% funcionarios.forEach(funcionario => { %>
+						<tr>
+							<td>
+								<%= funcionario.id %>
+							</td>
+							<td>
+								<%= funcionario.nome %>
+							</td>							
+							<td>
+								<%= funcionario.email %>
+							</td>
+							<td>
+								<%= funcionario.telefone %>
+							</td>
+							<td>
+								<%= funcionario.celular %>
+							</td>
+							<td>
+								<%= funcionario.setor %>
+							</td>
+							<td>
+								<%= funcionario.cargo %>
+							</td>
+							<td style="display: flex;">
+								<a href="/admin/funcionario/edit/<%= funcionario.id %>" class="btn-redondo btn-editar" title="Editar funcionario"><i class="fa fa-edit"></i></a>
+								<a href="#" class="btn-redondo btn-deletar" title="Deletar funcionario"><i class="fa fa-eraser"></i></a>
+								<a href="/admin/funcionario/<%= funcionario.id %>" class="btn-redondo btn-info" title="Informações do funcionario"><i class="fa fa-info-circle"></i></a>
+							</td>
+						</tr>
+						<% }) %>
+				</tbody>
+			</table>
+		</main>
+		<%- include('../../partials/footer.ejs') %>

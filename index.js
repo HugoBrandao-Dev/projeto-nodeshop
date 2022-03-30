@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express(express)
 
-
 // Configurações do Express
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
@@ -11,10 +10,12 @@ app.use(express.json())
 // Controllers
 const produtosController = require('./produtos/produtosController')
 const servicosController = require('./servicos/servicosController')
+const funcionariosController = require('./funcionarios/funcionariosController')
 
 // Configurações dos Controllers
 app.use('/', produtosController)
 app.use('/', servicosController)
+app.use('/', funcionariosController)
 
 app.get('/', (req, res) => {
 	res.render('index', {admin: 0})
