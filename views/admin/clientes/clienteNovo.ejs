@@ -1,0 +1,31 @@
+<%- include('../../partials/header.ejs') %>
+	<%- include('../../partials/navbar.ejs') %>
+		<main class="principal">
+			<h2>Cadastrar cliente</h2>
+			<hr>
+			<form action="salvar" method="POST">
+				<label>Nome:</label>
+				<input type="text" name="iptNome">
+
+				<label>CPF:</label>
+				<input type="text" name="iptCpf">
+
+				<label>Data de nascimento:</label>
+				<input type="date" name="iptNascimento">
+
+				<label>Endereço:</label>
+				<input type="text" name="iptEndereco">
+
+				<label>Email:</label>
+				<input type="text" name="iptEmail">
+
+				<label>Telefone:</label>
+				<input type="text" name="iptTelefone">
+
+				<label>Celular:</label>
+				<input type="text" name="iptCelular">
+
+				<button type="submit" class="btn-add right">Cadastrar</button>
+			</form>
+		</main>
+		<%- include('../../partials/footer.ejs') %>

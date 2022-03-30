@@ -48,4 +48,28 @@ router.get('/admin/clientes', (req, res) => {
 	res.render('admin/clientes/clientesLista', { admin: 1, clientes })
 })
 
+router.get('/admin/cliente/novo', (req, res) => {
+	res.render('admin/clientes/clienteNovo', { admin: 1 })
+})
+
+router.post('/admin/cliente/salvar', (req, res) => {
+	let nome = req.body.iptNome
+	let cpf = req.body.iptCpf
+	let nascimento = req.body.iptNascimento
+	let endereco = req.body.iptEndereco
+	let email = req.body.iptEmail
+	let telefone = req.body.iptTelefone
+	let celular = req.body.iptCelular
+
+	res.json({
+		nome,
+		cpf,
+		nascimento,
+		endereco,
+		email,
+		telefone,
+		celular
+	})
+})
+
 module.exports = router
