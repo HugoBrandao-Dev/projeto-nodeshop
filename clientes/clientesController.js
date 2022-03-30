@@ -15,7 +15,7 @@ let clientes = [
 	{
 		id: 1,
 		nome: 'Dinorá de Oliveira',
-		cpf: '222.222.222-2',
+		cpf: '222.222.222-22',
 		nascimento: '15/02/1993',
 		endereco: 'Bairro: Oliveira IV, Rua: Dinorá de Oliveira, N: 300',
 		email: 'dinora_oliveira@gmail.com',
@@ -25,7 +25,7 @@ let clientes = [
 	{
 		id: 2,
 		nome: 'Josias Cruz',
-		cpf: '333.333.333-3',
+		cpf: '333.333.333-33',
 		nascimento: '04/06/1995',
 		endereco: 'Bairro: Cruz III, Rua: Josias Cruz, N: 500',
 		email: 'josias_cruz@hotmail.com',
@@ -35,7 +35,7 @@ let clientes = [
 	{
 		id: 3,
 		nome: 'Doralice Cruz',
-		cpf: '444.444.444-4',
+		cpf: '444.444.444-44',
 		nascimento: '20/10/1990',
 		endereco: 'Bairro: Cruz II, Rua: Doralice Cruz, N: 1000',
 		email: 'dora_cruz@hotmail.com',
@@ -70,6 +70,12 @@ router.post('/admin/cliente/salvar', (req, res) => {
 		telefone,
 		celular
 	})
+})
+
+router.get('/admin/cliente/edit/:id', (req, res) => {
+	let id = req.params.id
+	let cliente = clientes.filter(cliente => cliente.id == id)[0]
+	res.render('admin/clientes/clienteEditar', { admin: 1, cliente})
 })
 
 module.exports = router

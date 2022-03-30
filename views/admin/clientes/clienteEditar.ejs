@@ -1,0 +1,31 @@
+<%- include('../../partials/header.ejs') %>
+	<%- include('../../partials/navbar.ejs') %>
+		<main class="principal">
+			<h2>Atualizar dados do cliente</h2>
+			<hr>
+			<form action="salvar" method="POST">
+				<label>Nome:</label>
+				<input type="text" name="iptNome" value="<%= cliente.nome %>">
+
+				<label>CPF:</label>
+				<input type="text" name="iptCpf" value="<%= cliente.cpf %>">
+
+				<label>Data de nascimento:</label>
+				<input type="date" name="iptNascimento" value="<%= cliente.nascimento %>">
+
+				<label>Endereço:</label>
+				<input type="text" name="iptEndereco" value="<%= cliente.endereco %>">
+
+				<label>Email:</label>
+				<input type="text" name="iptEmail" value="<%= cliente.email %>">
+
+				<label>Telefone:</label>
+				<input type="text" name="iptTelefone" value="<%= cliente.telefone %>">
+
+				<label>Celular:</label>
+				<input type="text" name="iptCelular" value="<%= cliente.celular %>">
+
+				<button type="submit" class="btn-editar right">Atualizar</button>
+			</form>
+		</main>
+		<%- include('../../partials/footer.ejs') %>
