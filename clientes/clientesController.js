@@ -44,6 +44,40 @@ let clientes = [
 	}
 ]
 
+let produtos = [
+	{
+		id: 0,
+		categoria: 1,
+		tipo: 1,
+		marca: 'Dell',
+		modelo: 'Dell2012',
+		fabricacao: '2020',
+		garantiaLoja: 2,
+		garantiaFabricante: 4,
+		descricao: 'Notebook Dell I5 10ª geração 256GB de armazenamento.',
+		estoque: 100,
+		preco: 5000,
+	},
+	{
+		id: 1,
+		categoria: 1,
+		tipo: 1,
+		marca: 'Apple',
+		modelo: 'Macbook Air',
+		fabricacao: '2020',
+		garantiaLoja: 4,
+		garantiaFabricante: 8,
+		descricao: 'Macbook Air M1 500GB SSD de armazenamento.',
+		estoque: 10,
+		preco: 10000,
+	}
+]
+
+router.get('/produtos', (req, res) => {
+	res.render('produtos', { admin: 0, produtos })
+})
+
+// Rotas do administrador
 router.get('/admin/clientes', (req, res) => {
 	res.render('admin/clientes/clientesLista', { admin: 1, clientes })
 })
