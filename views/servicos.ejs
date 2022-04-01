@@ -1,0 +1,24 @@
+<%- include('partials/header.ejs') %>
+	<%- include('partials/navbar.ejs') %>
+		<main class="principal">
+			<h2>Serviços</h2>
+			<hr>
+			<ul class="cards">
+				<% servicos.forEach(servico=> { %>
+					<li class="card-underline">
+						<a href="/servico/<%= servico.id %>">
+							<div class="imagem-card"></div>
+							<div class="descricao-card">
+								<h3 class="card-marca">
+									<strong><%= servico.servico %></strong>
+								</h3>
+								<h3 class="card-modelo">
+									<%= servico.descricao %>
+								</h3>
+							</div>
+						</a>
+					</li>
+					<% }) %>
+			</ul>
+		</main>
+		<%- include('partials/footer.ejs') %>

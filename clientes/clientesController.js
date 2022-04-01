@@ -1,4 +1,5 @@
 const express = require('express')
+const { route } = require('express/lib/application')
 const router = express.Router()
 
 let clientes = [
@@ -73,6 +74,27 @@ let produtos = [
 	}
 ]
 
+let servicos = [
+	{
+		id: 0,
+		servico: 'Manutenção em redes de computadores',
+		responsaveis: ['Tobias de Oliveira'],
+		descricao: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime neque quis eos sint, tempore delectus tenetur pariatur? Ad similique nobis eaque quibusdam corporis architecto veritatis placeat, dolor deleniti quaerat mollitia.'
+	},
+	{
+		id: 1,
+		servico: 'Manutenção em banco de dados',
+		responsaveis: ['Tobias de Oliveira', 'Dinorá de Oliveira'],
+		descricao: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime neque quis eos sint, tempore delectus tenetur pariatur? Ad similique nobis eaque quibusdam corporis architecto veritatis placeat, dolor deleniti quaerat mollitia.'
+	},
+	{
+		id: 2,
+		servico: 'Manutenção em computadores',
+		responsaveis: ['Josias Cruz', 'Doralice Cruz'],
+		descricao: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime neque quis eos sint, tempore delectus tenetur pariatur? Ad similique nobis eaque quibusdam corporis architecto veritatis placeat, dolor deleniti quaerat mollitia.'
+	}
+]
+
 router.get('/produtos', (req, res) => {
 	res.render('produtos', { admin: 0, produtos })
 })
@@ -81,6 +103,10 @@ router.get('/produto/:id', (req, res) => {
 	let id = req.params.id
 	let produto = produtos.filter(produto => produto.id == id)[0]
 	res.render('produto', { admin: 0, produto })
+})
+
+router.get('/servicos', (req, res) => {
+	res.render('servicos', { admin: 0, servicos})
 })
 
 // Rotas do administrador
