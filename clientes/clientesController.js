@@ -109,6 +109,12 @@ router.get('/servicos', (req, res) => {
 	res.render('servicos', { admin: 0, servicos})
 })
 
+router.get('/servico/:id', (req, res) => {
+	let id = req.params.id
+	let servico = servicos.filter(servico => servico.id == id)[0]
+	res.render('servico', { admin: 0, servico})
+})
+
 // Rotas do administrador
 router.get('/admin/clientes', (req, res) => {
 	res.render('admin/clientes/clientesLista', { admin: 1, clientes })
