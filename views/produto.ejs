@@ -1,0 +1,19 @@
+<%- include('partials/header.ejs') %>
+	<%- include('partials/navbar.ejs') %>
+		<main class="principal">
+			<article class="produto">
+				<h2><%= produto.modelo %></h2>
+				<hr>
+				<h3>Marca: <%= produto.marca %></h3>
+				<p><%= produto.descricao %></p>
+				<h3>Preço: <strong>R$ <%= produto.preco %></strong></h3>
+			</article>
+			<aside class="comprar">
+				<form action="">
+					<label>Quantidade:</label>
+					<input type="number" name="iptQuantidade">
+					<button type="submit" class="btn-info">Comprar</button>
+				</form>
+			</aside>
+		</main>
+		<%- include('partials/footer.ejs') %>

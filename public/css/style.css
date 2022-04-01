@@ -40,9 +40,15 @@ p {
 	color: #777;
 }
 
-button, a {
+button,
+a {
 	cursor: pointer;
 	padding: 5px 10px;
+}
+
+.btn-info {
+	background-color: rgb(79, 161, 216);
+	color: #fff;
 }
 
 strong {
@@ -71,7 +77,8 @@ strong {
 .cabecalho {
 	width: 100%;
 	float: left;
-	padding: 50px 8%; /* Podemos utilizar px e % em uma mesma propriedade */
+	padding: 50px 8%;
+	/* Podemos utilizar px e % em uma mesma propriedade */
 	background-color: #13c7ae;
 }
 
@@ -238,7 +245,8 @@ strong {
 	border-radius: 5px;
 	color: #fff;
 	float: left;
-	background-color: initial; /* Tira a cor de fundo padrão do input */
+	background-color: initial;
+	/* Tira a cor de fundo padrão do input */
 }
 
 .newsletter form button {
@@ -309,4 +317,40 @@ strong {
 	float: right;
 	font-size: 20pt;
 	color: #13c7ae;
+}
+
+/* Estilo de um único produto */
+
+.produto {
+	width: 55%;
+	float: left;
+	margin: 0 auto;
+	background-color: #f5f5f5;
+	padding: 10px;
+}
+
+.produto p {
+	margin: 18px 0px;
+}
+
+.produto h3 {
+	font-size: 15pt;
+}
+
+.produto strong {
+	color: #13c7ae;
+}
+
+.produto h3:last-child {
+	float: right;
+}
+
+.comprar {
+	width: 40%;
+	float: right;
+}
+
+.comprar form input {
+	padding: 5px 10px;
+	background-color: #f5f5f5;
 }
