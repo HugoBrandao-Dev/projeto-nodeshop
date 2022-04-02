@@ -23,6 +23,10 @@ app.get('/', (req, res) => {
 	res.render('index', {admin: 0})
 })
 
+app.get('/contato', (req, res) => {
+	res.render('contatos', { admin: 0 })
+})
+
 app.listen(8080, error => {
 	if (error) {
 		console.log(error)
