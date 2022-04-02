@@ -60,6 +60,16 @@ let marcas = [
 	}
 ]
 
+router.get('/produtos', (req, res) => {
+	res.render('produtos', { admin: 0, produtos })
+})
+
+router.get('/produto/:id', (req, res) => {
+	let id = req.params.id
+	let produto = produtos.filter(produto => produto.id == id)[0]
+	res.render('produto', { admin: 0, produto })
+})
+
 // Rotas do Administrador
 
 router.get('/admin/produtos', (req, res) => {
