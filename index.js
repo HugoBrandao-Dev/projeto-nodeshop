@@ -1,6 +1,16 @@
 const express = require('express')
 const app = express(express)
 
+// Configuração da conexão com o banco de dados
+const connection = require('./database/database')
+connection.authenticate()
+	.then(() => {
+		console.log('Conexão com o Banco de dados realizada com sucesso.')
+	})
+	.catch(erro => {
+		console.log(erro)
+	})
+
 // Configurações do Express
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
