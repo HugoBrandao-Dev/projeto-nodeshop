@@ -156,8 +156,20 @@ router.get('/admin/produtos/opcoes', (req, res) => {
 })
 
 router.post('/admin/produtos/opcoes/salvar/tipo', (req, res) => {
-	let nome = req.body.iptNome
-	res.json({ nome })
+	let tipo = req.body.iptTipo
+	console.log(tipo)
+	if (tipo && isNaN(tipo)) {
+		let tipoFormatado = tipo.trim().toLowerCase()
+		Tipos.create({ tipo: tipoFormatado })
+		.then(() => {
+			res.redirect('/admin/produtos/opcoes')
+		})
+		.catch(erro => {
+			res.send(erro)
+		})
+	} else {
+		res.send('Dados inválidos')
+	}
 })
 
 router.post('/admin/produtos/opcoes/salvar/marca', (req, res) => {

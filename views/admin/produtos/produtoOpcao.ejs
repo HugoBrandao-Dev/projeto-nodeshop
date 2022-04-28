@@ -7,7 +7,7 @@
 		<li class="opcao-item"><button type="button" id="btnTipo" class="btn-opcao liTipo btn-opcao-selecionada">Tipo</button></li>
 		<li class="opcao-item"><button type="button" id="btnMarca" class="btn-opcao liMarca">Marca</button></li>
 	</ul>
-	<form method="POST" class="form-tipo">
+	<div class="form-tipo">
 		<section id="tipo">
 			<table class="table-opcoes">
 				<thead>
@@ -24,15 +24,16 @@
 						</tr>
 					<% }) %>
 				</tbody>
-			</table>	
-			
-			<label>Novo tipo:</label>
-			<div class="btn-right input-inline">
-				<input type="text" name="iptNome" placeholder="Tipo de produto">
-				<button type="submit" class="btn-add" formaction="/admin/produtos/opcoes/salvar/tipo">Cadastrar</button>
-			</div>
+			</table>
+			<form action="/admin/produtos/opcoes/salvar/tipo" method="POST" onsubmit="formTipo(event, this)">
+				<label>Novo tipo:</label>
+				<div class="btn-right input-inline">
+					<input type="text" name="iptTipo" placeholder="Tipo de produto">
+					<button type="submit" class="btn-add">Cadastrar</button>
+				</div>
+			</form>
 		</section>
-		</form>
+		</div>
 		<form method="POST">
 		<section id="marca">
 			<table class="table-opcoes">
@@ -51,10 +52,10 @@
 					<% }) %>
 				</tbody>
 			</table>
-	
+
 			<label>Nova marca:</label>
 			<div class="btn-right input-inline">
-				<input type="text" name="iptNome" placeholder="Marca de produto">
+				<input type="text" name="iptMarca" placeholder="Marca de produto">
 				<button type="submit" class="btn-add" formaction="/admin/produtos/opcoes/salvar/marca">Cadastrar</button>
 			</div>
 		</section>
