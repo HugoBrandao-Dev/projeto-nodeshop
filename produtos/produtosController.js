@@ -34,36 +34,6 @@ let produtos = [
 	}
 ]
 
-// let tipos = [
-// 	{
-// 		id: 0,
-// 		tipo: 'notebook'
-// 	},
-// 	{
-// 		id: 1,
-// 		tipo: 'geladeira'
-// 	},
-// 	{
-// 		id: 2,
-// 		tipo: 'panela de presssão'
-// 	}
-// ]
-
-// let marcas = [
-// 	{
-// 		id: 0,
-// 		marca: 'Dell'
-// 	},
-// 	{
-// 		id: 1,
-// 		marca: 'HP'
-// 	},
-// 	{
-// 		id: 2,
-// 		marca: 'Eletrolux'
-// 	}
-// ]
-
 router.get('/produtos', (req, res) => {
 	res.render('produtos', { admin: 0, produtos })
 })
@@ -160,7 +130,6 @@ router.get('/admin/produtos/opcoes', (req, res) => {
 
 router.post('/admin/produtos/opcoes/salvar/tipo', (req, res) => {
 	let tipo = req.body.iptTipo
-	console.log(tipo)
 	if (tipo && isNaN(tipo)) {
 		let tipoFormatado = tipo.trim().toLowerCase()
 		Tipos.create({ tipo: tipoFormatado })
@@ -176,8 +145,19 @@ router.post('/admin/produtos/opcoes/salvar/tipo', (req, res) => {
 })
 
 router.post('/admin/produtos/opcoes/salvar/marca', (req, res) => {
-	let nome = req.body.iptNome
-	res.json({ nome })
+	let marca = req.body.iptMarca
+	if (marca && isNaN(marca)) {
+		let marcaFormatada = marca.trim().toLowerCase()
+		Marcas.create({ marca: marcaFormatada })
+		.then(() => {
+			res.redirect('/admin/produtos/opcoes')
+		})
+		.catch(erro => {
+			res.send(erro)
+		})
+	} else {
+		res.send('Dados inválidos')
+	}
 })
 
 module.exports = router
