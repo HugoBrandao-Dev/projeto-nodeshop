@@ -3,6 +3,7 @@ const router = express.Router()
 
 // Models
 const Tipos = require('../tipos/TiposModel')
+const Marcas = require('../marcas/MarcasModel')
 
 let produtos = [
 	{
@@ -48,20 +49,20 @@ let produtos = [
 // 	}
 // ]
 
-let marcas = [
-	{
-		id: 0,
-		marca: 'Dell'
-	},
-	{
-		id: 1,
-		marca: 'HP'
-	},
-	{
-		id: 2,
-		marca: 'Eletrolux'
-	}
-]
+// let marcas = [
+// 	{
+// 		id: 0,
+// 		marca: 'Dell'
+// 	},
+// 	{
+// 		id: 1,
+// 		marca: 'HP'
+// 	},
+// 	{
+// 		id: 2,
+// 		marca: 'Eletrolux'
+// 	}
+// ]
 
 router.get('/produtos', (req, res) => {
 	res.render('produtos', { admin: 0, produtos })
@@ -151,7 +152,9 @@ router.post('/admin/produto/atualizar/:id', (req, res) => {
 
 router.get('/admin/produtos/opcoes', (req, res) => {
 	Tipos.findAll().then(tipos => {
-		res.render('admin/produtos/produtoOpcao', { admin: 1, tipos, marcas})
+		Marcas.findAll().then(marcas => {
+			res.render('admin/produtos/produtoOpcao', { admin: 1, tipos, marcas})
+		})
 	})
 })
 

@@ -25,7 +25,7 @@
 					<% }) %>
 				</tbody>
 			</table>
-			<form action="/admin/produtos/opcoes/salvar/tipo" method="POST" onsubmit="formTipo(event, this)">
+			<form action="/admin/produtos/opcoes/salvar/tipo" method="POST">
 				<label>Novo tipo:</label>
 				<div class="btn-right input-inline">
 					<input type="text" name="iptTipo" placeholder="Tipo de produto">
@@ -34,13 +34,12 @@
 			</form>
 		</section>
 		</div>
-		<form method="POST">
 		<section id="marca">
 			<table class="table-opcoes">
 				<thead>
 					<tr>
 						<td>ID</td>
-						<td>Tipo</td>
+						<td>Marca</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,14 +51,14 @@
 					<% }) %>
 				</tbody>
 			</table>
-
-			<label>Nova marca:</label>
-			<div class="btn-right input-inline">
-				<input type="text" name="iptMarca" placeholder="Marca de produto">
-				<button type="submit" class="btn-add" formaction="/admin/produtos/opcoes/salvar/marca">Cadastrar</button>
-			</div>
+			<form action="/admin/produtos/opcoes/salvar/marca" method="POST">
+				<label>Nova marca:</label>
+				<div class="btn-right input-inline">
+					<input type="text" name="iptMarca" placeholder="Marca de produto">
+					<button type="submit" class="btn-add" formaction="/admin/produtos/opcoes/salvar/marca">Cadastrar</button>
+				</div>
+			</form>
 		</section>
-	</form>
 </main>
 <script src="/js/produtoOpcao.js"></script>
 <%- include('../../partials/footer.ejs') %>
