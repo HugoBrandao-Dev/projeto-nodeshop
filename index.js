@@ -32,6 +32,7 @@ app.use('/', clientesController)
 // Models
 const Tipos = require('./tipos/TiposModel')
 const Marcas = require('./marcas/MarcasModel')
+const Estoque = require('./estoques/EstoquesModel')
 
 app.get('/', (req, res) => {
 	res.render('index', {admin: 0})
