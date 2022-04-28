@@ -29,6 +29,9 @@ app.use('/', servicosController)
 app.use('/', funcionariosController)
 app.use('/', clientesController)
 
+// Models
+const Tipos = require('./tipos/TiposModel')
+
 app.get('/', (req, res) => {
 	res.render('index', {admin: 0})
 })
