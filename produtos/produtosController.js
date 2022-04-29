@@ -4,6 +4,7 @@ const router = express.Router()
 // Models
 const Tipos = require('../tipos/TiposModel')
 const Marcas = require('../marcas/MarcasModel')
+const Categorias = require('../categorias/CategoriasModel')
 
 let produtos = [
 	{
@@ -140,7 +141,23 @@ router.post('/admin/produtos/opcoes/salvar/tipo', (req, res) => {
 			res.send(erro)
 		})
 	} else {
-		res.send('Dados inválidos')
+		res.send('Tipo inválidos.')
+	}
+})
+
+router.post('/admin/produtos/opcoes/salvar/categoria', (req, res) => {
+	let categoria = req.body.iptCategoria
+	if (categoria && isNaN(categoria)) {
+		let categoriaFormatada = categoria.trim().toLowerCase()
+		Categorias.create({ categoria: categoriaFormatada })
+			.then(() => {
+				res.redirect('/admin/produtos/opcoes')
+			})
+			.catch(erro => {
+				res.send(erro)
+			})
+	} else {
+		res.send('Categoria inválidos.')
 	}
 })
 
@@ -156,7 +173,7 @@ router.post('/admin/produtos/opcoes/salvar/marca', (req, res) => {
 			res.send(erro)
 		})
 	} else {
-		res.send('Dados inválidos')
+		res.send('Marca inválidos.')
 	}
 })
 
