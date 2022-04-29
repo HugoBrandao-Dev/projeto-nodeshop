@@ -34,6 +34,7 @@ const Tipos = require('./tipos/TiposModel')
 const Marcas = require('./marcas/MarcasModel')
 const Estoques = require('./estoques/EstoquesModel')
 const Categorias = require('./categorias/CategoriasModel')
+const ProdutosModel = require('./produtos/ProdutosModel')
 
 app.get('/', (req, res) => {
 	res.render('index', {admin: 0})

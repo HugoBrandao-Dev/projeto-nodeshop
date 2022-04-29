@@ -2,18 +2,13 @@ const Sequelize = require('sequelize')
 const connection = require('../database/database')
 
 const Estoques = connection.define('estoques', {
-  produto: {
-    type: Sequelize.INTEGER.UNSIGNED,
-    allowNull: false,
-    unique: true
-  },
   estoque: {
     type: Sequelize.INTEGER.UNSIGNED,
     allowNull: false,
   }
 })
 
-Estoques.sync({ force: false })
+Estoques.sync({ force: true })
   .then(() => {
     console.log('Tabela Estoques criada com sucesso.')
   })
