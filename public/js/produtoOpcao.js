@@ -1,25 +1,16 @@
-// Comportamento dos botões e da seções Tipo e Marca
+const rdOpcoes = document.getElementsByName('rdOpcao')
+const sectionsSecoes = document.querySelectorAll('section')
 
-const btnTipo = document.getElementById('btnTipo')
-const btnMarca = document.getElementById('btnMarca')
-const sectionTipo = document.getElementById('tipo')
-const sectionMarca = document.getElementById('marca')
-
-function ativar(ativarElemento, desativarElemento) {
-	ativarElemento.style.color = '#fff'
-	ativarElemento.style.backgroundColor = 'rgb(79, 161, 216)'
-	desativarElemento.style.color = '#000'
-	desativarElemento.style.backgroundColor = 'rgb(239, 239, 239)'
+function getSection(value) {
+	let secoes = [...sectionsSecoes]
+	secoes.map(secao => secao.style.display = 'none')
+	return secoes.filter(secao => secao.id == value)[0]
 }
 
-btnTipo.onclick = function () {
-	sectionMarca.style.display = 'none'
-	sectionTipo.style.display = 'block'
-	ativar(btnTipo, btnMarca)
-}
-
-btnMarca.onclick = function () {
-	sectionMarca.style.display = 'block'
-	sectionTipo.style.display = 'none'
-	ativar(btnMarca, btnTipo)
-}
+rdOpcoes.forEach(radio => {
+	radio.onchange = function() {
+		console.log(radio.value)
+		let secao = getSection(radio.value)
+		secao.style.display = 'block'
+	}
+})

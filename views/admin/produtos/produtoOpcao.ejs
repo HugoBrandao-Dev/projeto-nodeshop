@@ -4,16 +4,29 @@
 	<h2>Opções para produtos</h2>
 	<hr>
 	<ul class="opcao-lista">
-		<li class="opcao-item"><button type="button" id="btnTipo" class="btn-opcao liTipo btn-opcao-selecionada">Tipo</button></li>
-		<li class="opcao-item"><button type="button" id="btnMarca" class="btn-opcao liMarca">Marca</button></li>
+		<li class="opcao-item">
+			<label>
+				<input type="radio" name="rdOpcao" value="tipo" checked>Tipo
+			</label>
+		</li>
+		<li class="opcao-item">
+			<label>
+				<input type="radio" name="rdOpcao" value="marca">Marca
+			</label>
+		</li>
+		<li class="opcao-item">
+			<label>
+				<input type="radio" name="rdOpcao" value="categoria">Categoria
+			</label>
+		</li>
 	</ul>
 	<div class="form-tipo">
 		<section id="tipo">
 			<table class="table-opcoes">
 				<thead>
 					<tr>
-						<td>ID</td>
-						<td>Tipo</td>
+						<th>ID</th>
+						<th>Tipo</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -33,13 +46,38 @@
 				</div>
 			</form>
 		</section>
+		<section id="categoria">
+			<table class="table-opcoes">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Categoria</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% tipos.forEach(categoria => { %>
+						<tr>
+							<td><%= categoria.id %></td>
+							<td><%= categoria.categoria %></td>
+						</tr>
+					<% }) %>
+				</tbody>
+			</table>
+			<form action="/admin/produtos/opcoes/salvar/tipo" method="POST">
+				<label>Novo tipo:</label>
+				<div class="btn-right input-inline">
+					<input type="text" name="iptTipo" placeholder="Tipo de produto">
+					<button type="submit" class="btn-add">Cadastrar</button>
+				</div>
+			</form>
+		</section>
 		</div>
 		<section id="marca">
 			<table class="table-opcoes">
 				<thead>
 					<tr>
-						<td>ID</td>
-						<td>Marca</td>
+						<th>ID</th>
+						<th>Marca</th>
 					</tr>
 				</thead>
 				<tbody>

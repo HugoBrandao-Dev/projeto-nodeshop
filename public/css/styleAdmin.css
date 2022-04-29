@@ -109,36 +109,11 @@ table tr th, table tr td {
 
 /* Formulário de cadastro de uma nova Opção de seleção (tipo e marca) */
 
-.opcao-lista {
-	width: 20%;
-	margin: 0 auto;
+.opcao-lista .opcao-item {
+	display: inline;
+	margin-right: 10px;
 }
 
-.opcao-item {
-	text-align: center;
-	width: 50%;
-	float: left;
-}
-
-.opcao-item .btn-opcao {
-	width: 100%;
-	border: 2px solid rgb(79, 161, 216);
-	margin-bottom: 18px;
-}
-
-.opcao-item .liTipo {
-	border-right: none;	
-	border-radius: 5px 0 0 5px;
-}
-
-.opcao-item .liMarca {	
-	border-radius: 0 5px 5px 0;
-}
-
-#tipo {
-	display: block;
-}
-
-#marca {
-	display: none;
+.opcao-lista .opcao-item input {
+	margin-right: 2px;
 }
