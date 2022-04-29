@@ -124,7 +124,9 @@ router.post('/admin/produto/atualizar/:id', (req, res) => {
 router.get('/admin/produtos/opcoes', (req, res) => {
 	Tipos.findAll().then(tipos => {
 		Marcas.findAll().then(marcas => {
-			res.render('admin/produtos/produtoOpcao', { admin: 1, tipos, marcas})
+			Categorias.findAll().then(categorias => {
+				res.render('admin/produtos/produtoOpcao', { admin: 1, tipos, marcas, categorias })
+			})
 		})
 	})
 })
