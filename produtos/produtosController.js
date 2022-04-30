@@ -53,7 +53,16 @@ router.get('/admin/produtos', (req, res) => {
 })
 
 router.get('/admin/produto/novo', (req, res) => {
-	res.render('admin/produtos/produtoCadastrar', { admin: 1 })
+	Categorias.findAll({ raw: true })
+		.then(categorias => {
+			Marcas.findAll({ raw: true })
+				.then(marcas => {
+					Tipos.findAll({ raw: true })
+						.then(tipos => {
+							res.render('admin/produtos/produtoCadastrar', { admin: 1, categorias, marcas, tipos })
+						})
+				})
+		})
 })
 
 router.post('/admin/produto/salvar', (req, res) => {
@@ -80,7 +89,7 @@ router.post('/admin/produto/salvar', (req, res) => {
 		estoque,
 		preco
 	})
-	res.redirect('/admin/produtos', { admin: 1 })
+	res.redirect('/admin/produtos')
 })
 
 router.get('/admin/produto/:id', (req, res) => {

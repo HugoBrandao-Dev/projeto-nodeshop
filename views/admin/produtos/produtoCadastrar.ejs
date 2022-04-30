@@ -6,39 +6,23 @@
 	<form action="salvar" method="post">
 		<label>Categoria:</label>
 		<select name="sltCategoria">
-			<option value="0">Eletrodoméstico</option>
-			<option value="1">Eletrônico</option>
+			<% categorias.forEach(categoria => { %>
+				<option value="<%= categoria.id %>"><%= categoria.categoria %></option>
+			<% }) %>
 		</select>
 
 		<label>Tipo:</label>
 		<select name="sltTipo">
-			<optgroup label="Laptops">
-				<option value="0">Notebook</option>
-				<option value="1">Macbook</option>
-			</optgroup>
-			<optgroup label="Celulares">
-				<option value="2">Smartphone</option>
-				<option value="3">Iphone</option>
-			</optgroup>
-			<optgroup label="Desktop">
-				<option value="4">Computador</option>
-				<option value="5">IMac</option>
-			</optgroup>
-			<optgroup label="Acessórios">
-				<option value="6">Mouse</option>
-				<option value="7">Teclado</option>
-				<option value="8">Mouse & Teclado</option>
-				<option value="9">Caixa de Som</option>
-			</optgroup>
-			<option value="6">Televisor</option>
-			<option value="7">Monitor</option>
+			<% tipos.forEach(tipo => { %>
+				<option value="<%= tipo.id %>"><%= tipo.tipo %></option>
+			<% }) %>
 		</select>
 
 		<label>Marca:</label>
 		<select name="sltMarca">
-			<option value="0">Dell</option>
-			<option value="1">Apple</option>
-			<option value="2">Samsung</option>
+			<% marcas.forEach(marca => { %>
+				<option value="<%= marca.id %>"><%= marca.marca %></option>
+			<% }) %>
 		</select>
 
 		<label>Modelo/Produto:</label>
