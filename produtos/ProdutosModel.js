@@ -42,9 +42,9 @@ const Produtos = connection.define('produtos', {
   }
 })
 
-Produtos.hasMany(Tipos)
-Produtos.hasMany(Categorias)
-Produtos.hasMany(Marcas)
+Produtos.belongsTo(Tipos)
+Produtos.belongsTo(Categorias)
+Produtos.belongsTo(Marcas)
 Produtos.belongsTo(Estoques)
 
 Produtos.sync({ force: true })
