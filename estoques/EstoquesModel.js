@@ -5,6 +5,7 @@ const Estoques = connection.define('estoques', {
 	produto: {
 		type: Sequelize.INTEGER.UNSIGNED,
 		allowNull: false,
+		primaryKey: true,
 		unique: true
 	},
   estoque: {
