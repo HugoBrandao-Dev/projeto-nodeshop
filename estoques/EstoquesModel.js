@@ -1,18 +1,17 @@
 const Sequelize = require('sequelize')
 const connection = require('../database/database')
 
+// Models
+const Produtos = require('../produtos/ProdutosModel')
+
 const Estoques = connection.define('estoques', {
-	produto: {
-		type: Sequelize.INTEGER.UNSIGNED,
-		allowNull: false,
-		primaryKey: true,
-		unique: true
-	},
   estoque: {
     type: Sequelize.INTEGER.UNSIGNED,
     allowNull: false,
   }
 })
+
+Estoques.belongsTo(Produtos)
 
 Estoques.sync({ force: false })
   .then(() => {

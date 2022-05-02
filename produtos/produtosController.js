@@ -5,6 +5,25 @@ const router = express.Router()
 const Tipos = require('../tipos/TiposModel')
 const Marcas = require('../marcas/MarcasModel')
 const Categorias = require('../categorias/CategoriasModel')
+const Produtos = require('../produtos/ProdutosModel')
+const Estoques = require('../estoques/EstoquesModel')
+
+// Funções
+function isRegistrosValidos(inteiros = [], strings = []) {
+	let inteirosValidos = true
+	let stringsValidas = true
+	inteiros.forEach(valor => {
+		if (!valor || isNaN(valor)) {
+			inteirosValidos = false
+		}
+	})
+	strings.forEach(valor => {
+		if (!valor) {
+			stringsValidas = false
+		}
+	})
+	return inteirosValidos && stringsValidas
+}
 
 let produtos = [
 	{
@@ -66,30 +85,37 @@ router.get('/admin/produto/novo', (req, res) => {
 })
 
 router.post('/admin/produto/salvar', (req, res) => {
-	let categoria = Number.parseInt(req.body.sltCategoria.value)
-	let tipo = Number.parseInt(req.body.sltTipo.value)
-	let marca = Number.parseInt(req.body.iptMarca)
+	let id = 0
+	let categoria = Number.parseInt(req.body.sltCategoria)
+	let tipo = Number.parseInt(req.body.sltTipo)
+	let marca = Number.parseInt(req.body.sltMarca)
 	let modelo = req.body.iptModelo
 	let fabricacao = Number.parseInt(req.body.iptFabricacao)
 	let garantiaLoja = Number.parseInt(req.body.iptGarantiaLoja)
 	let garantiaFabricante = Number.parseInt(req.body.iptGarantiaFabricante)
 	let descricao = req.body.textDescricao
 	let estoque = Number.parseInt(req.body.iptEstoque)
-	let preco = Number.parseFloat(parseFloat(req.body.iptPreco.replace(',', '.')).toFixed(2))
+	let preco = Number.parseFloat(req.body.iptPreco)
 
-	produtos.push({
-		categoria,
-		tipo,
-		marca,
+	Produtos.create({
 		modelo,
-		fabricacao,
+		tipoId: tipo,
+		categoriaId: categoria,
+		marcaId: marca,
+		descricao,
+		anoFabricacao: fabricacao,
 		garantiaLoja,
 		garantiaFabricante,
-		descricao,
-		estoque,
-		preco
+		preco,
+		estoqueProduto: estoque
+	}).then(resultado => {
+		console.log(resultado.id)
+			Estoques.create({
+				estoque,
+				produtoId: resultado.dataValues.id
+			})
+			res.redirect('/admin/produtos')
 	})
-	res.redirect('/admin/produtos')
 })
 
 router.get('/admin/produto/:id', (req, res) => {

@@ -5,25 +5,16 @@ const connection = require('../database/database')
 const Categorias = require('../categorias/CategoriasModel')
 const Tipos = require('../tipos/TiposModel')
 const Marcas = require('../marcas/MarcasModel')
-const Estoques = require('../estoques/EstoquesModel')
 
 const Produtos = connection.define('produtos', {
   modelo: {
     type: Sequelize.STRING,
     allowNull: false
   },
-  tiposId: {
-    type: Sequelize.SMALLINT.UNSIGNED,
-    allowNull: false
-  },
-  categoriasId: {
-    type: Sequelize.SMALLINT.UNSIGNED,
-    allowNull: false
-  },
-  marcasId: {
-    type: Sequelize.SMALLINT.UNSIGNED,
-    allowNull: false
-  },
+	descricao: {
+		type: Sequelize.TEXT,
+		allowNull: true
+	},
   anoFabricacao: {
     type: Sequelize.DATE,
     allowNull: false
@@ -45,9 +36,8 @@ const Produtos = connection.define('produtos', {
 Produtos.belongsTo(Tipos)
 Produtos.belongsTo(Categorias)
 Produtos.belongsTo(Marcas)
-Produtos.belongsTo(Estoques)
 
-Produtos.sync({ force: true })
+Produtos.sync({ force: false })
   .then(() => {
     console.log('Tabela Produtos criada com sucesso.')
   })
