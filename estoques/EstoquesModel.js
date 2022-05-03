@@ -12,6 +12,7 @@ const Estoques = connection.define('estoques', {
 })
 
 Estoques.belongsTo(Produtos)
+Produtos.belongsTo(Estoques)
 
 Estoques.sync({ force: false })
   .then(() => {

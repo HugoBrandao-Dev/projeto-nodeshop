@@ -109,7 +109,6 @@ router.post('/admin/produto/salvar', (req, res) => {
 		preco,
 		estoqueProduto: estoque
 	}).then(resultado => {
-		console.log(resultado.id)
 			Estoques.create({
 				estoque,
 				produtoId: resultado.dataValues.id
