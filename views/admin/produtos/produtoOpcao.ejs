@@ -20,8 +20,8 @@
 			</label>
 		</li>
 	</ul>
-	<div class="form-tipo">
-		<section id="tipo">
+	<div class="opcoes">
+		<section id="tipo" class="opcao">
 			<table class="table-opcoes">
 				<thead>
 					<tr>
@@ -35,68 +35,68 @@
 							<td><%= tipo.id %></td>
 							<td><%= tipo.tipo %></td>
 						</tr>
-					<% }) %>
-				</tbody>
-			</table>
-			<form action="/admin/produtos/opcoes/salvar/tipo" method="POST">
-				<label>Novo tipo:</label>
-				<div class="btn-right input-inline">
-					<input type="text" name="iptTipo" placeholder="Tipo de produto">
-					<button type="submit" class="btn-add">Cadastrar</button>
-				</div>
-			</form>
-		</section>
-		<section id="categoria">
-			<table class="table-opcoes">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Categoria</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% categorias.forEach(categoria => { %>
+						<% }) %>
+					</tbody>
+				</table>
+				<form action="/admin/produtos/opcoes/salvar/tipo" method="POST">
+					<label>Novo tipo:</label>
+					<div class="btn-right input-inline">
+						<input type="text" name="iptTipo" placeholder="Tipo de produto">
+						<button type="submit" class="btn-add">Cadastrar</button>
+					</div>
+				</form>
+			</section>
+			<section id="categoria" class="opcao">
+				<table class="table-opcoes">
+					<thead>
 						<tr>
-							<td><%= categoria.id %></td>
-							<td><%= categoria.categoria %></td>
+							<th>ID</th>
+							<th>Categoria</th>
 						</tr>
-					<% }) %>
-				</tbody>
-			</table>
-			<form action="/admin/produtos/opcoes/salvar/categoria" method="POST">
-				<label>Nova categoria:</label>
-				<div class="btn-right input-inline">
-					<input type="text" name="iptCategoria" placeholder="Tipo de produto">
-					<button type="submit" class="btn-add">Cadastrar</button>
+					</thead>
+					<tbody>
+						<% categorias.forEach(categoria => { %>
+							<tr>
+								<td><%= categoria.id %></td>
+								<td><%= categoria.categoria %></td>
+							</tr>
+							<% }) %>
+						</tbody>
+					</table>
+					<form action="/admin/produtos/opcoes/salvar/categoria" method="POST">
+						<label>Nova categoria:</label>
+						<div class="btn-right input-inline">
+							<input type="text" name="iptCategoria" placeholder="Tipo de produto">
+							<button type="submit" class="btn-add">Cadastrar</button>
+						</div>
+					</form>
+				</section>
+				<section id="marca" class="opcao">
+					<table class="table-opcoes">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Marca</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% marcas.forEach(marca => { %>
+								<tr>
+									<td><%= marca.id %></td>
+									<td><%= marca.marca %></td>
+								</tr>
+								<% }) %>
+							</tbody>
+						</table>
+						<form action="/admin/produtos/opcoes/salvar/marca" method="POST">
+							<label>Nova marca:</label>
+							<div class="btn-right input-inline">
+								<input type="text" name="iptMarca" placeholder="Marca de produto">
+								<button type="submit" class="btn-add">Cadastrar</button>
+							</div>
+						</form>
+					</section>
 				</div>
-			</form>
-		</section>
-		</div>
-		<section id="marca">
-			<table class="table-opcoes">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Marca</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% marcas.forEach(marca => { %>
-						<tr>
-							<td><%= marca.id %></td>
-							<td><%= marca.marca %></td>
-						</tr>
-					<% }) %>
-				</tbody>
-			</table>
-			<form action="/admin/produtos/opcoes/salvar/marca" method="POST">
-				<label>Nova marca:</label>
-				<div class="btn-right input-inline">
-					<input type="text" name="iptMarca" placeholder="Marca de produto">
-					<button type="submit" class="btn-add">Cadastrar</button>
-				</div>
-			</form>
-		</section>
-</main>
-<script src="/js/produtoOpcao.js"></script>
-<%- include('../../partials/footer.ejs') %>
+			</main>
+			<script src="/js/produtoOpcao.js"></script>
+			<%- include('../../partials/footer.ejs') %>

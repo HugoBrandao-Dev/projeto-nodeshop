@@ -67,6 +67,7 @@ form label, form input, form select, form textarea {
 
 form input, form select, form textarea {
 	margin-bottom: 18px;
+	padding: 5px 10px;
 }
 
 form input, form select {
@@ -116,4 +117,8 @@ table tr th, table tr td {
 
 .opcao-lista .opcao-item input {
 	margin-right: 2px;
+}
+
+.opcoes #categoria, .opcoes #marca {
+	display: none;
 }
