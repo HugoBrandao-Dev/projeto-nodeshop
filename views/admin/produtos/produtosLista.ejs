@@ -48,7 +48,7 @@
 							</td>
 							<td class="acoes">
 								<a href="/admin/produto/edit/<%= produto.id %>" class="btn-redondo btn-editar btn-acao" title="Editar produto"><i class="fa fa-edit"></i></a>
-								<form onsubmit="deletarProduto(event, this)" action="/admin/produto/Deletar" class="form-deletar btn-acao">
+								<form onsubmit="deletarProduto(event, this)" action="/admin/produto/deletar" method="POST" class="form-deletar btn-acao">
 									<input type="hidden" name="produtoId" value="<%= produto.id %>">
 									<input type="hidden" name="produtoModelo" value="<%= produto.modelo %>">
 									<button type="submit" class="btn-redondo btn-deletar" title="Deletar produto">

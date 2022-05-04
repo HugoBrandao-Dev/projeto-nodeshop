@@ -222,4 +222,13 @@ router.post('/admin/produtos/opcoes/salvar/marca', (req, res) => {
 	}
 })
 
+router.post('/admin/produto/deletar', (req, res) => {
+	let id = req.body.produtoId
+	Produtos.destroy({
+		where: {id}
+	}).then(() => {
+		res.redirect('/admin/produtos')
+	})
+})
+
 module.exports = router
