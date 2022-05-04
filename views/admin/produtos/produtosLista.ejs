@@ -46,14 +46,29 @@
 							<td>
 								<%= produto.preco %>
 							</td>
-							<td style="display: flex;">
-								<a href="/admin/produto/edit/<%= produto.id %>" class="btn-redondo btn-editar" title="Editar produto"><i class="fa fa-edit"></i></a>
-								<a href="#" class="btn-redondo btn-deletar" title="Deletar produto"><i class="fa fa-eraser"></i></a>
-								<a href="/admin/produto/<%= produto.id %>" class="btn-redondo btn-info" title="Informações do produto"><i class="fa fa-info-circle"></i></a>
+							<td class="acoes">
+								<a href="/admin/produto/edit/<%= produto.id %>" class="btn-redondo btn-editar btn-acao" title="Editar produto"><i class="fa fa-edit"></i></a>
+								<form onsubmit="deletarProduto(event, this)" action="/admin/produto/Deletar" class="form-deletar btn-acao">
+									<input type="hidden" name="produtoId" value="<%= produto.id %>">
+									<input type="hidden" name="produtoModelo" value="<%= produto.modelo %>">
+									<button type="submit" class="btn-redondo btn-deletar" title="Deletar produto">
+										<i class="fa fa-eraser"></i>
+									</button>
+								</form>
+								<a href="/admin/produto/<%= produto.id %>" class="btn-redondo btn-info btn-acao" title="Informações do produto"><i class="fa fa-info-circle"></i></a>
 							</td>
 						</tr>
 						<% }) %>
 				</tbody>
 			</table>
 		</main>
+		<script>
+			function deletarProduto(event, form) {
+				event.preventDefault()
+				console.log(form)
+				if (confirm(`Deletar produto [ ${ form['produtoId'].value } - ${ form['produtoModelo'].value } ]?`)) {
+					form.submit()
+				}
+			}
+		</script>
 		<%- include('../../partials/footer.ejs') %>

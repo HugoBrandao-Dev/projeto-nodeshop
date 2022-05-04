@@ -18,7 +18,7 @@
 	background-color: red;
 }
 
-.btn-redondo {
+.btn-redondo, .btn-acao {
 	height: 30px;
 	width: 30px;
 	display: flex;
@@ -77,6 +77,10 @@ form input, form select {
 form select, form textarea {
 	border: 2px solid #333;
 	resize: none;
+}
+
+.acoes {
+	display: flex;
 }
 
 /* Tabelas */
