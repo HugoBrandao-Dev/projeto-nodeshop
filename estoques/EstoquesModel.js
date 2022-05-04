@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize')
 const connection = require('../database/database')
 
-// Models
 const Produtos = require('../produtos/ProdutosModel')
 
 const Estoques = connection.define('estoques', {
@@ -11,8 +10,8 @@ const Estoques = connection.define('estoques', {
   }
 })
 
+Produtos.hasOne(Estoques)
 Estoques.belongsTo(Produtos)
-Produtos.belongsTo(Estoques)
 
 Estoques.sync({ force: false })
   .then(() => {

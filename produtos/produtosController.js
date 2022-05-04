@@ -25,35 +25,6 @@ function isRegistrosValidos(inteiros = [], strings = []) {
 	return inteirosValidos && stringsValidas
 }
 
-let produtos = [
-	{
-		id: 0,
-		categoria: 1,
-		tipo: 1,
-		marca: 'Dell',
-		modelo: 'Dell2012',
-		fabricacao: '2020',
-		garantiaLoja: 2,
-		garantiaFabricante: 4,
-		descricao: 'Notebook Dell I5 10ª geração 256GB de armazenamento.',
-		estoque: 100,
-		preco: 5000,
-	},
-	{
-		id: 1,
-		categoria: 1,
-		tipo: 1,
-		marca: 'Apple',
-		modelo: 'Macbook Air',
-		fabricacao: '2020',
-		garantiaLoja: 4,
-		garantiaFabricante: 8,
-		descricao: 'Macbook Air M1 500GB SSD de armazenamento.',
-		estoque: 10,
-		preco: 10000,
-	}
-]
-
 router.get('/produtos', (req, res) => {
 	res.render('produtos', { admin: 0, produtos })
 })
@@ -67,25 +38,29 @@ router.get('/produto/:id', (req, res) => {
 // Rotas do Administrador
 
 router.get('/admin/produtos', (req, res) => {
-
-	res.render('admin/produtos/produtosLista', { admin: 1, produtos })
+	Produtos.findAll({
+		include: [
+			{ model: Estoques },
+			{ model: Marcas },
+			{ model: Categorias },
+			{ model: Tipos }
+		]
+	}).then(produtos => {
+		res.render('admin/produtos/produtosLista', { admin: 1, produtos })
+	})
 })
 
 router.get('/admin/produto/novo', (req, res) => {
-	Categorias.findAll({ raw: true })
-		.then(categorias => {
-			Marcas.findAll({ raw: true })
-				.then(marcas => {
-					Tipos.findAll({ raw: true })
-						.then(tipos => {
-							res.render('admin/produtos/produtoCadastrar', { admin: 1, categorias, marcas, tipos })
-						})
-				})
+	Categorias.findAll({ raw: true }).then(categorias => {
+		Marcas.findAll({ raw: true }).then(marcas => {
+			Tipos.findAll({ raw: true }).then(tipos => {
+				res.render('admin/produtos/produtoCadastrar', { admin: 1, categorias, marcas, tipos })
+			})
 		})
+	})
 })
 
 router.post('/admin/produto/salvar', (req, res) => {
-	let id = 0
 	let categoria = Number.parseInt(req.body.sltCategoria)
 	let tipo = Number.parseInt(req.body.sltTipo)
 	let marca = Number.parseInt(req.body.sltMarca)
@@ -107,13 +82,13 @@ router.post('/admin/produto/salvar', (req, res) => {
 		garantiaLoja,
 		garantiaFabricante,
 		preco,
-		estoqueProduto: estoque
+		estoqueProdutoId: estoque
 	}).then(resultado => {
-			Estoques.create({
-				estoque,
-				produtoId: resultado.dataValues.id
-			})
-			res.redirect('/admin/produtos')
+		Estoques.create({
+			produtoId: resultado.dataValues.id,
+			estoque
+		})
+		res.redirect('/admin/produtos')
 	})
 })
 
@@ -156,9 +131,9 @@ router.post('/admin/produto/atualizar/:id', (req, res) => {
 })
 
 router.get('/admin/produtos/opcoes', (req, res) => {
-	Tipos.findAll().then(tipos => {
-		Marcas.findAll().then(marcas => {
-			Categorias.findAll().then(categorias => {
+	Tipos.findAll({ raw: true }).then(tipos => {
+		Marcas.findAll({ raw: true }).then(marcas => {
+			Categorias.findAll({ raw: true }).then(categorias => {
 				res.render('admin/produtos/produtoOpcao', { admin: 1, tipos, marcas, categorias })
 			})
 		})
@@ -186,12 +161,12 @@ router.post('/admin/produtos/opcoes/salvar/categoria', (req, res) => {
 	if (categoria && isNaN(categoria)) {
 		let categoriaFormatada = categoria.trim().toLowerCase()
 		Categorias.create({ categoria: categoriaFormatada })
-			.then(() => {
-				res.redirect('/admin/produtos/opcoes')
-			})
-			.catch(erro => {
-				res.send(erro)
-			})
+		.then(() => {
+			res.redirect('/admin/produtos/opcoes')
+		})
+		.catch(erro => {
+			res.send(erro)
+		})
 	} else {
 		res.send('Categoria inválidos.')
 	}

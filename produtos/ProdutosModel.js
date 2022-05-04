@@ -16,7 +16,7 @@ const Produtos = connection.define('produtos', {
 		allowNull: true
 	},
   anoFabricacao: {
-    type: Sequelize.DATE,
+    type: Sequelize.SMALLINT.UNSIGNED,
     allowNull: false
   },
   garantiaLoja: {
@@ -33,14 +33,14 @@ const Produtos = connection.define('produtos', {
   }
 })
 
-Produtos.belongsTo(Tipos)
 Tipos.hasMany(Produtos)
+Produtos.belongsTo(Tipos)
 
-Produtos.belongsTo(Categorias)
 Categorias.hasMany(Produtos)
+Produtos.belongsTo(Categorias)
 
-Produtos.belongsTo(Marcas)
 Marcas.hasMany(Produtos)
+Produtos.belongsTo(Marcas)
 
 Produtos.sync({ force: false })
   .then(() => {

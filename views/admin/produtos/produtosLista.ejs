@@ -14,8 +14,6 @@
 						<th>Marca</th>
 						<th>Produto</th>
 						<th>Fabricação</th>
-						<th>Garantia loja</th>
-						<th>Garantia fabricante</th>
 						<th>Estoque</th>
 						<th>Preço</th>
 						<th>Ações</th>
@@ -28,28 +26,22 @@
 								<%= produto.id %>
 							</td>
 							<td>
-								<%= produto.categoria %>
+								<%= produto.categoria.categoria %>
 							</td>
 							<td>
-								<%= produto.tipo %>
+								<%= produto.tipo.tipo %>
 							</td>
 							<td>
-								<%= produto.marca %>
+								<%= produto.marca.marca %>
 							</td>
 							<td>
 								<%= produto.modelo %>
 							</td>
 							<td>
-								<%= produto.fabricacao %>
+								<%= produto.anoFabricacao %>
 							</td>
 							<td>
-								<%= produto.garantiaLoja %>
-							</td>
-							<td>
-								<%= produto.garantiaFabricante %>
-							</td>
-							<td>
-								<%= produto.estoque %>
+								<%= produto.estoque.estoque %>
 							</td>
 							<td>
 								<%= produto.preco %>
