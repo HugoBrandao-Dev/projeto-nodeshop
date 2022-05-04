@@ -82,6 +82,7 @@ form select, form textarea {
 /* Tabelas */
 
 table {
+	width: 100%;
 	margin: 0 auto;
 	border-collapse: collapse;
 }
