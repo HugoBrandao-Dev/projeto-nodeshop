@@ -94,8 +94,16 @@ router.post('/admin/produto/salvar', (req, res) => {
 
 router.get('/admin/produto/:id', (req, res) => {
 	let id = req.params.id
-	let produto = produtos.filter(produto => produto.id == id)[0]
-	res.render('admin/produtos/produtoInfo', { admin: 1, produto })
+	Produtos.findByPk(id, {
+		include: [
+			{ model: Estoques },
+			{ model: Marcas },
+			{ model: Categorias },
+			{ model: Tipos }
+		]
+	}).then(produto => {
+		res.render('admin/produtos/produtoInfo', { admin: 1, produto })
+	})
 })
 
 router.get('/admin/produto/edit/:id', (req, res) => {
