@@ -108,33 +108,59 @@ router.get('/admin/produto/:id', (req, res) => {
 
 router.get('/admin/produto/edit/:id', (req, res) => {
 	let id = req.params.id
-	let produto = produtos.filter(produto => produto.id == id)[0]
-	res.render('admin/produtos/produtoEditar', { admin: 1, produto })
+	Produtos.findByPk(id, {
+		include: [{
+			model: Estoques
+		}]
+	}).then(produto => {
+		Categorias.findAll({ raw: true }).then(categorias => {
+			Marcas.findAll({ raw: true }).then(marcas => {
+				Tipos.findAll({ raw: true }).then(tipos => {
+					res.render('admin/produtos/produtoEditar', { admin: 1, produto, categorias, marcas, tipos })
+				})
+			})
+		})
+	})
 })
 
-router.post('/admin/produto/atualizar/:id', (req, res) => {
-	let categoria = Number.parseInt(req.body.sltCategoria.value)
-	let tipo = Number.parseInt(req.body.sltTipo.value)
-	let marca = Number.parseInt(req.body.iptMarca)
+router.post('/admin/produto/atualizar', (req, res) => {
+	let id = req.body.iptId
+	let categoria = Number.parseInt(req.body.sltCategoria)
+	let tipo = Number.parseInt(req.body.sltTipo)
+	let marca = Number.parseInt(req.body.sltMarca)
 	let modelo = req.body.iptModelo
 	let fabricacao = Number.parseInt(req.body.iptFabricacao)
 	let garantiaLoja = Number.parseInt(req.body.iptGarantiaLoja)
 	let garantiaFabricante = Number.parseInt(req.body.iptGarantiaFabricante)
 	let descricao = req.body.textDescricao
 	let estoque = Number.parseInt(req.body.iptEstoque)
-	let preco = Number.parseFloat(parseFloat(req.body.iptPreco.replace(',', '.')).toFixed(2))
+	let preco = Number.parseFloat(req.body.iptPreco)
 
-	res.json({
-		categoria,
-		tipo,
-		marca,
+	Produtos.update({
 		modelo,
-		fabricacao,
+		tipoId: tipo,
+		categoriaId: categoria,
+		marcaId: marca,
+		descricao,
+		anoFabricacao: fabricacao,
 		garantiaLoja,
 		garantiaFabricante,
-		descricao,
-		estoque,
-		preco
+		preco,
+		estoqueProdutoId: estoque
+	}, {
+		where: {
+			id: id
+		}
+	}).then(resultado => {
+		console.log(resultado)
+		Estoques.update({
+			estoque
+		}, {
+			where: {
+				produtoId: resultado[0]
+			}
+		})
+		res.redirect('/admin/produtos')
 	})
 })
 

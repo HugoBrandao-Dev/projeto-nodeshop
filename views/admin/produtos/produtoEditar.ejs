@@ -3,61 +3,58 @@
 <main class="principal">
 	<h2>Cadastrar produto</h2>
 	<hr>
-	<form action="/admin/produto/atualizar/<%= produto.id %>" method="post">
+	<form action="/admin/produto/atualizar" method="post">
+		<input type="hidden" name="iptId" value="<%= produto.id %>">
 		<label>Categoria:</label>
 		<select name="sltCategoria">
-			<option value="0">Eletrodoméstico</option>
-			<option value="1">Eletrônico</option>
+			<% categorias.forEach(categoria => { %>
+				<% if (produto.categoriaId == categoria.id) { %>
+					<option value="<%= categoria.id %>" selected><%= categoria.categoria %></option>
+				<% } else { %>
+					<option value="<%= categoria.id %>"><%= categoria.categoria %></option>
+				<% } %>
+			<% }) %>
 		</select>
 
 		<label>Tipo:</label>
 		<select name="sltTipo">
-			<optgroup label="Laptops">
-				<option value="0">Notebook</option>
-				<option value="1">Macbook</option>
-			</optgroup>
-			<optgroup label="Celulares">
-				<option value="2">Smartphone</option>
-				<option value="3">Iphone</option>
-			</optgroup>
-			<optgroup label="Desktop">
-				<option value="4">Computador</option>
-				<option value="5">IMac</option>
-			</optgroup>
-			<optgroup label="Acessórios">
-				<option value="6">Mouse</option>
-				<option value="7">Teclado</option>
-				<option value="8">Mouse & Teclado</option>
-				<option value="9">Caixa de Som</option>
-			</optgroup>
-			<option value="10">Televisor</option>
-			<option value="11">Monitor</option>
+			<% tipos.forEach(tipo => { %>
+				<% if (produto.tipoId == tipo.id) { %>
+					<option value="<%= tipo.id %>" selected><%= tipo.tipo %></option>
+				<% } else { %>
+					<option value="<%= tipo.id %>"><%= tipo.tipo %></option>
+				<% } %>
+			<% }) %>
 		</select>
 
 		<label>Marca:</label>
 		<select name="sltMarca">
-			<option value="0">Dell</option>
-			<option value="1">Apple</option>
-			<option value="2">Samsung</option>
+			<% marcas.forEach(marca => { %>
+				<% if (produto.marcaId == marca.id) { %>
+					<option value="<%= marca.id %>" selected><%= marca.marca %></option>
+				<% } else { %>
+					<option value="<%= marca.id %>"><%= marca.marca %></option>
+				<% } %>
+			<% }) %>
 		</select>
 
 		<label>Modelo/Produto:</label>
 		<input type="text" name="iptModelo" value="<%= produto.modelo %>">
 
 		<label>Ano de fabricação:</label>
-		<input type="number" name="iptFabricacao" value="<%= produto.fabricacao %>">
+		<input type="number" name="iptFabricacao" value="<%= produto.anoFabricacao %>">
 
-		<label>Garantia da loja (anos):</label>
+		<label>Garantia da loja (meses):</label>
 		<input type="number" name="iptGarantiaLoja" value="<%= produto.garantiaLoja %>">
 
-		<label>Garantia da fabricante (anos):</label>
+		<label>Garantia da fabricante (meses):</label>
 		<input type="number" name="iptGarantiaFabricante" value="<%= produto.garantiaFabricante %>">
 
 		<label>Descrição:</label>
 		<textarea name="textDescricao"cols="30" rows="10" placeholder="Descrição do produto"><%= produto.descricao %></textarea>
 
 		<label>Estoque:</label>
-		<input type="number" name="iptEstoque" value="<%= produto.estoque %>">
+		<input type="number" name="iptEstoque" value="<%= produto.estoque.estoque %>">
 
 		<label>Preço</label>
 		<input type="text" name="iptPreco" value="<%= produto.preco %>">
