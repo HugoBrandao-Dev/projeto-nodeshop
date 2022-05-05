@@ -38,6 +38,7 @@ const Produtos = require('./produtos/ProdutosModel')
 
 // Models para Serviço
 const Cargos = require('./cargos/CargosModel')
+const Setores = require('./setores/SetoresModel')
 
 app.get('/', (req, res) => {
 	res.render('index', {admin: 0})
