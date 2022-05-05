@@ -29,12 +29,15 @@ app.use('/', servicosController)
 app.use('/', funcionariosController)
 app.use('/', clientesController)
 
-// Models
+// Models para Produto
 const Tipos = require('./tipos/TiposModel')
 const Marcas = require('./marcas/MarcasModel')
 const Estoques = require('./estoques/EstoquesModel')
 const Categorias = require('./categorias/CategoriasModel')
 const Produtos = require('./produtos/ProdutosModel')
+
+// Models para Serviço
+const Cargos = require('./cargos/CargosModel')
 
 app.get('/', (req, res) => {
 	res.render('index', {admin: 0})
