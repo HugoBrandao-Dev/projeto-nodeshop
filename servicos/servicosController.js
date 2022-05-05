@@ -47,6 +47,10 @@ router.get('/admin/servico/novo', (req, res) => {
 	res.render('admin/servicos/servicoCadastrar', { admin: 1 })
 })
 
+router.get('/admin/servicos/opcoes', (req, res) => {
+	res.render('admin/servicos/servicoOpcao', { admin: 1 })
+})
+
 router.post('/admin/servico/salvar', (req, res) => {
 	let servico = req.body.iptServico
 	let responsaveis = req.body.iptResponsaveis

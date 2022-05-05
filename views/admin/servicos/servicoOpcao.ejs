@@ -1,0 +1,169 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+<main class="principal">
+	<h2>Opções para produtos</h2>
+	<hr>
+	<ul class="opcao-lista">
+		<li class="opcao-item">
+			<label>
+				<input type="radio" name="rdOpcao" value="funcionario" checked>Funcionário
+			</label>
+		</li>
+		<li class="opcao-item">
+			<label>
+				<input type="radio" name="rdOpcao" value="setor">Setor
+			</label>
+		</li>
+		<li class="opcao-item">
+			<label>
+				<input type="radio" name="rdOpcao" value="cargo">Cargo
+			</label>
+		</li>
+	</ul>
+	<div class="opcoes">
+		<section id="funcionario" class="opcao">
+			<form action="" method="POST">
+				<label>Nome:</label>
+				<input type="text" name="iptNome" placeholder="Nome do funcionário">
+
+				<label>CPF:</label>
+				<input type="text" name="iptCPF" placeholder="CPF do funcionário">
+
+				<label>Setor:</label>
+				<select name="sltTipo">
+					<option value="0">Atendimento</option>
+					<option value="1">Assistêcia Técnica</option>
+					<option value="3">Gerência</option>
+				</select>
+
+				<label>Cargo:</label>
+				<select name="sltCargo">
+					<option value="0">Atendente</option>
+					<option value="1">Técnico assitente</option>
+					<option value="2">Gerente</option>
+					<option value="3">Estagiário</option>
+				</select>
+
+				<button type="submit" class="btn-add">Cadastrar</button>
+			</form>
+			<hr>
+			<table class="table-opcoes">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Funcionário</th>
+						<th>CPF</th>
+						<th>Setor</th>
+						<th>Cargo</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>0</td>
+						<td>Tobias de Oliveira</td>
+						<td>11111111111</td>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>Josias Cruz</td>
+						<td>22222222222</td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>Dinorá de Oliveira</td>
+						<td>33333333333</td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>Doralice</td>
+						<td>44444444444</td>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+					</tbody>
+				</table>
+			</section>
+			<section id="setor" class="opcao">
+				<form action="" method="POST">
+					<label>Setor:</label>
+					<input type="text" name="iptSetor" placeholder="Nome do setor">
+
+					<button type="submit" class="btn-add">Cadastrar</button>
+				</form>
+				<hr>
+				<table class="table-opcoes">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Setor</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>0</td>
+							<td>Atendimento</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>Assistência técnica</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Gerência</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+				<section id="cargo" class="opcao">
+					<form action="" method="POST">
+						<label>Cargo:</label>
+						<input type="text" name="iptCargo" placeholder="Nome do cargo">
+
+						<label>Salário:</label>
+						<input type="number" name="iptSalario">
+	
+						<button type="submit" class="btn-add">Cadastrar</button>
+					</form>
+					<hr>
+					<table class="table-opcoes">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Cargo</th>
+								<th>Salário</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>0</td>
+								<td>Atendente</td>
+								<td>5000</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>Técnico assistente</td>
+								<td>2000</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Gerente</td>
+								<td>4000</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Estagiário</td>
+								<td>750</td>
+							</tr>
+							</tbody>
+						</table>
+				</section>
+			</div>
+		</main>
+<script src="/js/produtoOpcao.js"></script>
+<%- include('../../partials/footer.ejs') %>
