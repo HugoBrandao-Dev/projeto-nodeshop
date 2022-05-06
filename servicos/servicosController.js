@@ -1,6 +1,11 @@
 const express = require('express')
 const router = express.Router()
 
+// Models
+const Cargos = require('../cargos/CargosModel')
+const Setores = require('../setores/SetoresModel')
+const Funcionarios = require('../funcionarios/FuncionariosModel')
+
 let servicos = [
 	{
 		id: 0,
@@ -49,6 +54,21 @@ router.get('/admin/servico/novo', (req, res) => {
 
 router.get('/admin/servicos/opcoes', (req, res) => {
 	res.render('admin/servicos/servicoOpcao', { admin: 1 })
+})
+
+router.post('/admin/servicos/opcoes/salvar/cargo', (req, res) => {
+	let cargo = req.body.iptCargo
+	let salario = Number.parseFloat(req.body.iptSalario)
+
+	Cargos.create({
+		cargo,
+		salario
+	}).then(() => {
+		res.redirect('/admin/servicos/opcoes')
+	})
+	.catch(erro => {
+		res.send('Erro no cadastro de um novo Cargo.')
+	})
 })
 
 router.post('/admin/servico/salvar', (req, res) => {
