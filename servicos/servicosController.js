@@ -71,6 +71,19 @@ router.post('/admin/servicos/opcoes/salvar/cargo', (req, res) => {
 	})
 })
 
+router.post('/admin/servicos/opcoes/salvar/setor', (req, res) => {
+	let setor = req.body.iptSetor
+
+	Setores.create({
+		setor,
+	}).then(() => {
+		res.redirect('/admin/servicos/opcoes')
+	})
+	.catch(erro => {
+		res.send('Erro no cadastro de um novo Setor.')
+	})
+})
+
 router.post('/admin/servico/salvar', (req, res) => {
 	let servico = req.body.iptServico
 	let responsaveis = req.body.iptResponsaveis
