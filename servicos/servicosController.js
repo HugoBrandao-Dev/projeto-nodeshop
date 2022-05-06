@@ -60,8 +60,10 @@ router.post('/admin/servicos/opcoes/salvar/cargo', (req, res) => {
 	let cargo = req.body.iptCargo
 	let salario = Number.parseFloat(req.body.iptSalario)
 
+	let cargoLower = cargo.toLowerCase()
+
 	Cargos.create({
-		cargo,
+		cargo: cargoLower,
 		salario
 	}).then(() => {
 		res.redirect('/admin/servicos/opcoes')
@@ -74,8 +76,10 @@ router.post('/admin/servicos/opcoes/salvar/cargo', (req, res) => {
 router.post('/admin/servicos/opcoes/salvar/setor', (req, res) => {
 	let setor = req.body.iptSetor
 
+	let setorLower = setor.toLowerCase()
+
 	Setores.create({
-		setor,
+		setor: setorLower,
 	}).then(() => {
 		res.redirect('/admin/servicos/opcoes')
 	})
