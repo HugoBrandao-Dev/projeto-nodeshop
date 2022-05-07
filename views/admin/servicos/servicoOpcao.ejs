@@ -22,7 +22,7 @@
 	</ul>
 	<div class="opcoes">
 		<section id="funcionario" class="opcao">
-			<form action="" method="POST">
+			<form action="/admin/servicos/opcoes/salvar/funcionario" method="POST">
 				<label>Nome:</label>
 				<input type="text" name="iptNome" placeholder="Nome do funcionário">
 
@@ -62,8 +62,8 @@
 							<td><%= funcionario.id %></td>
 							<td><%= funcionario.nome %></td>
 							<td><%= funcionario.cpf %></td>
-							<td><%= funcionario.setoreId %></td>
-							<td><%= funcionario.cargoId %></td>
+							<td><%= funcionario.setore.setor %></td>
+							<td><%= funcionario.cargo.cargo %></td>
 						</tr>
 					<% }) %>
 					</tbody>

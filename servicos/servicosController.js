@@ -53,7 +53,12 @@ router.get('/admin/servico/novo', (req, res) => {
 })
 
 router.get('/admin/servicos/opcoes', (req, res) => {
-	Funcionarios.findAll()
+	Funcionarios.findAll({
+		include: [
+			{ model: Cargos },
+			{ model: Setores }
+		]
+	})
 		.then(funcionarios => {
 			Cargos.findAll()
 				.then(cargos => {
@@ -94,6 +99,27 @@ router.post('/admin/servicos/opcoes/salvar/setor', (req, res) => {
 	})
 	.catch(erro => {
 		res.send('Erro no cadastro de um novo Setor.')
+	})
+})
+
+router.post('/admin/servicos/opcoes/salvar/funcionario', (req, res) => {
+	let nome = req.body.iptNome
+	let cpf = req.body.iptCPF
+	let setor = req.body.sltSetor
+	let cargo = req.body.sltCargo
+
+	let nomeLower = nome.toLowerCase()
+
+	Funcionarios.create({
+		nome: nomeLower,
+		cpf,
+		setoreId: setor,
+		cargoId: cargo
+	}).then(() => {
+		res.redirect('/admin/servicos/opcoes')
+	})
+	.catch(erro => {
+		res.send('Erro no cadastro de um novo Funcionário.')
 	})
 })
 
