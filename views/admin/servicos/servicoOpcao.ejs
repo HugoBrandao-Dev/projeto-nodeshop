@@ -30,18 +30,17 @@
 				<input type="text" name="iptCPF" placeholder="CPF do funcionário">
 
 				<label>Setor:</label>
-				<select name="sltTipo">
-					<option value="0">Atendimento</option>
-					<option value="1">Assistêcia Técnica</option>
-					<option value="3">Gerência</option>
+				<select name="sltSetor">
+					<% setores.forEach(setor => { %>
+						<option value="<%= setor.id %>"><%= setor.setor %></option>
+					<% }) %>
 				</select>
 
 				<label>Cargo:</label>
 				<select name="sltCargo">
-					<option value="0">Atendente</option>
-					<option value="1">Técnico assitente</option>
-					<option value="2">Gerente</option>
-					<option value="3">Estagiário</option>
+					<% cargos.forEach(cargo => { %>
+						<option value="<%= cargo.id %>"><%= cargo.cargo %></option>
+					<% }) %>
 				</select>
 
 				<button type="submit" class="btn-add">Cadastrar</button>
@@ -58,34 +57,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>0</td>
-						<td>Tobias de Oliveira</td>
-						<td>11111111111</td>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>Josias Cruz</td>
-						<td>22222222222</td>
-						<td>1</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Dinorá de Oliveira</td>
-						<td>33333333333</td>
-						<td>1</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>Doralice</td>
-						<td>44444444444</td>
-						<td>0</td>
-						<td>0</td>
-					</tr>
+					<% funcionarios.forEach(funcionario => { %>
+						<tr>
+							<td><%= funcionario.id %></td>
+							<td><%= funcionario.nome %></td>
+							<td><%= funcionario.cpf %></td>
+							<td><%= funcionario.setoreId %></td>
+							<td><%= funcionario.cargoId %></td>
+						</tr>
+					<% }) %>
 					</tbody>
 				</table>
 			</section>
@@ -105,18 +85,12 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>0</td>
-							<td>Atendimento</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Assistência técnica</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Gerência</td>
-						</tr>
+						<% setores.forEach(setor => { %>
+							<tr>
+								<td><%= setor.id %></td>
+								<td><%= setor.setor %></td>
+							</tr>
+						<% }) %>
 					</tbody>
 				</table>
 			</section>
@@ -140,28 +114,15 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>0</td>
-								<td>Atendente</td>
-								<td>5000</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>Técnico assistente</td>
-								<td>2000</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Gerente</td>
-								<td>4000</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Estagiário</td>
-								<td>750</td>
-							</tr>
-							</tbody>
-						</table>
+							<% cargos.forEach(cargo => { %>
+								<tr>
+									<td><%= cargo.id %></td>
+									<td><%= cargo.cargo %></td>
+									<td><%= cargo.salario %></td>
+								</tr>
+							<% }) %>
+						</tbody>
+					</table>
 				</section>
 			</div>
 		</main>

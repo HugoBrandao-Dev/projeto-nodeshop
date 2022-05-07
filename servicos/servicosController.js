@@ -53,7 +53,16 @@ router.get('/admin/servico/novo', (req, res) => {
 })
 
 router.get('/admin/servicos/opcoes', (req, res) => {
-	res.render('admin/servicos/servicoOpcao', { admin: 1 })
+	Funcionarios.findAll()
+		.then(funcionarios => {
+			Cargos.findAll()
+				.then(cargos => {
+					Setores.findAll()
+						.then(setores => {
+							res.render('admin/servicos/servicoOpcao', { admin: 1, funcionarios, cargos, setores })
+						})
+				})
+		})
 })
 
 router.post('/admin/servicos/opcoes/salvar/cargo', (req, res) => {
