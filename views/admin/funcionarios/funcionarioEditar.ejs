@@ -4,6 +4,8 @@
 			<h2>Atualizar dados do funcionário</h2>
 			<hr>
 			<form action="/admin/funcionario/salvar" method="POST">
+				<input type="hidden" name="iptId" value="<%= funcionario.id %>">
+
 				<label>Nome:</label>
 				<input type="text" name="iptNome" value="<%= funcionario.nome %>">
 
@@ -27,18 +29,28 @@
 
 				<label>Setor:</label>
 				<select name="iptSetor" value="<%= funcionario.setor %>">
-					<option value="0">Atendimento</option>
-					<option value="1">Assistência técnica</option>
-					<option value="2">Gerência</option>
+					<% setores.forEach(setor => { %>
+						<% if (setor.id == funcionario.setoreId) { %>
+							<option value="<%= setor.id %>" selected><%= setor.setor %></option>
+						<% } else { %>
+							<option value="<%= setor.id %>"><%= setor.setor %></option>
+						<% } %>
+					<% }) %>
 				</select>
 
 				<label>Cargo:</label>
 				<select name="iptCargo" value="<%= funcionario.cargo %>">
-					<option value="0">Atendente</option>
-					<option value="1">Técnico(a) assistênte</option>
-					<option value="2">Gerente</option>
+					<% cargos.forEach(cargo => { %>
+						<% if (cargo.id == funcionario.cargoId) { %>
+							<option value="<%= cargo.id %>" selected><%= cargo.cargo %></option>
+						<% } else { %>
+							<option value="<%= cargo.id %>"><%= cargo.cargo %></option>
+						<% } %>
+					<% }) %>
 				</select>
 
+				<label>Informações adicionais:</label>
+				<textarea name="sltInformacoes" cols="30" rows="10"><%= funcionario.informacoesAdicionais %></textarea>
 
 				<button type="submit" class="btn-editar right">Atualizar</button>
 			</form>

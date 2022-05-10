@@ -112,10 +112,18 @@ router.post('/admin/funcionario/salvar', (req, res) => {
 		})
 })
 
-router.get('/admin/funcionario/edit/:id', (req, res) => {
+router.get('/admin/funcionario/editar/:id', (req, res) => {
 	let id = req.params.id
-	let funcionario = funcionarios.filter(funcionario => funcionario.id == id)[0]
-	res.render('admin/funcionarios/funcionarioEditar', { admin: 1, funcionario })
+	Funcionarios.findByPk(id)
+		.then(funcionario => {
+			Cargos.findAll()
+				.then(cargos => {
+					Setores.findAll()
+						.then(setores => {
+							res.render('admin/funcionarios/funcionarioEditar', { admin: 1, funcionario, cargos, setores })
+						})
+				})
+		})
 })
 
 router.get('/admin/funcionario/:id', (req, res) => {
