@@ -26,19 +26,21 @@
 				<input type="text" name="iptCelular">
 
 				<label>Setor:</label>
-				<select name="iptSetor">
-					<option value="0">Atendimento</option>
-					<option value="1">Assistência técnica</option>
-					<option value="2">Gerência</option>
+				<select name="sltSetor">
+					<% setores.forEach(setor => { %>
+						<option value="<%= setor.id %>"><%= setor.setor %></option>
+					<% }) %>
 				</select>
 
 				<label>Cargo:</label>
-				<select name="iptCargo">
-					<option value="0">Atendente</option>
-					<option value="1">Técnico(a) assistênte</option>
-					<option value="2">Gerente</option>
+				<select name="sltCargo">
+					<% cargos.forEach(cargo => { %>
+						<option value="<%= cargo.id %>"><%= cargo.cargo %></option>
+					<% }) %>
 				</select>
 
+				<label>Informações adicionais:</label>
+				<textarea name="textInformacoes" cols="30" rows="10"></textarea>
 
 				<button type="submit" class="btn-add right">Cadastrar</button>
 			</form>

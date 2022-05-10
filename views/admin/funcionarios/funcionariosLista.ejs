@@ -4,6 +4,7 @@
 			<h2>Funcionários</h2>
 			<a href="/admin/funcionario/novo" class="btn-add btn-lista">Novo funcionário</a>
 			<hr>
+			<small class="small-info">Se quiser adicionar um novo <em>setor</em> ou <em>cargo</em>, clique<a href="/admin/funcionarios/opcoes">aqui</a>.</small>
 			<table>
 				<thead>
 					<tr>
@@ -36,13 +37,13 @@
 								<%= funcionario.celular %>
 							</td>
 							<td>
-								<%= funcionario.setor %>
+								<%= funcionario.setore.setor %>
 							</td>
 							<td>
-								<%= funcionario.cargo %>
+								<%= funcionario.cargo.cargo %>
 							</td>
 							<td style="display: flex;">
-								<a href="/admin/funcionario/edit/<%= funcionario.id %>" class="btn-redondo btn-editar" title="Editar funcionário"><i class="fa fa-edit"></i></a>
+								<a href="/admin/funcionario/editar/<%= funcionario.id %>" class="btn-redondo btn-editar" title="Editar funcionário"><i class="fa fa-edit"></i></a>
 								<a href="#" class="btn-redondo btn-deletar" title="Deletar funcionário"><i class="fa fa-eraser"></i></a>
 								<a href="/admin/funcionario/<%= funcionario.id %>" class="btn-redondo btn-info" title="Informações do funcionário"><i class="fa fa-info-circle"></i></a>
 							</td>

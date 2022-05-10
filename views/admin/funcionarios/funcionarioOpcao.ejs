@@ -6,12 +6,7 @@
 	<ul class="opcao-lista">
 		<li class="opcao-item">
 			<label>
-				<input type="radio" name="rdOpcao" value="funcionario" checked>Funcionário
-			</label>
-		</li>
-		<li class="opcao-item">
-			<label>
-				<input type="radio" name="rdOpcao" value="setor">Setor
+				<input type="radio" name="rdOpcao" value="setor" checked>Setor
 			</label>
 		</li>
 		<li class="opcao-item">
@@ -21,56 +16,8 @@
 		</li>
 	</ul>
 	<div class="opcoes">
-		<section id="funcionario" class="opcao">
-			<form action="/admin/servicos/opcoes/salvar/funcionario" method="POST">
-				<label>Nome:</label>
-				<input type="text" name="iptNome" placeholder="Nome do funcionário">
-
-				<label>CPF:</label>
-				<input type="text" name="iptCPF" placeholder="CPF do funcionário">
-
-				<label>Setor:</label>
-				<select name="sltSetor">
-					<% setores.forEach(setor => { %>
-						<option value="<%= setor.id %>"><%= setor.setor %></option>
-					<% }) %>
-				</select>
-
-				<label>Cargo:</label>
-				<select name="sltCargo">
-					<% cargos.forEach(cargo => { %>
-						<option value="<%= cargo.id %>"><%= cargo.cargo %></option>
-					<% }) %>
-				</select>
-
-				<button type="submit" class="btn-add">Cadastrar</button>
-			</form>
-			<hr>
-			<table class="table-opcoes">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Funcionário</th>
-						<th>CPF</th>
-						<th>Setor</th>
-						<th>Cargo</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% funcionarios.forEach(funcionario => { %>
-						<tr>
-							<td><%= funcionario.id %></td>
-							<td><%= funcionario.nome %></td>
-							<td><%= funcionario.cpf %></td>
-							<td><%= funcionario.setore.setor %></td>
-							<td><%= funcionario.cargo.cargo %></td>
-						</tr>
-					<% }) %>
-					</tbody>
-				</table>
-			</section>
 			<section id="setor" class="opcao">
-				<form action="/admin/servicos/opcoes/salvar/setor" method="POST">
+				<form action="/admin/funcionarios/opcoes/setor/salvar" method="POST">
 					<label>Setor:</label>
 					<input type="text" name="iptSetor" placeholder="Nome do setor">
 
@@ -95,7 +42,7 @@
 				</table>
 			</section>
 				<section id="cargo" class="opcao">
-					<form action="/admin/servicos/opcoes/salvar/cargo" method="POST">
+					<form action="/admin/funcionarios/opcoes/cargo/salvar" method="POST">
 						<label>Cargo:</label>
 						<input type="text" name="iptCargo" placeholder="Nome do cargo">
 

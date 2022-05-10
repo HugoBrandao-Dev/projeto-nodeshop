@@ -1,6 +1,11 @@
 const express = require('express')
 const router = express.Router()
 
+// Models
+const Cargos = require('../cargos/CargosModel')
+const Setores = require('../setores/SetoresModel')
+const Funcionarios = require('../funcionarios/FuncionariosModel')
+
 let funcionarios = [
 	{
 		id: 0,
@@ -53,15 +58,28 @@ let funcionarios = [
 ]
 
 router.get('/admin/funcionarios', (req, res) => {
-	res.render('admin/funcionarios/funcionariosLista', { admin: 1, funcionarios })
+	Funcionarios.findAll({
+		include: [
+			{ model: Cargos },
+			{ model: Setores }
+		]
+	})
+	.then(funcionarios => {
+		res.render('admin/funcionarios/funcionariosLista', { admin: 1, funcionarios })
+	})
 })
 
 router.get('/admin/funcionario/novo', (req, res) => {
-	res.render('admin/funcionarios/funcionarioNovo', { admin: 1 })
+	Cargos.findAll()
+		.then(cargos => {
+			Setores.findAll()
+				.then(setores => {
+					res.render('admin/funcionarios/funcionarioNovo', { admin: 1, cargos, setores })
+				})
+		})
 })
 
 router.post('/admin/funcionario/salvar', (req, res) => {
-	let id = req.body.iptId
 	let nome = req.body.iptNome
 	let cpf = req.body.iptCpf
 	let nascimento = req.body.iptNascimento
@@ -69,20 +87,29 @@ router.post('/admin/funcionario/salvar', (req, res) => {
 	let email = req.body.iptEmail
 	let telefone = req.body.iptTelefone
 	let celular = req.body.iptCelular
-	let setor = req.body.iptSetor
-	let cargo = req.body.iptCargo
-	res.json({
-		id,
-		nome,
+	let setor = req.body.sltSetor
+	let cargo = req.body.sltCargo
+	let informacoes = req.body.textInformacoes
+
+	let nomeLower = nome.toLowerCase()
+
+	Funcionarios.create({
+		nome: nomeLower,
 		cpf,
 		nascimento,
 		endereco,
-		email,
 		telefone,
 		celular,
-		setor,
-		cargo,
+		email,
+		informacoesAdicionais: informacoes,
+		setoreId: setor,
+		cargoId: cargo
+	}).then(() => {
+		res.redirect('/admin/funcionarios')
 	})
+		.catch(erro => {
+			res.send('Erro no cadastro de um novo Funcionário.')
+		})
 })
 
 router.get('/admin/funcionario/edit/:id', (req, res) => {
@@ -95,6 +122,48 @@ router.get('/admin/funcionario/:id', (req, res) => {
 	let id = req.params.id
 	let funcionario = funcionarios.filter(funcionario => funcionario.id == id)[0]
 	res.render('admin/funcionarios/funcionarioInfo', { admin: 1, funcionario })
+})
+
+router.get('/admin/funcionarios/opcoes', (req, res) => {
+	Cargos.findAll()
+		.then(cargos => {
+			Setores.findAll()
+				.then(setores => {
+					res.render('admin/funcionarios/funcionarioOpcao', { admin: 1, cargos, setores })
+				})
+		})
+})
+
+router.post('/admin/funcionarios/opcoes/cargo/salvar', (req, res) => {
+	let cargo = req.body.iptCargo
+	let salario = Number.parseFloat(req.body.iptSalario)
+
+	let cargoLower = cargo.toLowerCase()
+
+	Cargos.create({
+		cargo: cargoLower,
+		salario
+	}).then(() => {
+		res.redirect('/admin/funcionarios/opcoes')
+	})
+		.catch(erro => {
+			res.send('Erro no cadastro de um novo Cargo.')
+		})
+})
+
+router.post('/admin/funcionarios/opcoes/setor/salvar', (req, res) => {
+	let setor = req.body.iptSetor
+
+	let setorLower = setor.toLowerCase()
+
+	Setores.create({
+		setor: setorLower,
+	}).then(() => {
+		res.redirect('/admin/funcionarios/opcoes')
+	})
+		.catch(erro => {
+			res.send('Erro no cadastro de um novo Setor.')
+		})
 })
 
 module.exports = router

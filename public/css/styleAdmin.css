@@ -124,6 +124,6 @@ table tr th, table tr td {
 	margin-right: 2px;
 }
 
-.opcoes #categoria, .opcoes #marca, .opcoes #cargo, .opcoes #setor {
+.opcoes #categoria, .opcoes #marca, .opcoes #cargo {
 	display: none;
 }

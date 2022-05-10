@@ -1,11 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-// Models
-const Cargos = require('../cargos/CargosModel')
-const Setores = require('../setores/SetoresModel')
-const Funcionarios = require('../funcionarios/FuncionariosModel')
-
 let servicos = [
 	{
 		id: 0,
@@ -50,77 +45,6 @@ router.get('/admin/servico/edit/:id', (req, res) => {
 
 router.get('/admin/servico/novo', (req, res) => {
 	res.render('admin/servicos/servicoCadastrar', { admin: 1 })
-})
-
-router.get('/admin/servicos/opcoes', (req, res) => {
-	Funcionarios.findAll({
-		include: [
-			{ model: Cargos },
-			{ model: Setores }
-		]
-	})
-		.then(funcionarios => {
-			Cargos.findAll()
-				.then(cargos => {
-					Setores.findAll()
-						.then(setores => {
-							res.render('admin/servicos/servicoOpcao', { admin: 1, funcionarios, cargos, setores })
-						})
-				})
-		})
-})
-
-router.post('/admin/servicos/opcoes/salvar/cargo', (req, res) => {
-	let cargo = req.body.iptCargo
-	let salario = Number.parseFloat(req.body.iptSalario)
-
-	let cargoLower = cargo.toLowerCase()
-
-	Cargos.create({
-		cargo: cargoLower,
-		salario
-	}).then(() => {
-		res.redirect('/admin/servicos/opcoes')
-	})
-	.catch(erro => {
-		res.send('Erro no cadastro de um novo Cargo.')
-	})
-})
-
-router.post('/admin/servicos/opcoes/salvar/setor', (req, res) => {
-	let setor = req.body.iptSetor
-
-	let setorLower = setor.toLowerCase()
-
-	Setores.create({
-		setor: setorLower,
-	}).then(() => {
-		res.redirect('/admin/servicos/opcoes')
-	})
-	.catch(erro => {
-		res.send('Erro no cadastro de um novo Setor.')
-	})
-})
-
-router.post('/admin/servicos/opcoes/salvar/funcionario', (req, res) => {
-	let nome = req.body.iptNome
-	let cpf = req.body.iptCPF
-	let setor = req.body.sltSetor
-	let cargo = req.body.sltCargo
-
-	let nomeLower = nome.toLowerCase()
-
-	Funcionarios.create({
-		nome: nomeLower,
-		cpf,
-		setoreId: setor,
-		cargoId: cargo
-	}).then(() => {
-		res.redirect('/admin/servicos/opcoes')
-	})
-	.catch(erro => {
-		res.send('Erro no cadastro de um novo Funcionário.')
-	})
 })
 
 router.post('/admin/servico/salvar', (req, res) => {
