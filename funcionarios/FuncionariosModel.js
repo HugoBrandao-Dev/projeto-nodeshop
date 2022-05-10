@@ -13,6 +13,30 @@ const Funcionarios = connection.define('funcionarios', {
 	cpf: {
 		type: Sequelize.STRING,
 		allowNull: false
+	},
+	nascimento: {
+		type: Sequelize.DATEONLY,
+		allowNull: false
+	},
+	endereco: {
+		type: Sequelize.STRING,
+		allowNull: false
+	},
+	informacoesAdicionais: {
+		type: Sequelize.TEXT,
+		allowNull: true
+	},
+	telefone: {
+		type: Sequelize.STRING,
+		allowNull: true
+	},
+	celular: {
+		type: Sequelize.STRING,
+		allowNull: true
+	},
+	email: {
+		type: Sequelize.STRING,
+		allowNull: true
 	}
 })
 
