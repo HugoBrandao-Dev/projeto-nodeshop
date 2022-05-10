@@ -44,7 +44,11 @@
 							</td>
 							<td style="display: flex;">
 								<a href="/admin/funcionario/editar/<%= funcionario.id %>" class="btn-redondo btn-editar" title="Editar funcionário"><i class="fa fa-edit"></i></a>
-								<a href="#" class="btn-redondo btn-deletar" title="Deletar funcionário"><i class="fa fa-eraser"></i></a>
+								<form action="/admin/funcionario/deletar" method="POST" onsubmit="deletarFuncionario(event, this)">
+									<input type="hidden" name="iptId" value="<%= funcionario.id %>">
+									<input type="hidden" name="iptNome" value="<%= funcionario.nome %>">
+									<button type="submit" class="btn-redondo btn-deletar"><i class="fa fa-eraser"></i></button>
+								</form>
 								<a href="/admin/funcionario/<%= funcionario.id %>" class="btn-redondo btn-info" title="Informações do funcionário"><i class="fa fa-info-circle"></i></a>
 							</td>
 						</tr>
@@ -52,4 +56,12 @@
 				</tbody>
 			</table>
 		</main>
+		<script>
+			function deletarFuncionario(event, form) {
+				event.preventDefault()
+				if (confirm(`Deseja deletar o registro de => ${ form['iptNome'].value }?`)) {
+					form.submit()
+				}
+			}
+		</script>
 		<%- include('../../partials/footer.ejs') %>

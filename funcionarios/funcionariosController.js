@@ -126,6 +126,19 @@ router.get('/admin/funcionario/editar/:id', (req, res) => {
 		})
 })
 
+router.post('/admin/funcionario/deletar', (req, res) => {
+	let id = req.body.iptId
+	Funcionarios.destroy({
+		where: {
+			id
+		}
+	}).then(resultado => {
+		res.redirect('/admin/funcionarios')
+	}).catch(erro => {
+		console.log(erro)
+	})
+})
+
 router.get('/admin/funcionario/:id', (req, res) => {
 	let id = req.params.id
 	let funcionario = funcionarios.filter(funcionario => funcionario.id == id)[0]
