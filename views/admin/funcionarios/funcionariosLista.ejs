@@ -11,7 +11,6 @@
 						<th>ID</th>
 						<th>Nome</th>
 						<th>Email</th>
-						<th>Telefone</th>
 						<th>Celular</th>
 						<th>Setor</th>
 						<th>Cargo</th>
@@ -30,9 +29,7 @@
 							<td>
 								<%= funcionario.email %>
 							</td>
-							<td>
-								<%= funcionario.telefone %>
-							</td>
+
 							<td>
 								<%= funcionario.celular %>
 							</td>
@@ -44,7 +41,7 @@
 							</td>
 							<td style="display: flex;">
 								<a href="/admin/funcionario/editar/<%= funcionario.id %>" class="btn-redondo btn-editar" title="Editar funcionário"><i class="fa fa-edit"></i></a>
-								<form action="/admin/funcionario/deletar" method="POST" onsubmit="deletarFuncionario(event, this)">
+								<form action="/admin/funcionario/deletar" method="POST" onsubmit="deletarFuncionario(event, this)" class="form-deletar btn-acao">
 									<input type="hidden" name="iptId" value="<%= funcionario.id %>">
 									<input type="hidden" name="iptNome" value="<%= funcionario.nome %>">
 									<button type="submit" class="btn-redondo btn-deletar"><i class="fa fa-eraser"></i></button>
