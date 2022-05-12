@@ -40,6 +40,10 @@ const Produtos = require('./produtos/ProdutosModel')
 const Cargos = require('./cargos/CargosModel')
 const Setores = require('./setores/SetoresModel')
 const Funcionarios = require('./funcionarios/FuncionariosModel')
+const Servicos = require('./servicos/ServicosModel')
+
+// Model de Serviços x Funcionarios
+const ServicosFuncionarios = require('./servicos_funcionarios/ServicosFuncionariosModel')
 
 app.get('/', (req, res) => {
 	res.render('index', {admin: 0})

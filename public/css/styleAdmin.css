@@ -127,3 +127,15 @@ table tr th, table tr td {
 .opcoes #categoria, .opcoes #marca, .opcoes #cargo {
 	display: none;
 }
+
+/* Listagem de funcionários para cadastro de um novo serviço */
+.lista-funcionarios p {
+	text-transform: capitalize;
+	text-indent: 0;
+	line-height: 100%;
+	width: 100%;
+}
+
+.lista-funcionarios label input {
+	width: 5%;
+}

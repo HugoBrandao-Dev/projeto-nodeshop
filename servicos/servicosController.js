@@ -1,6 +1,11 @@
 const express = require('express')
 const router = express.Router()
 
+// Models
+const Servicos = require('./ServicosModel')
+const Funcionarios = require('../funcionarios/FuncionariosModel')
+const ServicosFuncionarios = require('../servicos_funcionarios/ServicosFuncionariosModel')
+
 let servicos = [
 	{
 		id: 0,
@@ -44,18 +49,28 @@ router.get('/admin/servico/edit/:id', (req, res) => {
 })
 
 router.get('/admin/servico/novo', (req, res) => {
-	res.render('admin/servicos/servicoCadastrar', { admin: 1 })
+	Funcionarios.findAll()
+		.then(funcionarios => {
+			res.render('admin/servicos/servicoCadastrar', { admin: 1, funcionarios })
+		})
 })
 
 router.post('/admin/servico/salvar', (req, res) => {
 	let servico = req.body.iptServico
-	let responsaveis = req.body.iptResponsaveis
+	let responsaveis = [...req.body.iptResponsaveis]
 	let descricao = req.body.textDescricao
 
-	res.json({
+	Servicos.create({
 		servico,
-		responsaveis,
 		descricao
+	}).then(registro => {
+		responsaveis.forEach(responsavel => {
+			ServicosFuncionarios.create({
+				servicoId: registro.dataValues.id,
+				funcionarioId: responsavel
+			})
+		})
+		res.redirect('/admin/servicos')
 	})
 })
 

@@ -4,13 +4,21 @@
 	<h2>Cadastrar serviço</h2>
 	<hr>
 	<form action="salvar" method="post">
-		<label>Serviço</label>
+		<label>Serviço:</label>
 		<input type="text" name="iptServico" placeholder="Nome do serviço">
-		<label>Responsáveis</label>
-		<input type="text" name="iptResponsaveis" placeholder="Primeiro Nome, Segundo Nome, ...">
-		<label>Descrição</label>
+		<label>Responsáveis:</label>
+		<div class="lista-funcionarios">
+			<% funcionarios.forEach(funcionario => { %>
+				<p>
+					<label>
+						<input type="checkbox" name="iptResponsaveis" value="<%= funcionario.id %>"><%= funcionario.nome %>
+					</label>
+				</p>
+			<% }) %>
+		</div>
+		<label>Descrição:</label>
 		<textarea name="textDescricao" cols="30" rows="10" placeholder="Descrição do serviço"></textarea>
-		<button type="submit" class="btn-editar">Atualizar</button>
+		<button type="submit" class="btn-add">Cadastrar</button>
 	</form>
 </main>
 <%- include('../../partials/footer.ejs') %>
