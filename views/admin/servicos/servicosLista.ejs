@@ -23,7 +23,9 @@
 						<%= servico.servico %>
 					</td>
 					<td>
-						<%= servico.responsaveis %>
+						<% servico.funcionarios.forEach(funcionario => { %>
+							<%= funcionario.nome %><br>
+						<% }) %>
 					</td>
 					<td style="display: flex;">
 						<a href="/admin/servico/edit/<%= servico.id %>" class="btn-redondo btn-editar" title="Editar servico"><i class="fa fa-edit"></i></a>

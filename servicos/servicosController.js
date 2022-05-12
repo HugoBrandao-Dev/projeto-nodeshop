@@ -39,7 +39,15 @@ router.get('/servico/:id', (req, res) => {
 
 // Rotas do Administrador
 router.get('/admin/servicos', (req, res) => {
-	res.render('admin/servicos/servicosLista', { admin: 1, servicos})
+	Servicos.findAll({
+		include: [
+			{
+				model: Funcionarios
+			}
+		]
+	}).then(servicos => {
+		res.render('admin/servicos/servicosLista', { admin: 1, servicos })
+	})
 })
 
 router.get('/admin/servico/edit/:id', (req, res) => {
