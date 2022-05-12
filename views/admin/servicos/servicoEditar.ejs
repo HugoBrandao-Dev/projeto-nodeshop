@@ -4,13 +4,29 @@
 	<h2>Editar serviço</h2>
 	<hr>
 	<form action="/admin/servico/atualizar" method="post">
-		<label>Serviço</label>
-		<input type="text" name="iptServico" value="<%= servico.servico %>">
-		<label>Responsáveis</label>
-		<input type="text" name="iptResponsaveis" value="<%= servico.responsaveis %>">
-		<label>Descrição</label>
-		<textarea name="textDescricao" cols="30" rows="10"><%= servico.descricao %></textarea>
-		<button type="submit" class="btn-editar">Atualizar</button>
+		<label>Serviço:</label>
+		<input type="text" name="iptServico" placeholder="Nome do serviço" value="<%= servico.servico %>">
+		<label>Responsáveis:</label>
+		<div class="lista-funcionarios">
+			<% funcionarios.forEach(funcionario => { %>
+				<% if (idsResponsaveis.indexOf(funcionario.id) >= 0) { %>
+					<p>
+						<label>
+							<input type="checkbox" name="iptResponsaveis" value="<%= funcionario.id %>" checked><%= funcionario.nome %>
+						</label>
+					</p>
+				<% } else { %>
+					<p>
+						<label>
+							<input type="checkbox" name="iptResponsaveis" value="<%= funcionario.id %>"><%= funcionario.nome %>
+						</label>
+					</p>
+				<% } %>
+			<% }) %> 
+		</div>
+		<label>Descrição:</label>
+		<textarea name="textDescricao" cols="30" rows="10" placeholder="Descrição do serviço"><%= servico.descricao %></textarea>
+		<button type="submit" class="btn-add">Cadastrar</button>
 	</form>
 </main>
 <%- include('../../partials/footer.ejs') %>

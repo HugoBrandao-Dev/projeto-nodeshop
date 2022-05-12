@@ -50,10 +50,25 @@ router.get('/admin/servicos', (req, res) => {
 	})
 })
 
-router.get('/admin/servico/edit/:id', (req, res) => {
+router.get('/admin/servico/editar/:id', (req, res) => {
 	let id = req.params.id
-	let servico = servicos.filter(servico => servico.id == id)[0]
-	res.render('admin/servicos/servicoEditar', { admin: 1, servico })
+	Servicos.findByPk(id, {
+		include: [
+			{ model: Funcionarios }
+		]
+	}).then(servico => {
+		Funcionarios.findAll()
+			.then(funcionarios => {
+				const idsResponsaveis = servico.funcionarios.map(func => func.id)
+				res.render('admin/servicos/servicoEditar', { admin: 1, servico, funcionarios, idsResponsaveis })
+			})
+	})
+		// .then(servico => {
+		// 	Funcionarios.findAll()
+		// 		.then(funcionarios => {
+		// 			res.render('admin/servicos/servicoEditar', { admin: 1, servico, funcionarios })
+		// 		})
+		// })
 })
 
 router.get('/admin/servico/novo', (req, res) => {
