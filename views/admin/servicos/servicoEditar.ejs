@@ -4,6 +4,7 @@
 	<h2>Editar serviço</h2>
 	<hr>
 	<form action="/admin/servico/atualizar" method="post">
+		<input type="hidden" name="iptId" value="<%= servico.id %>">
 		<label>Serviço:</label>
 		<input type="text" name="iptServico" placeholder="Nome do serviço" value="<%= servico.servico %>">
 		<label>Responsáveis:</label>
@@ -22,11 +23,11 @@
 						</label>
 					</p>
 				<% } %>
-			<% }) %> 
+			<% }) %>
 		</div>
 		<label>Descrição:</label>
 		<textarea name="textDescricao" cols="30" rows="10" placeholder="Descrição do serviço"><%= servico.descricao %></textarea>
-		<button type="submit" class="btn-add">Cadastrar</button>
+		<button type="submit" class="btn-editar">Atualizar</button>
 	</form>
 </main>
 <%- include('../../partials/footer.ejs') %>

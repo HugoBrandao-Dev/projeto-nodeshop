@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const Sequelize = require('sequelize')
 
 // Models
 const Servicos = require('./ServicosModel')
@@ -58,24 +59,18 @@ router.get('/admin/servico/editar/:id', (req, res) => {
 		]
 	}).then(servico => {
 		Funcionarios.findAll()
-			.then(funcionarios => {
-				const idsResponsaveis = servico.funcionarios.map(func => func.id)
-				res.render('admin/servicos/servicoEditar', { admin: 1, servico, funcionarios, idsResponsaveis })
-			})
+		.then(funcionarios => {
+			const idsResponsaveis = servico.funcionarios.map(func => func.id)
+			res.render('admin/servicos/servicoEditar', { admin: 1, servico, funcionarios, idsResponsaveis })
+		})
 	})
-		// .then(servico => {
-		// 	Funcionarios.findAll()
-		// 		.then(funcionarios => {
-		// 			res.render('admin/servicos/servicoEditar', { admin: 1, servico, funcionarios })
-		// 		})
-		// })
 })
 
 router.get('/admin/servico/novo', (req, res) => {
 	Funcionarios.findAll()
-		.then(funcionarios => {
-			res.render('admin/servicos/servicoCadastrar', { admin: 1, funcionarios })
-		})
+	.then(funcionarios => {
+		res.render('admin/servicos/servicoCadastrar', { admin: 1, funcionarios })
+	})
 })
 
 router.post('/admin/servico/salvar', (req, res) => {
@@ -98,14 +93,23 @@ router.post('/admin/servico/salvar', (req, res) => {
 })
 
 router.post('/admin/servico/atualizar', (req, res) => {
+	let id = req.body.iptId
 	let servico = req.body.iptServico
-	let responsaveis = req.body.iptResponsaveis
+	let responsaveis = [...req.body.iptResponsaveis]
 	let descricao = req.body.textDescricao
 
-	res.json({
-		servico,
-		responsaveis,
-		descricao
+	ServicosFuncionarios.destroy({
+		where: {
+			servicoId: id
+		}
+	}).then(() => {
+		responsaveis.forEach(funcId => {
+			ServicosFuncionarios.create({
+				servicoId: id,
+				funcionarioId: funcId
+			})
+		})
+		res.redirect('/admin/servicos')
 	})
 })
 
