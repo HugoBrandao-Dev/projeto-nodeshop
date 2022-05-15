@@ -104,4 +104,22 @@ router.get('/admin/servico/:id', (req, res) => {
 	})
 })
 
+router.post('/admin/servico/deletar', (req, res) => {
+	let id = req.body.iptId
+
+	ServicosFuncionarios.destroy({
+		where: {
+			servicoId: id
+		}
+	}).then(() => {
+		Servicos.destroy({
+			where: {
+				id
+			}
+		}).then(() => {
+			res.redirect('/admin/servicos')
+		})
+	})
+})
+
 module.exports = router

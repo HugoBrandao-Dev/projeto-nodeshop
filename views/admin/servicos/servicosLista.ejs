@@ -29,7 +29,13 @@
 					</td>
 					<td style="display: flex;">
 						<a href="/admin/servico/editar/<%= servico.id %>" class="btn-redondo btn-editar" title="Editar servico"><i class="fa fa-edit"></i></a>
-						<a href="#" class="btn-redondo btn-deletar" title="Deletar serviço"><i class="fa fa-eraser"></i></a>
+						<form onsubmit="deletarServico(event, this)" class="form-deletar btn-acao" method="post" action="/admin/servico/deletar">
+							<input type="hidden" name="iptId" value="<%= servico.id %>">
+							<input type="hidden" name="iptServico" value="<%= servico.servico %>">
+							<button class="btn-redondo btn-deletar" title="Deletar serviço">
+								<i class="fa fa-eraser"></i>
+							</button>
+						</form>
 						<a href="/admin/servico/<%= servico.id %>" class="btn-redondo btn-info" title="Informações do servico"><i class="fa fa-info-circle"></i></a>
 					</td>
 				</tr>
@@ -37,4 +43,12 @@
 		</tbody>
 	</table>
 </main>
+<script>
+	function deletarServico(event, form) {
+		event.preventDefault()
+		if (confirm(`Deletar serviço => ${ form['iptServico'].value }?`)) {
+			form.submit()
+		}
+	}
+</script>
 <%- include('../../partials/footer.ejs') %>

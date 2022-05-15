@@ -65,7 +65,6 @@
 		<script>
 			function deletarProduto(event, form) {
 				event.preventDefault()
-				console.log(form)
 				if (confirm(`Deletar produto [ ${ form['produtoId'].value } - ${ form['produtoModelo'].value } ]?`)) {
 					form.submit()
 				}
