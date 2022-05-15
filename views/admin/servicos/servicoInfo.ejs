@@ -6,7 +6,11 @@
 			<label>Serviço:</label>
 				<p><%= servico.servico %></p>
 			<label>Responsáveis:</label>
-				<p><%= servico.responsaveis %></p>
+				<ul class="ul-funcionarios">
+					<% servico.funcionarios.forEach(func => {%>
+						<li class="li-funcionario"><%= func.nome %></li>
+					<% }) %>
+				</ul>
 			<label>Descrição:</label>
 				<p><%= servico.descricao %></p>
 			<a href="/admin/servicos" class="btn-info right">Voltar</a>

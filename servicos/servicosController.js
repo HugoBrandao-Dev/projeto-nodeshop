@@ -7,27 +7,6 @@ const Servicos = require('./ServicosModel')
 const Funcionarios = require('../funcionarios/FuncionariosModel')
 const ServicosFuncionarios = require('../servicos_funcionarios/ServicosFuncionariosModel')
 
-let servicos = [
-	{
-		id: 0,
-		servico: 'Manutenção em redes de computadores',
-		responsaveis: ['Tobias de Oliveira'],
-		descricao: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime neque quis eos sint, tempore delectus tenetur pariatur? Ad similique nobis eaque quibusdam corporis architecto veritatis placeat, dolor deleniti quaerat mollitia.'
-	},
-	{
-		id: 1,
-		servico: 'Manutenção em banco de dados',
-		responsaveis: ['Tobias de Oliveira', 'Dinorá de Oliveira'],
-		descricao: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime neque quis eos sint, tempore delectus tenetur pariatur? Ad similique nobis eaque quibusdam corporis architecto veritatis placeat, dolor deleniti quaerat mollitia.'
-	},
-	{
-		id: 2,
-		servico: 'Manutenção em computadores',
-		responsaveis: ['Josias Cruz', 'Doralice Cruz'],
-		descricao: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime neque quis eos sint, tempore delectus tenetur pariatur? Ad similique nobis eaque quibusdam corporis architecto veritatis placeat, dolor deleniti quaerat mollitia.'
-	}
-]
-
 router.get('/servicos', (req, res) => {
 	res.render('servicos', { admin: 0, servicos})
 })
@@ -115,8 +94,14 @@ router.post('/admin/servico/atualizar', (req, res) => {
 
 router.get('/admin/servico/:id', (req, res) => {
 	let id = req.params.id
-	let servico = servicos.filter(servico => servico.id == id)[0]
-	res.render('admin/servicos/servicoInfo', { admin: 1, servico })
+
+	Servicos.findByPk(id, {
+		include: [
+			{ model: Funcionarios }
+		]
+	}).then(servico => {
+		res.render('admin/servicos/servicoInfo', { admin: 1, servico })
+	})
 })
 
 module.exports = router

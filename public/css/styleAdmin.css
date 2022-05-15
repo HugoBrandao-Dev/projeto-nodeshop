@@ -139,3 +139,12 @@ table tr th, table tr td {
 .lista-funcionarios label input {
 	width: 5%;
 }
+
+/*
+Listagem de funcionários na visualização das informações de um determinado
+serviço.
+*/
+.li-funcionario {
+	text-transform: capitalize;
+	list-style: initial;
+}
