@@ -16,8 +16,13 @@ router.get('/servicos', (req, res) => {
 
 router.get('/servico/:id', (req, res) => {
 	let id = req.params.id
-	let servico = servicos.filter(servico => servico.id == id)[0]
-	res.render('servico', { admin: 0, servico})
+	Servicos.findByPk(id, {
+		include: [
+			{ model: Funcionarios }
+		]
+	}).then(servico => {
+		res.render('servico', { admin: 0, servico })
+	})
 })
 
 // Rotas do Administrador

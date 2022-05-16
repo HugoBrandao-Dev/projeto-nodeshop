@@ -4,7 +4,12 @@
 			<article class="servico">
 				<h2><%= servico.servico %></h2>
 				<hr>
-				<h3>Responsáveis: <%= servico.responsaveis %>.</h3>
+				<h3>Responsáveis:</h3>
+				<ul class="responsaveis">
+					<% servico.funcionarios.forEach(funcionario => { %>
+						<li class="responsavel"><%= funcionario.nome %></li>
+					<% }) %>
+				</ul>
 				<p><%= servico.descricao %></p>
 				<a href="/contato" class="btn-link right">Contate-nos</a>
 			</article>

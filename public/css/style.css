@@ -295,7 +295,7 @@ strong {
 	transition-property: all;
 }
 
-.card .descricao-card .card-marca, .produto .produto-marca {
+.card .descricao-card .card-marca, .produto .produto-marca, .responsaveis .responsavel {
 	text-transform: capitalize;
 }
 
