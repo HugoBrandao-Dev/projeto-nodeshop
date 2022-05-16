@@ -99,10 +99,41 @@ router.post('/admin/cliente/salvar', (req, res) => {
 	})
 })
 
-router.get('/admin/cliente/edit/:id', (req, res) => {
+router.get('/admin/cliente/editar/:id', (req, res) => {
 	let id = req.params.id
-	let cliente = clientes.filter(cliente => cliente.id == id)[0]
-	res.render('admin/clientes/clienteEditar', { admin: 1, cliente})
+	Clientes.findByPk(id)
+		.then(cliente => {
+			res.render('admin/clientes/clienteEditar', { admin: 1, cliente })
+		})
+})
+
+router.post('/admin/cliente/atualizar', (req, res) => {
+	let id = req.body.iptId
+	let nome = req.body.iptNome
+	let cpf = req.body.iptCpf
+	let nascimento = req.body.iptNascimento
+	let endereco = req.body.iptEndereco
+	let informacoes = req.body.iptInformacoes
+	let email = req.body.iptEmail
+	let telefone = req.body.iptTelefone
+	let celular = req.body.iptCelular
+
+	Clientes.update({
+		nome,
+		cpf,
+		nascimento,
+		endereco,
+		informacoesAdicionais: informacoes,
+		email,
+		telefone,
+		celular
+	}, {
+		where: {
+			id
+		}
+	}).then(() => {
+		res.redirect('/admin/clientes')
+	})
 })
 
 router.get('/admin/cliente/:id', (req, res) => {

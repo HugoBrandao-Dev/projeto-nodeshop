@@ -3,7 +3,9 @@
 		<main class="principal">
 			<h2>Atualizar dados do cliente</h2>
 			<hr>
-			<form action="salvar" method="POST">
+			<form action="/admin/cliente/atualizar" method="POST">
+				<input type="hidden" name="iptId" value="<%= cliente.id %>">
+
 				<label>Nome:</label>
 				<input type="text" name="iptNome" value="<%= cliente.nome %>">
 
@@ -15,6 +17,9 @@
 
 				<label>Endereço:</label>
 				<input type="text" name="iptEndereco" value="<%= cliente.endereco %>">
+
+				<label>Informações adicionais:</label>
+				<textarea name="iptInformacoes" cols="30" rows="10"><%= cliente.informacoesAdicionais %></textarea>
 
 				<label>Email:</label>
 				<input type="text" name="iptEmail" value="<%= cliente.email %>">
