@@ -152,12 +152,11 @@ router.post('/admin/produto/atualizar', (req, res) => {
 			id: id
 		}
 	}).then(resultado => {
-		console.log(resultado)
 		Estoques.update({
 			estoque
 		}, {
 			where: {
-				produtoId: resultado[0]
+				produtoId: id
 			}
 		})
 		res.redirect('/admin/produtos')
