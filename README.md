@@ -37,3 +37,4 @@ cadastrado, por exemplo);
 * Algumas rotas ficaram sem validadores de inserção de dados;
 * Criar sistema de deleção de funcionários.
 * Criar sistema de busca por nome para a seção de produtos e clientes, tanto para a área admin quanto para área do cliente.
+* Criar mecanismo que impeça clientes menores de 18 anos de se cadastrarem ou de serem cadastrados (pela area adm).
