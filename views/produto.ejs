@@ -2,9 +2,9 @@
 	<%- include('partials/navbar.ejs') %>
 		<main class="principal">
 			<article class="produto">
-				<h2><%= produto.modelo %></h2>
+				<h2 class="produto-modelo"><%= produto.modelo %></h2>
 				<hr>
-				<h3>Marca: <%= produto.marca %></h3>
+				<h3 class="produto-marca">Marca: <%= produto.marca.marca %></h3>
 				<p><%= produto.descricao %></p>
 				<h3>Preço: <strong>R$ <%= produto.preco %></strong></h3>
 			</article>

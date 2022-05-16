@@ -37,8 +37,14 @@ router.get('/produtos', (req, res) => {
 
 router.get('/produto/:id', (req, res) => {
 	let id = req.params.id
-	let produto = produtos.filter(produto => produto.id == id)[0]
-	res.render('produto', { admin: 0, produto })
+	Produtos.findByPk(id, {
+		include: [
+			{ model: Marcas }
+		]
+	})
+		.then(produto => {
+			res.render('produto', { admin: 0, produto })
+		})
 })
 
 // Rotas do Administrador
