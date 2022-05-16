@@ -2,10 +2,11 @@
 Projeto de __portifólio__, criado com base em outro projeto de front-end,
 desenvolvido no curso de __HTML5 e CSS3 na prática__ da plataforma Node Studio
 Treinamentos.
+
 [Projeto front-end original](https://github.com/HugoBrandao-Dev/html5-e-css3-na-pratica-node-studios)
 
 O presente projeto representa uma empresa __fictícia__ de venda de produtos
-eletrônicos e serviços.
+eletrônicos e serviços de TI.
 
 ## Objetivo
 Tem por finalidades testar minhas habilidades com  as tecnologias de
