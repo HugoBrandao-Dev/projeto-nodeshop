@@ -295,6 +295,10 @@ strong {
 	transition-property: all;
 }
 
+.card .descricao-card .card-marca {
+	text-transform: capitalize;
+}
+
 .cards .card:last-child {
 	margin-bottom: 0;
 }

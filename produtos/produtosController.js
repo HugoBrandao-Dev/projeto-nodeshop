@@ -26,7 +26,13 @@ function isRegistrosValidos(inteiros = [], strings = []) {
 }
 
 router.get('/produtos', (req, res) => {
-	res.render('produtos', { admin: 0, produtos })
+	Produtos.findAll({
+		include: [
+			{ model: Marcas }
+		]
+	}).then(produtos => {
+			res.render('produtos', { admin: 0, produtos })
+		})
 })
 
 router.get('/produto/:id', (req, res) => {
