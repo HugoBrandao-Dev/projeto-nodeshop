@@ -65,7 +65,10 @@ let clientes = [
 
 // Rotas do administrador
 router.get('/admin/clientes', (req, res) => {
-	res.render('admin/clientes/clientesLista', { admin: 1, clientes })
+	Clientes.findAll()
+		.then(clientes => {
+			res.render('admin/clientes/clientesLista', { admin: 1, clientes })
+		})
 })
 
 router.get('/admin/cliente/novo', (req, res) => {
