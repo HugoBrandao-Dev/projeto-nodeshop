@@ -35,7 +35,13 @@
 							</td>
 							<td style="display: flex;">
 								<a href="/admin/cliente/editar/<%= cliente.id %>" class="btn-redondo btn-editar" title="Editar cliente"><i class="fa fa-edit"></i></a>
-								<a href="#" class="btn-redondo btn-deletar" title="Deletar cliente"><i class="fa fa-eraser"></i></a>
+								<form onsubmit="deletarCliente(event, this)" action="/cliente/deletar" method="POST" class="form-deletar btn-acao">
+									<input type="hidden" name="iptId" value="<%= cliente.id %>">
+									<input type="hidden" name="iptNome" value="<%= cliente.nome %>">
+									<button type="submit" class="btn-redondo btn-deletar" title="Deletar produto">
+										<i class="fa fa-eraser"></i>
+									</button>
+								</form>
 								<a href="/admin/cliente/<%= cliente.id %>" class="btn-redondo btn-info" title="Informações do cliente"><i class="fa fa-info-circle"></i></a>
 							</td>
 						</tr>
@@ -43,4 +49,12 @@
 				</tbody>
 			</table>
 		</main>
+		<script>
+			function deletarCliente(event, form) {
+				event.preventDefault()
+				if (confirm(`Deletar usuário => ${ form['iptNome'].value }?`)) {
+					form.submit()
+				}
+			}
+		</script>
 		<%- include('../../partials/footer.ejs') %>
