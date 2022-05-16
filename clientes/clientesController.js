@@ -2,6 +2,24 @@ const express = require('express')
 const { route } = require('express/lib/application')
 const router = express.Router()
 
+// Models
+const Clientes = require('./ClientesModel')
+
+// Funções
+function getDataMaxima() {
+	let data = new Date()
+	let ano = parseInt(data.getFullYear())
+	let mes = () => {
+		if ((data.getMonth() + 1) < 10) {
+			return `0${ parseInt(data.getMonth()) + 1}`
+		} else {
+			return data.getMonth() + 1
+		}
+	}
+	let dia = data.getDate()
+	return `${ ano }-${ mes() }-${ dia }`
+}
+
 let clientes = [
 	{
 		id: 0,
@@ -51,7 +69,7 @@ router.get('/admin/clientes', (req, res) => {
 })
 
 router.get('/admin/cliente/novo', (req, res) => {
-	res.render('admin/clientes/clienteNovo', { admin: 1 })
+	res.render('admin/clientes/clienteNovo', { admin: 1, dataMaxima: getDataMaxima() })
 })
 
 router.post('/admin/cliente/salvar', (req, res) => {
@@ -59,18 +77,22 @@ router.post('/admin/cliente/salvar', (req, res) => {
 	let cpf = req.body.iptCpf
 	let nascimento = req.body.iptNascimento
 	let endereco = req.body.iptEndereco
+	let informacoes = req.body.iptInformacoes
 	let email = req.body.iptEmail
 	let telefone = req.body.iptTelefone
 	let celular = req.body.iptCelular
 
-	res.json({
+	Clientes.create({
 		nome,
 		cpf,
 		nascimento,
 		endereco,
+		informacoesAdicionais: informacoes,
 		email,
 		telefone,
 		celular
+	}).then(() => {
+		res.redirect('/admin/clientes')
 	})
 })
 
