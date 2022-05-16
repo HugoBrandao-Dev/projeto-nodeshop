@@ -8,7 +8,10 @@ const Funcionarios = require('../funcionarios/FuncionariosModel')
 const ServicosFuncionarios = require('../servicos_funcionarios/ServicosFuncionariosModel')
 
 router.get('/servicos', (req, res) => {
-	res.render('servicos', { admin: 0, servicos})
+	Servicos.findAll()
+		.then(servicos => {
+			res.render('servicos', { admin: 0, servicos})
+		})
 })
 
 router.get('/servico/:id', (req, res) => {
