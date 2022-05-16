@@ -138,8 +138,10 @@ router.post('/admin/cliente/atualizar', (req, res) => {
 
 router.get('/admin/cliente/:id', (req, res) => {
 	let id = req.params.id
-	let cliente = clientes.filter(cliente => cliente.id == id)[0]
-	res.render('admin/clientes/clienteInfo', { admin: 1, cliente})
+	Clientes.findByPk(id)
+		.then(cliente => {
+			res.render('admin/clientes/clienteInfo', { admin: 1, cliente })
+		})
 })
 
 module.exports = router
