@@ -79,6 +79,63 @@ strong {
 
 }
 
+/* Estilos comuns */
+
+.btn-add, .btn-editar, .btn-deletar, .btn-info, .btn-opcao-selecionada{
+	color: #fff
+}
+
+.btn-info, .btn-opcao-selecionada {
+	background-color: rgb(79, 161, 216);
+}
+
+.btn-add {
+	background-color: rgb(96, 199, 96);
+}
+
+.btn-editar {
+	background-color: rgb(218, 218, 20);
+}
+
+.btn-deletar {
+	background-color: red;
+}
+
+.btn-redondo, .btn-acao {
+	height: 30px;
+	width: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+}
+
+.small-info {
+	font-size: 9pt;
+}
+
+.small-info a {
+	text-decoration: underline;
+	color: rgb(79, 161, 216);
+}
+
+.btn-lista {
+	display: inline-block;
+	margin-top: 18px;
+}
+
+.btn-right, .btn-left {
+	width: 100%;
+}
+
+.right, .btn-right button {
+	float: right;
+}
+
+.left, .btn-left button {
+	float: left;
+}
+
 /* CABEÇALHO */
 
 .cabecalho {
@@ -291,6 +348,36 @@ strong {
 .principal .onde-estamos li {
 	color: #777;
 	margin-bottom: 7px;
+}
+
+/* Formulários */
+
+form {
+	width: 50%;
+	margin: 0 auto;
+}
+
+form label, form input, form select, form textarea {
+	width: 100%;
+	float: left;
+}
+
+form input, form select, form textarea {
+	margin-bottom: 18px;
+	padding: 5px 10px;
+}
+
+.principal form input, form select {
+	border-bottom: 2px solid #333;
+}
+
+form textarea {
+	border: 2px solid #333;
+	resize: none;
+}
+
+.acoes {
+	display: flex;
 }
 
 /* NEWSLETTER */
