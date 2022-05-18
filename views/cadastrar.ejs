@@ -1,0 +1,34 @@
+<%- include('partials/header.ejs') %>
+	<%- include('partials/navbar.ejs') %>
+		<main class="principal">
+			<h2>Cadastrar</h2>
+			<hr>
+			<form action="salvar" method="POST" class="form-cadastro-cliente">
+				<label>Nome:</label>
+				<input type="text" name="iptNome">
+
+				<label>CPF:</label>
+				<input type="text" name="iptCpf">
+
+				<label>Data de nascimento:</label>
+				<input type="date" name="iptNascimento" max="<%= dataMaxima %>">
+
+				<label>Endereço:</label>
+				<input type="text" name="iptEndereco">
+
+				<label>Informações adicionais:</label>
+				<textarea name="iptInformacoes" cols="30" rows="10"></textarea>
+
+				<label>Email:</label>
+				<input type="text" name="iptEmail">
+
+				<label>Telefone:</label>
+				<input type="text" name="iptTelefone">
+
+				<label>Celular:</label>
+				<input type="text" name="iptCelular">
+
+				<button type="submit" class="btn-add right">Cadastrar</button>
+			</form>
+		</main>
+		<%- include('partials/footer.ejs') %> 

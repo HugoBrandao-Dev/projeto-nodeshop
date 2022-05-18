@@ -31,6 +31,10 @@ router.post('/cliente/deletar', (req, res) => {
 	})
 })
 
+router.get('/cliente/novo', (req, res) => {
+	res.render('cadastrar', { admin: 0, dataMaxima: getDataMaxima() })
+})
+
 // Rotas do administrador
 router.get('/admin/clientes', (req, res) => {
 	Clientes.findAll()
