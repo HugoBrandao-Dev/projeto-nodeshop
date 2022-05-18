@@ -138,7 +138,7 @@ strong {
 }
 
 .cabecalho .form-login, .cabecalho .form-login .msg-erro {
-	display: none
+	display: none;
 }
 
 .cabecalho .form-login {
@@ -181,6 +181,16 @@ strong {
 	background-color: #111;
 	width: 40%;
 	border-radius: 5px;
+}
+
+.cabecalho .form-login a {
+	text-align: center;
+	border-bottom: 2px solid #fff;
+	color: #fff;
+	float: right;
+	padding: 15px 10px;
+	margin-left: 5%;
+	width: 40%;
 }
 
 /* MENU */

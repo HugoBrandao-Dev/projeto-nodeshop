@@ -21,8 +21,8 @@
 	<header class="cabecalho">
 		<% if (!admin) { %>
 			<h1 class="logo"><a href="/" title="NodeShop - Loja de informática">NodeShop - Loja de informática</a></h1>
-			<button type="button" class="btn-cliente"><i class="fas fa-sign-in-alt fa-lg"></i></button>
-			<form method="post" class="form-login">
+			<button id="btn-login" type="button" class="btn-cliente"><i class="fas fa-sign-in-alt fa-lg"></i></button>
+			<form id="form-login" method="post" class="form-login">
 				<h2>Dados para login</h2>
 				<p class="msg-erro">Dados inválidos</p>
 				<div class="credenciais">
@@ -32,6 +32,7 @@
 					<label>Senha:</label>
 					<input type="password" name="iptSenha">
 
+					<a href="/cadastrar">Cadastrar</a>
 					<button type="button">Entrar</button>
 				</div>
 			</form>
