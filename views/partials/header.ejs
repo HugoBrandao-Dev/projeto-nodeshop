@@ -21,10 +21,25 @@
 	<header class="cabecalho">
 		<% if (!admin) { %>
 			<h1 class="logo"><a href="/" title="NodeShop - Loja de informática">NodeShop - Loja de informática</a></h1>
+			<button type="button" class="btn-cliente"><i class="fas fa-sign-in-alt fa-lg"></i></button>
+			<form method="post" class="form-login">
+				<h2>Dados para login</h2>
+				<p class="msg-erro">Dados inválidos</p>
+				<div class="credenciais">
+					<label>Email:</label>
+					<input type="email" name="iptEmail" placeholder="seu_email@exemplo.com">
+
+					<label>Senha:</label>
+					<input type="password" name="iptSenha">
+
+					<button type="button">Entrar</button>
+				</div>
+			</form>
 			<form method="POST">
 				<input type="search" placeholder="Faça uma busca">
 				<button><i class="fas fa-search fa-lg"></i></button>
 			</form>
+
 		<% } else { %>
 			<h1 class="logo"><a href="/admin/produtos" title="NodeShop - Loja de informática">NodeShop - Loja de informática</a></h1>
 		<% } %>
