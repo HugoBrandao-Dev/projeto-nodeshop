@@ -47,6 +47,7 @@ const ServicosFuncionarios = require('./servicos_funcionarios/ServicosFuncionari
 
 // Model de Clientes
 const Clientes = require('./clientes/ClientesModel')
+const LoginClientes = require('./login_clientes/LoginClientesModel')
 
 app.get('/', (req, res) => {
 	res.render('index', {admin: 0})
