@@ -1,6 +1,7 @@
 const express = require('express')
 const { route } = require('express/lib/application')
 const router = express.Router()
+const bcrypt = require('bcryptjs')
 
 // Models
 const Clientes = require('./ClientesModel')
@@ -48,6 +49,9 @@ router.post('/cliente/salvar', (req, res) => {
 	let telefone = req.body.iptTelefone
 	let celular = req.body.iptCelular
 
+	const salt = bcrypt.genSaltSync(10)
+	const hash = bcrypt.hashSync(senha, salt)
+
 	Clientes.create({
 		nome,
 		cpf,
@@ -59,7 +63,7 @@ router.post('/cliente/salvar', (req, res) => {
 	}).then(cliente => {
 		LoginClientes.create({
 			email,
-			senha,
+			senha: hash,
 			clienteId: cliente.dataValues.id
 		}).then(() => {
 			res.redirect('/')
