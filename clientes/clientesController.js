@@ -4,6 +4,7 @@ const router = express.Router()
 
 // Models
 const Clientes = require('./ClientesModel')
+const LoginClientes = require('../login_clientes/LoginClientesModel')
 
 // Funções
 function getDataMaxima() {
@@ -35,6 +36,37 @@ router.get('/cliente/novo', (req, res) => {
 	res.render('cadastrar', { admin: 0, dataMaxima: getDataMaxima() })
 })
 
+router.post('/cliente/salvar', (req, res) => {
+	let nome = req.body.iptNome
+	let cpf = req.body.iptCpf
+	let nascimento = req.body.iptNascimento
+	let endereco = req.body.iptEndereco
+	let informacoes = req.body.iptInformacoes
+	let email = req.body.iptEmail
+	let senha = req.body.iptSenha
+	let senhaNovamente = req.body.iptSenha
+	let telefone = req.body.iptTelefone
+	let celular = req.body.iptCelular
+
+	Clientes.create({
+		nome,
+		cpf,
+		nascimento,
+		endereco,
+		informacoes,
+		telefone,
+		celular
+	}).then(cliente => {
+		LoginClientes.create({
+			email,
+			senha,
+			clienteId: cliente.dataValues.id
+		}).then(() => {
+			res.redirect('/')
+		})
+	})
+})
+
 // Rotas do administrador
 router.get('/admin/clientes', (req, res) => {
 	Clientes.findAll()
@@ -45,30 +77,6 @@ router.get('/admin/clientes', (req, res) => {
 
 router.get('/admin/cliente/novo', (req, res) => {
 	res.render('admin/clientes/clienteNovo', { admin: 1, dataMaxima: getDataMaxima() })
-})
-
-router.post('/admin/cliente/salvar', (req, res) => {
-	let nome = req.body.iptNome
-	let cpf = req.body.iptCpf
-	let nascimento = req.body.iptNascimento
-	let endereco = req.body.iptEndereco
-	let informacoes = req.body.iptInformacoes
-	let email = req.body.iptEmail
-	let telefone = req.body.iptTelefone
-	let celular = req.body.iptCelular
-
-	Clientes.create({
-		nome,
-		cpf,
-		nascimento,
-		endereco,
-		informacoesAdicionais: informacoes,
-		email,
-		telefone,
-		celular
-	}).then(() => {
-		res.redirect('/admin/clientes')
-	})
 })
 
 router.get('/admin/cliente/editar/:id', (req, res) => {
