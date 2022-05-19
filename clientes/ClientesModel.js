@@ -29,10 +29,6 @@ const Clientes = connection.define('clientes', {
 	celular: {
 		type: Sequelize.STRING,
 		allowNull: true
-	},
-	email: {
-		type: Sequelize.STRING,
-		allowNull: true
 	}
 })
 

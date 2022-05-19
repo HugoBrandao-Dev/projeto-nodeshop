@@ -5,7 +5,7 @@ const connection = require('../database/database')
 const Clientes = require('../clientes/ClientesModel')
 
 const LoginClientes = connection.define('login_clientes', {
-  login: {
+  email: {
     type: Sequelize.STRING,
     allowNull: false
   },
