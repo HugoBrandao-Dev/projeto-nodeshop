@@ -3,7 +3,7 @@
 		<main class="principal">
 			<h2>Cadastrar cliente</h2>
 			<hr>
-			<form action="/cliente/salvar" method="POST">
+			<form action="/cliente/salvar" method="POST" onsubmit="verificarSenhas(event, this)">
 				<label>Nome:</label>
 				<input type="text" name="iptNome">
 
@@ -37,4 +37,16 @@
 				<button type="submit" class="btn-add right">Cadastrar</button>
 			</form>
 		</main>
+		<script>
+			function verificarSenhas(event, form) {
+				event.preventDefault()
+				senha = form['iptSenha'].value
+				senhaNovamente = form['iptSenhaNovamente'].value
+				if (senha === senhaNovamente) {
+					form.submit()
+				} else {
+					alert('As senhas informadas são diferentes.')
+				}
+			}
+		</script>
 		<%- include('../../partials/footer.ejs') %>
