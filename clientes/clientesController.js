@@ -57,7 +57,7 @@ router.post('/cliente/salvar', (req, res) => {
 		cpf,
 		nascimento,
 		endereco,
-		informacoes,
+		informacoesAdicionais: informacoes,
 		telefone,
 		celular
 	}).then(cliente => {
