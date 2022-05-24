@@ -8,7 +8,8 @@ const Clientes = connection.define('clientes', {
 	},
 	cpf: {
 		type: Sequelize.STRING,
-		allowNull: false
+		allowNull: false,
+		unique: true
 	},
 	nascimento: {
 		type: Sequelize.DATEONLY,

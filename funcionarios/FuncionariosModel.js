@@ -12,7 +12,8 @@ const Funcionarios = connection.define('funcionarios', {
 	},
 	cpf: {
 		type: Sequelize.STRING,
-		allowNull: false
+		allowNull: false,
+		unique: true
 	},
 	nascimento: {
 		type: Sequelize.DATEONLY,
