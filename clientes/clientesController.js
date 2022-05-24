@@ -79,8 +79,11 @@ router.post('/cliente/salvar', (req, res) => {
 
 // Rotas do administrador
 router.get('/admin/clientes', (req, res) => {
-	Clientes.findAll()
-		.then(clientes => {
+	Clientes.findAll({
+		include: [
+			{ model: LoginClientes }
+		]
+	}).then(clientes => {
 			res.render('admin/clientes/clientesLista', { admin: 1, clientes })
 		})
 })
@@ -91,7 +94,11 @@ router.get('/admin/cliente/novo', (req, res) => {
 
 router.get('/admin/cliente/editar/:id', (req, res) => {
 	let id = req.params.id
-	Clientes.findByPk(id)
+	Clientes.findByPk(id, {
+		include: [
+			{ model: LoginClientes }
+		]
+	})
 		.then(cliente => {
 			res.render('admin/clientes/clienteEditar', { admin: 1, cliente })
 		})
@@ -128,7 +135,11 @@ router.post('/admin/cliente/atualizar', (req, res) => {
 
 router.get('/admin/cliente/:id', (req, res) => {
 	let id = req.params.id
-	Clientes.findByPk(id)
+	Clientes.findByPk(id, {
+		include: [
+			{ model: LoginClientes }
+		]
+	})
 		.then(cliente => {
 			res.render('admin/clientes/clienteInfo', { admin: 1, cliente })
 		})
