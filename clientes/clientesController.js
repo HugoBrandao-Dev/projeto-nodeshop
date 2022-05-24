@@ -24,12 +24,18 @@ function getDataMaxima() {
 
 router.post('/cliente/deletar', (req, res) => {
 	let id = req.body.iptId
-	Clientes.destroy({
+	LoginClientes.destroy({
 		where: {
-			id
+			clienteId: id
 		}
 	}).then(() => {
-		res.redirect('/')
+		Clientes.destroy({
+			where: {
+				id
+			}
+		}).then(() => {
+			res.redirect('/')
+		})
 	})
 })
 
