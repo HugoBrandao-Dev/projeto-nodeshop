@@ -3,7 +3,7 @@
 		<main class="principal">
 			<h2>Cadastrar cliente</h2>
 			<hr>
-			<form action="salvar" method="POST">
+			<form action="/cliente/salvar" method="POST">
 				<label>Nome:</label>
 				<input type="text" name="iptNome">
 
@@ -19,14 +19,20 @@
 				<label>Informações adicionais:</label>
 				<textarea name="iptInformacoes" cols="30" rows="10"></textarea>
 
-				<label>Email:</label>
-				<input type="text" name="iptEmail">
-
 				<label>Telefone:</label>
 				<input type="text" name="iptTelefone">
 
 				<label>Celular:</label>
 				<input type="text" name="iptCelular">
+
+				<label>Email:</label>
+				<input type="text" name="iptEmail">
+				
+				<label>Senha:</label>
+				<input type="password" name="iptSenha">
+
+				<label>Digite novamente sua senha:</label>
+				<input type="password" name="iptSenhaNovamente">
 
 				<button type="submit" class="btn-add right">Cadastrar</button>
 			</form>
