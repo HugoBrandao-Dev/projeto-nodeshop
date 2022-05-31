@@ -2,10 +2,10 @@
 	<section class="newsletter">
 		<h3>Newsletter</h3>
 		<p>Receba nossas promoções por email</p>
-		<form method="POST">
-			<input type="text" placeholder="Seu nome">
-			<input type="email" placeholder="Seu email">
-			<button>Cadastrar</button>
+		<form method="POST" action="/newsletter/cadastrar">
+			<input type="text" name="iptNome" placeholder="Seu nome">
+			<input type="email" name="iptEmail" placeholder="Seu email">
+			<button type="submit">Cadastrar</button>
 		</form>
 	</section>
 	<footer class="rodape">
