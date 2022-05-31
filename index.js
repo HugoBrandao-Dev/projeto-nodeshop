@@ -22,12 +22,14 @@ const produtosController = require('./produtos/produtosController')
 const servicosController = require('./servicos/servicosController')
 const funcionariosController = require('./funcionarios/funcionariosController')
 const clientesController = require('./clientes/clientesController')
+const newslettersController = require('./newsletter/newslettersController')
 
 // Configurações dos Controllers
 app.use('/', produtosController)
 app.use('/', servicosController)
 app.use('/', funcionariosController)
 app.use('/', clientesController)
+app.use('/', newslettersController)
 
 // Models para Produto
 const Tipos = require('./tipos/TiposModel')
@@ -49,8 +51,8 @@ const ServicosFuncionarios = require('./servicos_funcionarios/ServicosFuncionari
 const Clientes = require('./clientes/ClientesModel')
 const LoginClientes = require('./login_clientes/LoginClientesModel')
 
-// Model de Newsletter
-const Newsletter = require('./newsletter/NewsletterModel')
+// Model de Newsletters
+const Newsletter = require('./newsletter/NewslettersModel')
 
 app.get('/', (req, res) => {
 	res.render('index', {admin: 0})
