@@ -1,12 +1,10 @@
 const express = require('express')
-const { route } = require('express/lib/application')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
 
 // Models
 const Clientes = require('./ClientesModel')
 const LoginClientes = require('../login_clientes/LoginClientesModel')
-const { is } = require('express/lib/request')
 
 // Funções
 function getDataMaxima() {

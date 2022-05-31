@@ -1,9 +1,9 @@
 const btnLogin = document.querySelector('button#btn-login')
-btnLogin.addEventListener('click', acaoLogin)
+btnLogin.addEventListener('click', mostrarFormularioLogin)
 
 const formLogin = document.querySelector('form#form-login')
 
-function acaoLogin() {
+function mostrarFormularioLogin() {
 	if (formLogin.style.display !== 'block') {
 		formLogin.style.display = 'block'
 	} else {
