@@ -136,6 +136,25 @@ router.post('/cliente/atualizar', (req, res) => {
 	})
 })
 
+router.post('/cliente/login', (req, res) => {
+	let email = req.body.iptEmail
+	let senha = req.body.iptSenha
+
+	LoginClientes.findOne({
+		where: {
+			email
+		}
+	}).then(usuario => {
+		if(bcrypt.compareSync(senha, usuario.senha)) {
+			res.send('Login feito com sucesso.')
+		} else {
+			res.send('Senha inválida.')
+		}
+	}).catch(() => {
+		res.redirect('/')
+	})
+})
+
 // Rotas do administrador
 router.get('/admin/clientes', (req, res) => {
 	Clientes.findAll({
