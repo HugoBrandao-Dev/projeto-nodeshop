@@ -8,9 +8,6 @@
 	<meta name="keywords" content="empresa,fictícia,informatica,empresa">
 	<meta name="author" content="Hugo da Rocha">
 	<link rel="stylesheet" href="/css/style.css">
-	<% if(admin) { %>
-	<link rel="stylesheet" href="/css/styleAdmin.css">
-	<% } %>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
 		integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
@@ -19,7 +16,6 @@
 
 <body>
 	<header class="cabecalho">
-		<% if (!admin) { %>
 			<h1 class="logo"><a href="/" title="NodeShop - Loja de informática">NodeShop - Loja de informática</a></h1>
 			<button id="btn-login" type="button" class="btn-cliente"><i class="fas fa-sign-in-alt fa-lg"></i></button>
 			<form id="form-login" method="post" action="/cliente/login" class="form-login">
@@ -40,8 +36,4 @@
 				<input type="search" placeholder="Faça uma busca">
 				<button><i class="fas fa-search fa-lg"></i></button>
 			</form>
-
-		<% } else { %>
-			<h1 class="logo"><a href="/admin/produtos" title="NodeShop - Loja de informática">NodeShop - Loja de informática</a></h1>
-		<% } %>
 	</header>
