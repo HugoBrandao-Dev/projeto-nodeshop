@@ -1,22 +1,13 @@
 <nav class="menu">
 	<ul>
-		<% if (!admin) { %>
-			<li><a href="/">Home</a></li>
-			<li><a href="/produtos">Produtos</a></li>
-			<li><a href="/servicos">Serviços</a></li>
-			<li><a href="/contato">Contato</a></li>
-		<% } else { %>
-			<li><a href="/admin/produtos">Produtos</a></li>
-			<li><a href="/admin/servicos">Serviços</a></li>
-			<li><a href="/admin/funcionarios">Funcionários</a></li>
-			<li><a href="/admin/clientes">Clientes</a></li>
-		<% } %>
+		<li><a href="/">Home</a></li>
+		<li><a href="/produtos">Produtos</a></li>
+		<li><a href="/servicos">Serviços</a></li>
+		<li><a href="/contato">Contato</a></li>
 	</ul>
-	<% if (!admin) { %>
-		<div class="social-icons">
-			<a href="#" class="btn-facebook"><i class="fab fa-facebook fa-lg"></i></a>
-			<a href="#" class="btn-twitter"><i class="fab fa-twitter fa-lg"></i></a>
-			<a href="#" class="btn-google"><i class="fab fa-google fa-lg"></i></a>
-		</div>
-	<% } %>
+	<div class="social-icons">
+		<a href="#" class="btn-facebook"><i class="fab fa-facebook fa-lg"></i></a>
+		<a href="#" class="btn-twitter"><i class="fab fa-twitter fa-lg"></i></a>
+		<a href="#" class="btn-google"><i class="fab fa-google fa-lg"></i></a>
+	</div>
 </nav>
