@@ -5,3 +5,5 @@ function usuarioAuth(req, res, next) {
 		res.redirect('/')
 	}
 }
+
+module.exports = usuarioAuth

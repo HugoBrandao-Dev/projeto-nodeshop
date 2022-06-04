@@ -1,16 +1,16 @@
 const express = require('express')
 const router = express.Router()
-const Sequelize = require('sequelize')
+const usuarioAuth = require('../middlewares/usuarioAuth')
 
 // Models
 const Servicos = require('./ServicosModel')
 const Funcionarios = require('../funcionarios/FuncionariosModel')
 const ServicosFuncionarios = require('../servicos_funcionarios/ServicosFuncionariosModel')
 
-router.get('/servicos', (req, res) => {
+router.get('/servicos', usuarioAuth, (req, res) => {
 	Servicos.findAll()
 		.then(servicos => {
-			res.render('servicos', { admin: 0, servicos})
+			res.render('servicos', { servicos })
 		})
 })
 
@@ -21,7 +21,7 @@ router.get('/servico/:id', (req, res) => {
 			{ model: Funcionarios }
 		]
 	}).then(servico => {
-		res.render('servico', { admin: 0, servico })
+		res.render('servico', { servico })
 	})
 })
 
@@ -34,7 +34,7 @@ router.get('/admin/servicos', (req, res) => {
 			}
 		]
 	}).then(servicos => {
-		res.render('admin/servicos/servicosLista', { admin: 1, servicos })
+		res.render('admin/servicos/servicosLista', { servicos })
 	})
 })
 
@@ -48,7 +48,7 @@ router.get('/admin/servico/editar/:id', (req, res) => {
 		Funcionarios.findAll()
 		.then(funcionarios => {
 			const idsResponsaveis = servico.funcionarios.map(func => func.id)
-			res.render('admin/servicos/servicoEditar', { admin: 1, servico, funcionarios, idsResponsaveis })
+			res.render('admin/servicos/servicoEditar', { servico, funcionarios, idsResponsaveis })
 		})
 	})
 })
@@ -56,7 +56,7 @@ router.get('/admin/servico/editar/:id', (req, res) => {
 router.get('/admin/servico/novo', (req, res) => {
 	Funcionarios.findAll()
 	.then(funcionarios => {
-		res.render('admin/servicos/servicoCadastrar', { admin: 1, funcionarios })
+		res.render('admin/servicos/servicoCadastrar', { funcionarios })
 	})
 })
 
@@ -108,7 +108,7 @@ router.get('/admin/servico/:id', (req, res) => {
 			{ model: Funcionarios }
 		]
 	}).then(servico => {
-		res.render('admin/servicos/servicoInfo', { admin: 1, servico })
+		res.render('admin/servicos/servicoInfo', { servico })
 	})
 })
 

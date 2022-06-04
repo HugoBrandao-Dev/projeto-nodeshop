@@ -14,7 +14,7 @@ router.get('/admin/funcionarios', (req, res) => {
 		]
 	})
 	.then(funcionarios => {
-		res.render('admin/funcionarios/funcionariosLista', { admin: 1, funcionarios })
+		res.render('admin/funcionarios/funcionariosLista', { funcionarios })
 	})
 })
 
@@ -23,7 +23,7 @@ router.get('/admin/funcionario/novo', (req, res) => {
 		.then(cargos => {
 			Setores.findAll()
 				.then(setores => {
-					res.render('admin/funcionarios/funcionarioNovo', { admin: 1, cargos, setores })
+					res.render('admin/funcionarios/funcionarioNovo', { cargos, setores })
 				})
 		})
 })
@@ -69,7 +69,7 @@ router.get('/admin/funcionario/editar/:id', (req, res) => {
 				.then(cargos => {
 					Setores.findAll()
 						.then(setores => {
-							res.render('admin/funcionarios/funcionarioEditar', { admin: 1, funcionario, cargos, setores })
+							res.render('admin/funcionarios/funcionarioEditar', { funcionario, cargos, setores })
 						})
 				})
 		})
@@ -97,7 +97,7 @@ router.get('/admin/funcionario/:id', (req, res) => {
 		]
 	})
 		.then(funcionario => {
-			res.render('admin/funcionarios/funcionarioInfo', { admin: 1, funcionario })
+			res.render('admin/funcionarios/funcionarioInfo', { funcionario })
 		})
 })
 
@@ -106,7 +106,7 @@ router.get('/admin/funcionarios/opcoes', (req, res) => {
 		.then(cargos => {
 			Setores.findAll()
 				.then(setores => {
-					res.render('admin/funcionarios/funcionarioOpcao', { admin: 1, cargos, setores })
+					res.render('admin/funcionarios/funcionarioOpcao', { cargos, setores })
 				})
 		})
 })

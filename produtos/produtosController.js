@@ -31,7 +31,7 @@ router.get('/produtos', (req, res) => {
 			{ model: Marcas }
 		]
 	}).then(produtos => {
-			res.render('produtos', { admin: 0, produtos })
+			res.render('produtos', { produtos })
 		})
 })
 
@@ -43,7 +43,7 @@ router.get('/produto/:id', (req, res) => {
 		]
 	})
 		.then(produto => {
-			res.render('produto', { admin: 0, produto })
+			res.render('produto', { produto })
 		})
 })
 
@@ -58,7 +58,7 @@ router.get('/admin/produtos', (req, res) => {
 			{ model: Tipos }
 		]
 	}).then(produtos => {
-		res.render('admin/produtos/produtosLista', { admin: 1, produtos })
+		res.render('admin/produtos/produtosLista', { produtos })
 	})
 })
 
@@ -66,7 +66,7 @@ router.get('/admin/produto/novo', (req, res) => {
 	Categorias.findAll({ raw: true }).then(categorias => {
 		Marcas.findAll({ raw: true }).then(marcas => {
 			Tipos.findAll({ raw: true }).then(tipos => {
-				res.render('admin/produtos/produtoCadastrar', { admin: 1, categorias, marcas, tipos })
+				res.render('admin/produtos/produtoCadastrar', { categorias, marcas, tipos })
 			})
 		})
 	})
@@ -114,7 +114,7 @@ router.get('/admin/produto/:id', (req, res) => {
 			{ model: Tipos }
 		]
 	}).then(produto => {
-		res.render('admin/produtos/produtoInfo', { admin: 1, produto })
+		res.render('admin/produtos/produtoInfo', { produto })
 	})
 })
 
@@ -128,7 +128,7 @@ router.get('/admin/produto/edit/:id', (req, res) => {
 		Categorias.findAll({ raw: true }).then(categorias => {
 			Marcas.findAll({ raw: true }).then(marcas => {
 				Tipos.findAll({ raw: true }).then(tipos => {
-					res.render('admin/produtos/produtoEditar', { admin: 1, produto, categorias, marcas, tipos })
+					res.render('admin/produtos/produtoEditar', { produto, categorias, marcas, tipos })
 				})
 			})
 		})
@@ -179,7 +179,7 @@ router.get('/admin/produtos/opcoes', (req, res) => {
 	Tipos.findAll({ raw: true }).then(tipos => {
 		Marcas.findAll({ raw: true }).then(marcas => {
 			Categorias.findAll({ raw: true }).then(categorias => {
-				res.render('admin/produtos/produtoOpcao', { admin: 1, tipos, marcas, categorias })
+				res.render('admin/produtos/produtoOpcao', { tipos, marcas, categorias })
 			})
 		})
 	})

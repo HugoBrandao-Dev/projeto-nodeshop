@@ -39,7 +39,7 @@ router.post('/cliente/deletar', (req, res) => {
 })
 
 router.get('/cliente/novo', (req, res) => {
-	res.render('cadastrar', { admin: 0, dataMaxima: getDataMaxima() })
+	res.render('cadastrar', { dataMaxima: getDataMaxima() })
 })
 
 router.post('/cliente/salvar', (req, res) => {
@@ -162,12 +162,12 @@ router.get('/admin/clientes', (req, res) => {
 			{ model: LoginClientes }
 		]
 	}).then(clientes => {
-		res.render('admin/clientes/clientesLista', { admin: 1, clientes })
+		res.render('admin/clientes/clientesLista', { clientes })
 	})
 })
 
 router.get('/admin/cliente/novo', (req, res) => {
-	res.render('admin/clientes/clienteNovo', { admin: 1, dataMaxima: getDataMaxima() })
+	res.render('admin/clientes/clienteNovo', { dataMaxima: getDataMaxima() })
 })
 
 router.get('/admin/cliente/editar/:id', (req, res) => {
@@ -178,7 +178,7 @@ router.get('/admin/cliente/editar/:id', (req, res) => {
 		]
 	})
 	.then(cliente => {
-		res.render('admin/clientes/clienteEditar', { admin: 1, cliente })
+		res.render('admin/clientes/clienteEditar', { cliente })
 	})
 })
 
@@ -190,7 +190,7 @@ router.get('/admin/cliente/:id', (req, res) => {
 		]
 	})
 	.then(cliente => {
-		res.render('admin/clientes/clienteInfo', { admin: 1, cliente })
+		res.render('admin/clientes/clienteInfo', { cliente })
 	})
 })
 
