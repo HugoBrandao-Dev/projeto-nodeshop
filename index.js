@@ -1,4 +1,5 @@
 const express = require('express')
+const session = require('express-session')
 const app = express(express)
 
 // Configuração da conexão com o banco de dados
@@ -16,6 +17,12 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use(session({
+	secret: 'poenwlqidlsiwnl',
+	cookie: {
+		maxAge: 86400000 // 1 dia
+	}
+}))
 
 // Controllers
 const produtosController = require('./produtos/produtosController')
