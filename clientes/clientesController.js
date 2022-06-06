@@ -141,12 +141,23 @@ router.post('/cliente/login', (req, res) => {
 	let senha = req.body.iptSenha
 
 	LoginClientes.findOne({
+		include: [
+			{ model: Clientes }
+		],
 		where: {
 			email
 		}
 	}).then(usuario => {
 		if(bcrypt.compareSync(senha, usuario.senha)) {
-			res.send('Login feito com sucesso.')
+			req.session.usuario.id = usuario.id
+			req.session.usuario.nome = usuario.nome
+			req.session.usuario.email = usuario.email
+			req.session.usuario.cpf = usuario.cpf
+			req.session.usuario.nascimento = usuario.nascimento
+			req.session.usuario.endereco = usuario.endereco
+			req.session.usuario.informacoes = usuario.informacoesAdicionais
+			req.session.usuario.telefone = usuario.telefone
+			req.session.usuario.celular = usuario.celular
 		} else {
 			res.send('Senha inválida.')
 		}
