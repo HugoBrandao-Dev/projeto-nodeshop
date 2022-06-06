@@ -1,5 +1,5 @@
 function usuarioAuth(req, res, next) {
-	if (req.session.admin >= 0) {
+	if (req.session.usuario) {
 		next()
 	} else {
 		res.redirect('/')
