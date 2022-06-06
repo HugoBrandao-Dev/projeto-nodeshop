@@ -7,7 +7,7 @@ const Servicos = require('./ServicosModel')
 const Funcionarios = require('../funcionarios/FuncionariosModel')
 const ServicosFuncionarios = require('../servicos_funcionarios/ServicosFuncionariosModel')
 
-router.get('/servicos', usuarioAuth, (req, res) => {
+router.get('/servicos', (req, res) => {
 	Servicos.findAll()
 		.then(servicos => {
 			res.render('servicos', { servicos })
