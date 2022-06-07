@@ -8,9 +8,13 @@ const Funcionarios = require('../funcionarios/FuncionariosModel')
 const ServicosFuncionarios = require('../servicos_funcionarios/ServicosFuncionariosModel')
 
 router.get('/servicos', (req, res) => {
+	let isLogado = false
+	if (req.session.usuario) {
+		isLogado = true
+	}
 	Servicos.findAll()
 		.then(servicos => {
-			res.render('servicos', { servicos })
+			res.render('servicos', { servicos, isLogado })
 		})
 })
 

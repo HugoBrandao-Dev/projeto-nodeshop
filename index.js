@@ -70,7 +70,11 @@ app.get('/', (req, res) => {
 })
 
 app.get('/contato', (req, res) => {
-	res.render('contatos')
+	let isLogado = false
+	if (req.session.usuario) {
+		isLogado = true
+	}
+	res.render('contatos', { isLogado })
 })
 
 app.listen(8080, error => {

@@ -26,12 +26,16 @@ function isRegistrosValidos(inteiros = [], strings = []) {
 }
 
 router.get('/produtos', (req, res) => {
+	let isLogado = false
+	if (req.session.usuario) {
+		isLogado = true
+	}
 	Produtos.findAll({
 		include: [
 			{ model: Marcas }
 		]
 	}).then(produtos => {
-			res.render('produtos', { produtos })
+			res.render('produtos', { produtos, isLogado })
 		})
 })
 
