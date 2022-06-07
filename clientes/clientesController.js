@@ -169,6 +169,11 @@ router.post('/cliente/login', (req, res) => {
 	})
 })
 
+router.get('/logout', (req, res) => {
+	req.session.usuario = undefined
+	res.redirect('/')
+})
+
 router.get('/cliente', (req, res) => {
 	let isLogado = false
 	if (req.session.usuario) {
