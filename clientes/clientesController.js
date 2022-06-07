@@ -149,20 +149,23 @@ router.post('/cliente/login', (req, res) => {
 		}
 	}).then(usuario => {
 		if(bcrypt.compareSync(senha, usuario.senha)) {
-			req.session.usuario.id = usuario.id
-			req.session.usuario.nome = usuario.nome
-			req.session.usuario.email = usuario.email
-			req.session.usuario.cpf = usuario.cpf
-			req.session.usuario.nascimento = usuario.nascimento
-			req.session.usuario.endereco = usuario.endereco
-			req.session.usuario.informacoes = usuario.informacoesAdicionais
-			req.session.usuario.telefone = usuario.telefone
-			req.session.usuario.celular = usuario.celular
+			req.session.usuario = {
+				id: usuario.cliente.id,
+				nome: usuario.cliente.nome,
+				email: usuario.email,
+				cpf: usuario.cliente.cpf,
+				nascimento: usuario.cliente.nascimento,
+				endereco: usuario.cliente.endereco,
+				informacoes: usuario.cliente.informacoesAdicionais,
+				telefone: usuario.cliente.telefone,
+				celular: usuario.cliente.celular
+			}
+			res.redirect('/')
 		} else {
 			res.send('Senha inválida.')
 		}
-	}).catch(() => {
-		res.redirect('/')
+	}).catch(erro => {
+		res.send('Nenhum usuário encontrado.')
 	})
 })
 
