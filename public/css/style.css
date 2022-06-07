@@ -176,18 +176,21 @@ strong {
 	border-radius: 0 5px 5px 0;
 }
 
-.cabecalho .btn-cliente {
+.cabecalho .btn-logout, .cabecalho .btn-login {
 	float: right;
 	padding: 13px 10px;
 	margin-left: 15px;
-	background-color: rgb(79, 161, 216);
-	/* 
-	Cor para sair
-		background-color: #ff3333;
-	*/
 	border: 2px solid #fff;
 	border-radius: 5px;
 	color: #fff;
+}
+
+.cabecalho .btn-logout {
+	background-color: #ff3333;
+}
+
+.cabecalho .btn-login {
+	background-color: rgb(79, 161, 216);
 }
 
 .cabecalho .form-login, .cabecalho .form-login input {
@@ -248,6 +251,16 @@ strong {
 	padding: 15px 10px;
 	margin-left: 5%;
 	width: 40%;
+}
+
+.cabecalho .form-logout {
+	height: 100%;
+	width: 45px;
+	margin-left: 10px;
+}
+
+.cabecalho .form-logout button {
+	width: 100%;
 }
 
 /* MENU */
