@@ -4,6 +4,9 @@
 		<li><a href="/produtos">Produtos</a></li>
 		<li><a href="/servicos">Serviços</a></li>
 		<li><a href="/contato">Contato</a></li>
+		<% if (isLogado) { %>
+			<li class="usuario"><a href="/painelUsuario">Painel do Usuário</a></li>
+		<% } %>
 	</ul>
 	<div class="social-icons">
 		<a href="#" class="btn-facebook"><i class="fab fa-facebook fa-lg"></i></a>

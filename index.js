@@ -62,11 +62,15 @@ const LoginClientes = require('./login_clientes/LoginClientesModel')
 const Newsletter = require('./newsletter/NewslettersModel')
 
 app.get('/', (req, res) => {
-	res.render('index', {admin: 0})
+	let isLogado = false
+	if (req.session.usuario) {
+		isLogado = true
+	}
+	res.render('index', { isLogado })
 })
 
 app.get('/contato', (req, res) => {
-	res.render('contatos', { admin: 0 })
+	res.render('contatos')
 })
 
 app.listen(8080, error => {
