@@ -1,0 +1,33 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/navbar.ejs') %>
+<main class="principal">
+	<h2>Informações pessoais</h2>
+	<hr>
+	<label>Nome:</label>
+	<p><%= cliente.nome %></p>
+	
+	<label>CPF:</label>
+	<p><%= cliente.cpf %></p>
+	
+	<label>Data de nascimento:</label>
+	<p><%= cliente.nascimento %></p>
+	
+	<label>Endereço:</label>
+	<p><%= cliente.endereco %></p>
+	
+	<label>Informações adicionais:</label>
+	<p><%= cliente.informacoesAdicionais %></p>
+	
+	<label>Email:</label>
+	<p><%= cliente.login_cliente.email %></p>
+	
+	<label>Telefone:</label>
+	<p><%= cliente.telefone %></p>
+	
+	<label>Celular:</label>
+	<p><%= cliente.celular %></p>
+
+	<a href="/" class="btn-deletar right">Deletar conta</a>
+	<a href="/" class="btn-editar right">Atualizar informações</a>
+</main>
+<%- include('partials/footer.ejs') %>

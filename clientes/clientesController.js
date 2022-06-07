@@ -169,6 +169,20 @@ router.post('/cliente/login', (req, res) => {
 	})
 })
 
+router.get('/cliente', (req, res) => {
+	let isLogado = false
+	if (req.session.usuario) {
+		isLogado = true
+	}
+	Clientes.findByPk(req.session.usuario.id, {
+		include: [
+			{ model: LoginClientes }
+		]
+	}).then(cliente => {
+		res.render('painel_controle', { cliente, isLogado })
+	})
+})
+
 // Rotas do administrador
 router.get('/admin/clientes', (req, res) => {
 	Clientes.findAll({
