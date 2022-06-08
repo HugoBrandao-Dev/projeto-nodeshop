@@ -61,6 +61,9 @@ const LoginClientes = require('./login_clientes/LoginClientesModel')
 // Model de Newsletters
 const Newsletter = require('./newsletter/NewslettersModel')
 
+// Model de Compras
+const Compras = require('./compras/ComprasModel')
+
 app.get('/', (req, res) => {
 	let isLogado = false
 	if (req.session.usuario) {
