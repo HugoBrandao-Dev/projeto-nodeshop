@@ -64,6 +64,9 @@ const Newsletter = require('./newsletter/NewslettersModel')
 // Model de Compras
 const Compras = require('./compras/ComprasModel')
 
+// Model de Produtos_Vendidos
+const ProdutosVendidos = require('./produtos_vendidos/ProdutosVendidosModel')
+
 app.get('/', (req, res) => {
 	let isLogado = false
 	if (req.session.usuario) {
