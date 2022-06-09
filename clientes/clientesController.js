@@ -53,10 +53,10 @@ router.post('/cliente/salvar', (req, res) => {
 	let senhaNovamente = req.body.iptSenhaNovamente
 	let telefone = req.body.iptTelefone
 	let celular = req.body.iptCelular
-	
+
 	const salt = bcrypt.genSaltSync(10)
 	const hash = bcrypt.hashSync(senha, salt)
-	
+
 	Clientes.create({
 		nome,
 		cpf,
@@ -77,6 +77,7 @@ router.post('/cliente/salvar', (req, res) => {
 })
 
 router.post('/cliente/atualizar', (req, res) => {
+	let isLogado = req.session.usuario ? true : false
 	let id = req.body.iptId
 	let nome = req.body.iptNome
 	let cpf = req.body.iptCpf
@@ -89,10 +90,10 @@ router.post('/cliente/atualizar', (req, res) => {
 	let senhaNovamente = req.body.iptSenhaNovamente
 	let telefone = req.body.iptTelefone
 	let celular = req.body.iptCelular
-	
+
 	let infoCliente = {}
 	let infoLoginCliente = {}
-	
+
 	// Informações que irão para a tabela de clientes
 	infoCliente.nome = nome
 	infoCliente.cpf = cpf
@@ -101,10 +102,14 @@ router.post('/cliente/atualizar', (req, res) => {
 	infoCliente.informacoesAdicionais = informacoes
 	infoCliente.telefone = telefone
 	infoCliente.celular = celular
-	
+
 	// Informações que irão para a tabela de login_clientes
 	infoLoginCliente.email = email
-	
+
+	/*
+	Só serão feitas as atualizar se o usuário informar a senha, independente de
+	quais informações foram atualizadas ou não
+	*/
 	if (senhaAntiga && senha && senhaNovamente) {
 		LoginClientes.findOne({
 			where: {
@@ -115,25 +120,31 @@ router.post('/cliente/atualizar', (req, res) => {
 			if(isIguais) {
 				let salt = bcrypt.genSaltSync(10)
 				let hash = bcrypt.hashSync(senha, salt)
-				
-				infoLoginCliente.senha = hash
-			}
-		})
-	}
 
-	Clientes.update(infoCliente, {
-		where: {
-			id
-		}
-	}).then(() => {
-		LoginClientes.update(infoLoginCliente, {
-			where: {
-				clienteId: id
+				infoLoginCliente.senha = hash
+
+				Clientes.update(infoCliente, {
+					where: {
+						id
+					}
+				}).then(() => {
+					LoginClientes.update(infoLoginCliente, {
+						where: {
+							clienteId: id
+						}
+					}).then(() => {
+						res.redirect('/cliente')
+					})
+				})
 			}
-		}).then(() => {
-			res.redirect('/admin/clientes')
 		})
-	})
+	} else {
+		if (isLogado) {
+			res.redirect('/cliente')
+		} else {
+			res.redirect('/admin/clientes')
+		}
+	}
 })
 
 router.post('/cliente/login', (req, res) => {
@@ -185,6 +196,21 @@ router.get('/cliente', (req, res) => {
 		]
 	}).then(cliente => {
 		res.render('painel_controle', { cliente, isLogado })
+	})
+})
+
+router.get('/cliente/editar', (req, res) => {
+	let isLogado = false
+	if (req.session.usuario) {
+		isLogado = true
+	}
+	Clientes.findByPk(req.session.usuario.id, {
+		include: [
+			{ model: LoginClientes }
+		]
+	})
+	.then(cliente => {
+		res.render('atualizar', { cliente, isLogado })
 	})
 })
 

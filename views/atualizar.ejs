@@ -1,0 +1,57 @@
+<%- include('partials/header.ejs') %>
+	<%- include('partials/navbar.ejs') %>
+		<main class="principal">
+			<h2>Atualizar dados do cliente</h2>
+			<hr>
+			<form onsubmit="verificarSenhas(event, this)" action="/cliente/atualizar" method="POST">
+				<input type="hidden" name="iptId" value="<%= cliente.id %>">
+
+				<label>Nome:</label>
+				<input type="text" name="iptNome" value="<%= cliente.nome %>">
+
+				<label>CPF:</label>
+				<input type="text" name="iptCpf" value="<%= cliente.cpf %>">
+
+				<label>Data de nascimento:</label>
+				<input type="date" name="iptNascimento" value="<%= cliente.nascimento %>">
+
+				<label>Endereço:</label>
+				<input type="text" name="iptEndereco" value="<%= cliente.endereco %>">
+
+				<label>Informações adicionais:</label>
+				<textarea name="iptInformacoes" cols="30" rows="10"><%= cliente.informacoesAdicionais %></textarea>
+
+				<label>Email:</label>
+				<input type="text" name="iptEmail" value="<%= cliente.login_cliente.email %>">
+
+				<label>Telefone:</label>
+				<input type="text" name="iptTelefone" value="<%= cliente.telefone %>">
+
+				<label>Celular:</label>
+				<input type="text" name="iptCelular" value="<%= cliente.celular %>">
+
+				<label>Senha anterior</label>
+				<input type="password" name="iptSenhaAntiga">
+
+				<label>Nova senha:</label>
+				<input type="password" name="iptSenha">
+
+				<label>Digite novamente sua nova senha:</label>
+				<input type="password" name="iptSenhaNovamente">
+
+				<button type="submit" class="btn-editar right">Atualizar</button>
+			</form>
+		</main>
+		<script>
+			function verificarSenhas(event, form) {
+				event.preventDefault()
+				senha = form['iptSenha'].value
+				senhaNovamente = form['iptSenhaNovamente'].value
+				if (senha === senhaNovamente) {
+					form.submit()
+				} else {
+					alert('As senhas informadas são diferentes.')
+				}
+			}
+		</script>
+		<%- include('partials/footer.ejs') %>

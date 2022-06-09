@@ -11,7 +11,7 @@ Produtos.belongsToMany(Clientes, { through: ProdutosVendidos})
 Clientes.belongsToMany(Produtos, { through: ProdutosVendidos})
 Compras.hasMany(ProdutosVendidos)
 
-ProdutosVendidos.sync({ force: true })
+ProdutosVendidos.sync({ force: false })
 	.then(() => {
 		console.log('Tabela Produtos_vendidos criada com sucesso.')
 	})
