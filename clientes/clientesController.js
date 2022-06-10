@@ -33,13 +33,22 @@ router.post('/cliente/deletar', (req, res) => {
 				id
 			}
 		}).then(() => {
-			res.redirect('/')
+			if (req.session.usuario) {
+				req.session.usuario = undefined
+				res.redirect('/')
+			} else {
+				res.redirect('/admin/clientes')
+			}
 		})
 	})
 })
 
 router.get('/cliente/novo', (req, res) => {
-	res.render('cadastrar', { dataMaxima: getDataMaxima() })
+	let isLogado = false
+	if (req.session.usuario) {
+		isLogado = true
+	}
+	res.render('cadastrar', { dataMaxima: getDataMaxima(), isLogado })
 })
 
 router.post('/cliente/salvar', (req, res) => {

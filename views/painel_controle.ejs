@@ -5,29 +5,40 @@
 	<hr>
 	<label>Nome:</label>
 	<p><%= cliente.nome %></p>
-	
+
 	<label>CPF:</label>
 	<p><%= cliente.cpf %></p>
-	
+
 	<label>Data de nascimento:</label>
 	<p><%= cliente.nascimento %></p>
-	
+
 	<label>Endereço:</label>
 	<p><%= cliente.endereco %></p>
-	
+
 	<label>Informações adicionais:</label>
 	<p><%= cliente.informacoesAdicionais %></p>
-	
+
 	<label>Email:</label>
 	<p><%= cliente.login_cliente.email %></p>
-	
+
 	<label>Telefone:</label>
 	<p><%= cliente.telefone %></p>
-	
+
 	<label>Celular:</label>
 	<p><%= cliente.celular %></p>
 
-	<a href="/" class="btn-deletar right">Deletar conta</a>
+	<form class="form-deletar" action="/cliente/deletar" method="POST" onsubmit="isDeletarUsuario(event, this)">
+		<input type="hidden" name="iptId" value="<%= cliente.id %>">
+		<button type="submit" class="btn-deletar right">Deletar conta</button>
+	</form>
 	<a href="/cliente/editar" class="btn-editar right">Atualizar informações</a>
 </main>
+<script>
+	function isDeletarUsuario(event, form) {
+		event.preventDefault()
+		if (confirm('Realmente deseja deletar sua conta?')) {
+			form.submit()
+		}
+	}
+</script>
 <%- include('partials/footer.ejs') %>

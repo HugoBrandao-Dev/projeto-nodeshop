@@ -393,6 +393,11 @@ form textarea {
 	display: flex;
 }
 
+.form-deletar {
+	float: right;
+	width: 20%;
+}
+
 /* NEWSLETTER */
 .newsletter {
 	width: 100%;
