@@ -35,7 +35,7 @@ produto;
 lógica de back-end (evitar a deleção de um tipo que pertence a um produto
 cadastrado, por exemplo);
 * Algumas rotas ficaram sem validadores de inserção de dados;
-* Criar sistema de deleção de funcionários.
 * Criar sistema de busca por nome para a seção de produtos e clientes, tanto para a área admin quanto para área do cliente.
 * Criar mecanismo que impeça clientes menores de 18 anos de se cadastrarem ou de serem cadastrados (pela area adm).
 * Criar uma ou mais views de captura de eventuais error que possam acontecer em processos feitos pelo adm ou pelo cliente.
+* Remover/corrigir a necessidade de senha (atual e nova) para a alteração de dados do cliente (pelo cliente e admin).
