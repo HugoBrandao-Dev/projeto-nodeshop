@@ -307,6 +307,10 @@ strong {
 	color: #d73d32;
 }
 
+.usuario a {
+	font-weight: 700;
+}
+
 /* PRINCIPAL */
 
 .principal {
@@ -362,6 +366,35 @@ strong {
 	color: #777;
 	margin-bottom: 7px;
 }
+
+.compra {
+	padding: 10px;
+}
+
+.compra .compra-data, .compra .compra-quantidade {
+	float: left;
+	width: 80%;
+	height: 50%;
+	line-height: 100%;
+}
+
+.compra .compra-data {
+	font-size: 20pt;
+}
+
+.compra .compra-quantidade span {
+	font-weight: bold;
+}
+
+.compra .compra-detalhe {
+	width: 20%;
+	float: right;
+}
+
+.compra .compra-detalhe a {
+	float: right;
+}
+
 
 /* Formulários */
 
@@ -459,7 +492,7 @@ form textarea {
 
 /* Produtos da área do cliente */
 
-.cards .card, .cards .card-underline {
+.cards .card, .cards .card-underline, .compra {
 	float: left;
 	width: 100%;
 	height: 150px;
