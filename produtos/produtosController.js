@@ -40,6 +40,10 @@ router.get('/produtos', (req, res) => {
 })
 
 router.get('/produto/:id', (req, res) => {
+	let isLogado = false
+	if (req.session.usuario) {
+		isLogado = true
+	}
 	let id = req.params.id
 	Produtos.findByPk(id, {
 		include: [
@@ -47,7 +51,7 @@ router.get('/produto/:id', (req, res) => {
 		]
 	})
 		.then(produto => {
-			res.render('produto', { produto })
+			res.render('produto', { produto, isLogado })
 		})
 })
 
