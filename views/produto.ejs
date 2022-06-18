@@ -9,7 +9,9 @@
 				<h3>Preço: <strong>R$ <%= produto.preco %></strong></h3>
 			</article>
 			<aside class="comprar">
-				<form action="">
+				<form action="/comprar" method="POST">
+					<input type="hidden" name="iptId" value="<%= produto.id %>">
+
 					<label>Quantidade:</label>
 					<input type="number" name="iptQuantidade">
 					<button type="submit" class="btn-info">Comprar</button>
