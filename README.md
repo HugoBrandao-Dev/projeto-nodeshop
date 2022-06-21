@@ -39,3 +39,4 @@ cadastrado, por exemplo);
 * Criar mecanismo que impeça clientes menores de 18 anos de se cadastrarem ou de serem cadastrados (pela area adm).
 * Criar uma ou mais views de captura de eventuais error que possam acontecer em processos feitos pelo adm ou pelo cliente.
 * Remover/corrigir a necessidade de senha (atual e nova) para a alteração de dados do cliente (pelo cliente e admin).
+* Adicionar informação sobre o estoque do produto na tela de detalhamento do mesmo. Além disso, ter o estoque como limite de quantidade na escolha do produto na view.
