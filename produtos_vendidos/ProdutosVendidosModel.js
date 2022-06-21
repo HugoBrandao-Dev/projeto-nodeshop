@@ -5,7 +5,13 @@ const Produtos = require('../produtos/ProdutosModel')
 const Clientes = require('../clientes/ClientesModel')
 const Compras = require('../compras/ComprasModel')
 
-const ProdutosVendidos = connection.define('produtos_vendidos', {})
+const ProdutosVendidos = connection.define('produtos_vendidos', {
+	quantidade: {
+		type: Sequelize.INTEGER.UNSIGNED,
+		allowNull: false,
+		defaultValue: 1
+	}
+})
 
 Produtos.belongsToMany(Clientes, { through: ProdutosVendidos})
 Clientes.belongsToMany(Produtos, { through: ProdutosVendidos})
