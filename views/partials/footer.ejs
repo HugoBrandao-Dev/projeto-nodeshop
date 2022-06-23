@@ -10,7 +10,10 @@
 	<footer class="rodape">
 		<p>&copy; NodeShop - Todos os direitos reservados.</p>
 	</footer>
-	<script src="/js/login.js"></script>
-	<script src="/js/logout.js"></script>
+	<% if (!isLogado) { %>
+		<script src="/js/login.js"></script>
+	<% } else { %>
+		<script src="/js/logout.js"></script>
+	<% } %>
 		</body>
 		</html>

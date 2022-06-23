@@ -6,13 +6,13 @@
       <section class="compra-atual">
         <div class="compra">
           <div class="compra-data">
-            2022-06-10
+            <%= dataAtual %>
           </div>
           <div class="compra-quantidade">
-            Quantidade de produtos: <span>10</span>
+            Quantidade de produtos: <span><%= compraAtual.length %></span>
           </div>
           <div class="compra-detalhe">
-            <a href="#">Detalhes</a>
+            <a href="/compra/atual">Detalhes</a>
           </div>
         </div>
       </section>

@@ -178,7 +178,8 @@ router.post('/cliente/login', (req, res) => {
 				endereco: usuario.cliente.endereco,
 				informacoes: usuario.cliente.informacoesAdicionais,
 				telefone: usuario.cliente.telefone,
-				celular: usuario.cliente.celular
+				celular: usuario.cliente.celular,
+				produtosCompra: []
 			}
 			res.redirect('/')
 		} else {
