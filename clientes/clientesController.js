@@ -186,6 +186,7 @@ router.post('/cliente/login', (req, res) => {
 			res.send('Senha inválida.')
 		}
 	}).catch(erro => {
+		console.log(erro)
 		res.send('Nenhum usuário encontrado.')
 	})
 })

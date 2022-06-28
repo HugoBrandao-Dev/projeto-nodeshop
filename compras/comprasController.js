@@ -99,7 +99,7 @@ router.post('/finalizarCompra', (req, res) => {
 
 	if (isProdutosComEstoques) {
 		let produtosSessao = [...req.session.usuario.produtosCompra]
-		let total = 0
+		let clienteId = req.session.usuario.id
 
 		let idsProdutos = req.session.usuario.produtosCompra.map(item => parseInt(item.id))
 		Produtos.findAll({
@@ -120,14 +120,14 @@ router.post('/finalizarCompra', (req, res) => {
 				})
 			})
 			Compras.create({
-				total
+				total,
+				clienteId
 			}).then(registro => {
 				req.session.usuario.produtosCompra.map(item => {
 					ProdutosVendidos.create({
 						quantidade: item.quantidade,
 						produtoId: item.id,
 						compraId: registro.dataValues.id,
-						clienteId: req.session.usuario.id
 					})
 				})
 				req.session.usuario.produtosCompra = []
