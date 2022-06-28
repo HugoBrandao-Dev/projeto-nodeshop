@@ -139,4 +139,9 @@ router.post('/finalizarCompra', (req, res) => {
 	}
 })
 
+router.get('/cancelarCompra', (req, res) => {
+	req.session.usuario.produtosCompra = []
+	res.redirect('/compras')
+})
+
 module.exports = router

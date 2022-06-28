@@ -36,7 +36,7 @@
 			</div>
 			<% if (produtos.data.toLowerCase() == 'atual' && produtos.length > 0) { %>
 			<div class="compra-acoes">
-				<form action="index.html" method="post">
+				<form action="/cancelarCompra" method="get" onsubmit="cancelarCompra(event, this)">
 					<button type="submit" class="btn-deletar">Cancelar compra</button>
 				</form>
 				<form action="/finalizarCompra" method="post">
@@ -46,4 +46,12 @@
 			<% } %>
 		</article>
 	</main>
+	<script>
+		function cancelarCompra(event, form) {
+			event.preventDefault()
+			if (confirm('Cancelar carrinho de compras atual?')) {
+				form.submit()
+			}
+		}
+	</script>
 	<%- include('partials/footer.ejs') %>
