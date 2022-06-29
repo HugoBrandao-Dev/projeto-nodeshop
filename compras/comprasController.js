@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const usuarioAuth = require('../middlewares/usuarioAuth')
+const Sequelize = require('sequelize')
 
 // Models
 const ProdutosVendidos = require('../produtos_vendidos/ProdutosVendidosModel')
@@ -58,12 +59,29 @@ router.get('/compras', usuarioAuth, (req, res) => {
 	if (req.session.usuario) {
 		isLogado = true
 	}
-	res.render('compras', { isLogado, compraAtual: req.session.usuario.produtosCompra, dataAtual: getDataAtual() })
+	Compras.findAll({
+		where: {
+			clienteId: req.session.usuario.id,
+		},
+		include: [
+			{ 
+				model:  ProdutosVendidos
+			}
+		],
+		order: [
+			['id', 'DESC']
+		]
+	}).then(historicoCompras => {
+		res.render('compras', {
+			isLogado, 
+			compraAtual: req.session.usuario.produtosCompra,
+			dataAtual: getDataAtual(),
+			historicoCompras
+		})
+	})
 })
 
 router.post('/comprar', (req, res) => {
-	let isLogado = false
-
 	if (req.session.usuario) {
 		isLogado = true
 	}
