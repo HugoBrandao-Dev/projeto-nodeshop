@@ -8,6 +8,12 @@ const Compras = connection.define('compras', {
 	total: {
 		type: Sequelize.FLOAT(11, 2).UNSIGNED,
 		allowNull: false
+	},
+	createdAt: {
+		type: Sequelize.DATE,
+		get: function() {
+			return this.getDataValue('createdAt').toLocaleString('pt-BR', { timezone: 'UTC' })
+		}
 	}
 })
 
