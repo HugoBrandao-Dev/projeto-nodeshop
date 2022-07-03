@@ -64,16 +64,16 @@ router.get('/compras', usuarioAuth, (req, res) => {
 			clienteId: req.session.usuario.id,
 		},
 		include: [
-			{ 
-				model:  ProdutosVendidos
+			{
+				model:  Produtos
 			}
 		],
 		order: [
 			['id', 'DESC']
-		]
+		],
 	}).then(historicoCompras => {
 		res.render('compras', {
-			isLogado, 
+			isLogado,
 			compraAtual: req.session.usuario.produtosCompra,
 			dataAtual: getDataAtual(),
 			historicoCompras
