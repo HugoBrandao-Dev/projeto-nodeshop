@@ -19,8 +19,12 @@ function getDataAtual() {
 			return data.getMonth() + 1
 		}
 	}
-	let dia = data.getDate()
-	return `${ dia }-${ mes() }-${ ano }`
+	let dia = () => {
+		if (data.getDate() < 10) {
+			return `0${ data.getDate() }`
+		}
+	}
+	return `${ dia() }-${ mes() }-${ ano }`
 }
 
 router.get('/compra/:id', (req, res) => {
