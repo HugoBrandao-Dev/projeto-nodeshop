@@ -25,33 +25,63 @@ function getDataAtual() {
 
 router.get('/compra/:id', (req, res) => {
 	let isLogado = false
+	let id = req.params.id
 	if (req.session.usuario) {
 		isLogado = true
 	}
-	let idsProdutos = req.session.usuario.produtosCompra.map(item => parseInt(item.id))
-	Produtos.findAll({
-		attributes: ['id', 'modelo', 'preco'], // Campos a serem retornados
-		where: {
-			id: idsProdutos
-		},
-		raw: true
-	}).then(produtosBanco => {
-		let produtosSessao = [...req.session.usuario.produtosCompra]
-		produtosBanco.total = 0
 
-		// Adicionada a chave 'quantidade' ao array de produtosBanco (array final).
-		produtosBanco.forEach(produtoBanco => {
-			produtosSessao.forEach(produtoSessao => {
-				if (produtoSessao.id == produtoBanco.id) {
-					produtoBanco.quantidade = produtoSessao.quantidade
-					produtoBanco.total = parseFloat(produtoBanco.quantidade) * parseFloat(produtoBanco.preco)
-					produtosBanco.total += produtoBanco.total
-				}
+	// Para caso o parâmetro seja "atual"
+	if (isNaN(id)) {
+		let idsProdutos = req.session.usuario.produtosCompra.map(item => parseInt(item.id))
+		Produtos.findAll({
+			attributes: ['id', 'modelo', 'preco'], // Campos a serem retornados
+			where: {
+				id: idsProdutos
+			},
+			raw: true
+		}).then(produtosBanco => {
+			let produtosSessao = [...req.session.usuario.produtosCompra]
+			produtosBanco.total = 0
+
+			// Adicionada a chave 'quantidade' ao array de produtosBanco (array final).
+			produtosBanco.forEach(produtoBanco => {
+				produtosSessao.forEach(produtoSessao => {
+					if (produtoSessao.id == produtoBanco.id) {
+						produtoBanco.quantidade = produtoSessao.quantidade
+						produtoBanco.total = parseFloat(produtoBanco.quantidade) * parseFloat(produtoBanco.preco)
+						produtosBanco.total += produtoBanco.total
+					}
+				})
 			})
+
+			console.log(produtosBanco)
+			produtosBanco.data = "Atual"
+			res.render('compra_detalhada', { isLogado, produtos: produtosBanco })
 		})
-		produtosBanco.data = "Atual"
-		res.render('compra_detalhada', { isLogado, produtos: produtosBanco })
-	})
+	} else {
+		Compras.findByPk(id, {
+			include: [
+				{ model: Produtos }
+			]
+		}).then(comprasProdutos => {
+			let produtos = []
+			produtos.total = 0
+
+			comprasProdutos.produtos.forEach(produto => {
+				produtos.push({
+					id: produto.id,
+					modelo: produto.modelo,
+					preco: produto.preco,
+					quantidade: produto.produtos_vendidos.quantidade,
+					total: parseInt(produto.produtos_vendidos.quantidade) * parseFloat(produto.preco)
+				})
+				produtos.total += parseInt(produto.produtos_vendidos.quantidade) * parseFloat(produto.preco)
+			})
+
+			produtos.data = comprasProdutos.createdAt
+			res.render('compra_detalhada', { isLogado, produtos })
+		})
+	}
 })
 
 router.get('/compras', usuarioAuth, (req, res) => {
