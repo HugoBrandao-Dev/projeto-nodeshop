@@ -145,6 +145,16 @@ router.post('/finalizarCompra', (req, res) => {
 		}).then(produto => {
 			if (produto.estoque - item.quantidade < 0) {
 				isProdutosComEstoques = false
+			} else {
+				Estoques.update({
+					estoque: parseInt(produto.estoque - item.quantidade)
+				}, {
+					where: {
+						produtoId: item.id
+					}
+				}).then(() => {
+					console.log('Estoques atualizados com sucesso.')
+				})
 			}
 		})
 	})
