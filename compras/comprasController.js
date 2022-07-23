@@ -65,28 +65,36 @@ router.get('/compra/:id', usuarioAuth, (req, res) => {
 			res.render('compra_detalhada', { isLogado, produtos: produtosBanco })
 		})
 	} else {
-		Compras.findByPk(id, {
-			include: [
-				{ model: Produtos }
-			]
-		}).then(comprasProdutos => {
-			let produtos = []
-			produtos.total = 0
-
-			comprasProdutos.produtos.forEach(produto => {
-				produtos.push({
-					id: produto.id,
-					modelo: produto.modelo,
-					preco: produto.preco,
-					quantidade: produto.produtos_vendidos.quantidade,
-					total: parseInt(produto.produtos_vendidos.quantidade) * parseFloat(produto.preco)
-				})
-				produtos.total += parseInt(produto.produtos_vendidos.quantidade) * parseFloat(produto.preco)
+		Compras.findByPk(id)
+			.then(resultado => {
+				// Verifica se a compra a ser buscada pertence ao usuário logado no sistema
+				if (resultado.clienteId == req.session.usuario.id) {
+					Compras.findByPk(id, {
+						include: [
+							{ model: Produtos }
+						]
+					}).then(comprasProdutos => {
+						let produtos = []
+						produtos.total = 0
+			
+						comprasProdutos.produtos.forEach(produto => {
+							produtos.push({
+								id: produto.id,
+								modelo: produto.modelo,
+								preco: produto.preco,
+								quantidade: produto.produtos_vendidos.quantidade,
+								total: parseInt(produto.produtos_vendidos.quantidade) * parseFloat(produto.preco)
+							})
+							produtos.total += parseInt(produto.produtos_vendidos.quantidade) * parseFloat(produto.preco)
+						})
+			
+						produtos.data = comprasProdutos.createdAt
+						res.render('compra_detalhada', { isLogado, produtos })
+					})
+				} else {
+					res.redirect('/compras')
+				}
 			})
-
-			produtos.data = comprasProdutos.createdAt
-			res.render('compra_detalhada', { isLogado, produtos })
-		})
 	}
 })
 
