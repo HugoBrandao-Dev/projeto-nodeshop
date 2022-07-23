@@ -22,6 +22,8 @@ function getDataAtual() {
 	let dia = () => {
 		if (data.getDate() < 10) {
 			return `0${ data.getDate() }`
+		} else {
+			return data.getDate()
 		}
 	}
 	return `${ dia() }-${ mes() }-${ ano }`
