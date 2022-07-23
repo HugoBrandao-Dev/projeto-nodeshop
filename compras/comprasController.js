@@ -27,7 +27,7 @@ function getDataAtual() {
 	return `${ dia() }-${ mes() }-${ ano }`
 }
 
-router.get('/compra/:id', (req, res) => {
+router.get('/compra/:id', usuarioAuth, (req, res) => {
 	let isLogado = false
 	let id = req.params.id
 	if (req.session.usuario) {
