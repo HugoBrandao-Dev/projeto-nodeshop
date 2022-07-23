@@ -1,0 +1,31 @@
+<%- include('../partials/admin/header.ejs') %>
+	<%- include('../partials/admin/navbar.ejs') %>
+		<main class="principal">
+			<ul class="admin">
+				<li class="admin-item">
+					<a href="/admin/produtos">
+						Produtos
+						<i class="fas fa-cart-arrow-down"></i>
+					</a>
+				</li>
+				<li class="admin-item">
+					<a href="/admin/servicos">
+						Serviços
+						<i class="fab fa-servicestack"></i>
+					</a>
+				</li>
+				<li class="admin-item">
+					<a href="/admin/funcionarios">
+						Funcionários
+						<i class="fas fa-user-tie"></i>
+					</a>
+				</li>
+				<li class="admin-item">
+					<a href="/admin/clientes">
+						Clientes
+						<i class="fas fa-users"></i>
+					</a>
+				</li>
+			</ul>
+		</main>
+		<%- include('../partials/admin/footer.ejs') %>
