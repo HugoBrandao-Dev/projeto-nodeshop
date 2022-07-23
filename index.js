@@ -77,6 +77,10 @@ app.get('/', (req, res) => {
 	res.render('index', { isLogado })
 })
 
+app.get('/admin', (req, res) => {
+	res.render('admin/index', { admin: 1 })
+})
+
 app.get('/contato', (req, res) => {
 	let isLogado = false
 	if (req.session.usuario) {
