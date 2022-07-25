@@ -56,6 +56,12 @@ const Servicos = require('./servicos/ServicosModel')
 // Model de Serviços x Funcionarios
 const ServicosFuncionarios = require('./servicos_funcionarios/ServicosFuncionariosModel')
 
+// Model Contratantes
+const Contratantes = require('./contratantes/ContratantesModel')
+
+// Model Serviços X Contratantes
+const ServicosContratantes = require('./servicos_contratantes/ServicosContratantesModel')
+
 // Model de Clientes
 const Clientes = require('./clientes/ClientesModel')
 const LoginClientes = require('./login_clientes/LoginClientesModel')
