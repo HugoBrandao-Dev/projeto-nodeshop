@@ -31,6 +31,7 @@ const funcionariosController = require('./funcionarios/funcionariosController')
 const clientesController = require('./clientes/clientesController')
 const newslettersController = require('./newsletter/newslettersController')
 const comprasController = require('./compras/comprasController')
+const servicosContratantesController = require('./servicos_contratantes/servicosContratantesController')
 
 // Configurações dos Controllers
 app.use('/', produtosController)
@@ -39,6 +40,7 @@ app.use('/', funcionariosController)
 app.use('/', clientesController)
 app.use('/', newslettersController)
 app.use('/', comprasController)
+app.use('/', servicosContratantesController)
 
 // Models para Produto
 const Tipos = require('./tipos/TiposModel')
