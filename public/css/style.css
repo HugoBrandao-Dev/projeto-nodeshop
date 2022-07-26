@@ -459,6 +459,10 @@ form input, form select, form textarea {
 	border-bottom: 2px solid #333;
 }
 
+.principal form input[type=file] {
+	border: none;
+}
+
 form textarea {
 	border: 2px solid #333;
 	resize: none;
