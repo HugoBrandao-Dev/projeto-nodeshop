@@ -3,49 +3,60 @@
 <main class="principal">
 	<h2>Cadastrar produto</h2>
 	<hr>
-	<section class="tipo-contratante">
-		Tipo de contratante:
-		<div>
-			<label><input type="radio" name="tipo" value="novo" checked> Novo</label>
-			<label><input type="radio" name="tipo" value="cadastrado"> Cadastrado</label>
-		</div>
+  Tipo contratate:
+  <ul class="opcao-lista">
+    <li class="opcao-item">
+      <label>
+        <input type="radio" name="rdTipoContratante" value="novo" checked> Novo
+      </label>
+    </li>
+    <li class="opcao-item">
+      <label>
+        <input type="radio" name="rdTipoContratante" value="cadastrado"> Cadastrado
+      </label>
+    </li>
+  </ul>
+
+	<section id="novo">
+		<form method="POST">
+			<label>Serviço:</label>
+			<select name="iptServico">
+				<% servicos.forEach(servico => { %>
+					<option value="<%= servico.id %>"><%= servico.servico %></option>
+				<% }) %>
+			</select>
+
+			<label>Contratante:</label>
+			<input type="text" name="iptContratante">
+
+			<label>CPF/CNPJ:</label>
+			<input type="text" name="iptIdentificacao">
+
+			<label>Email:</label>
+			<input type="email" name="iptEmail">
+
+			<label>Telefone:</label>
+			<input type="tel" name="iptTelefone">
+
+			<label>Celular:</label>
+			<input type="tel" name="iptCelular">
+
+			<label>Informações adicionais:</label>
+			<textarea name="textInformacoes" cols="30" rows="10"></textarea>
+
+			<label>Contrato assinado:</label>
+			<input type="file" name="iptContrato">
+
+			<button type="submit" class="btn-add">Criar contratação</button>
+		</form>
 	</section>
 
-	<form method="POST">
-		<label>Serviço:</label>
-		<select name="iptServico">
-			<% servicos.forEach(servico => { %>
-				<option value="<%= servico.id %>"><%= servico.servico %></option>
-			<% }) %>
-		</select>
+  <section id="cadastrado">
+    <form method="POST">
 
-		<label>Contratante:</label>
-		<input type="text" name="iptContratante">
-
-		<label>CPF/CNPJ:</label>
-		<input type="text" name="iptIdentificacao">
-
-		<label>Email:</label>
-		<input type="email" name="iptEmail">
-
-		<label>Telefone:</label>
-		<input type="tel" name="iptTelefone">
-
-		<label>Celular:</label>
-		<input type="tel" name="iptCelular">
-
-		<label>Informações adicionais:</label>
-		<textarea name="textInformacoes" cols="30" rows="10"></textarea>
-
-		<label>Contrato assinado:</label>
-		<input type="file" name="iptContrato">
-
-		<button type="submit" class="btn-add">Criar contratação</button>
-	</form>
-
-	<form method="POST">
-
-		<button type="submit" class="btn-add">Criar contratação</button>
-	</form>
+    <button type="submit" class="btn-add">Criar contratação</button>
+  </form>
+  </section>
 </main>
+<script src="/js/sectionsRadios.js"></script>
 <%- include('../../partials/admin/footer.ejs') %>
