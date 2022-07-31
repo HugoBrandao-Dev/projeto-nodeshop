@@ -1,0 +1,57 @@
+<%- include('../../partials/admin/header.ejs') %>
+<%- include('../../partials/admin/navbar.ejs') %>
+<main class="principal">
+	<h2>Detalhes da compra</h2>
+	<hr>
+	<article class="compra-detalhada">
+		<div class="compra-data">
+			Data da compra: <%= produtos.data %>
+		</div>
+		<div class="compra-produtos">
+			<% produtos.forEach(produto => { %>
+				<div class="compra-produto">
+					<% if (produtos.data.toLowerCase() == 'atual' && produtos.length > 0) { %>
+						<a href="#">
+							<i class="fas fa-trash-alt"></i>
+						</a>
+					<% } %>
+					<span>
+						<%= produto.quantidade %>
+					</span> x <a href="/produto/<%= produto.id %>"><%= produto.modelo %></a>
+					<span>
+						R$ <%= produto.preco %> por unidade
+					</span>
+					=
+					<span>
+						R$ <%= produto.total %>.
+					</span>
+				</div>
+				<% }) %>
+			</div>
+			<div class="compra-total">
+				Total:
+				<span>
+					R$ <%= produtos.total %>
+				</span>
+			</div>
+			<% if (produtos.data.toLowerCase() == 'atual' && produtos.length > 0) { %>
+			<div class="compra-acoes">
+				<form action="/cancelarCompra" method="get" onsubmit="cancelarCompra(event, this)">
+					<button type="submit" class="btn-deletar">Cancelar compra</button>
+				</form>
+				<form action="/finalizarCompra" method="post">
+					<button type="submit" class="btn-info">Finalizar compra</button>
+				</form>
+			</div>
+			<% } %>
+		</article>
+	</main>
+	<script>
+		function cancelarCompra(event, form) {
+			event.preventDefault()
+			if (confirm('Cancelar carrinho de compras atual?')) {
+				form.submit()
+			}
+		}
+	</script>
+	<%- include('../../partials/admin/footer.ejs') %>

@@ -66,17 +66,17 @@ router.get('/compra/:id', usuarioAuth, (req, res) => {
 		})
 	} else {
 		Compras.findByPk(id)
-			.then(resultado => {
+		.then(resultado => {
 				// Verifica se a compra a ser buscada pertence ao usuário logado no sistema
 				if (resultado.clienteId == req.session.usuario.id) {
 					Compras.findByPk(id, {
 						include: [
-							{ model: Produtos }
+						{ model: Produtos }
 						]
 					}).then(comprasProdutos => {
 						let produtos = []
 						produtos.total = 0
-			
+						
 						comprasProdutos.produtos.forEach(produto => {
 							produtos.push({
 								id: produto.id,
@@ -87,7 +87,7 @@ router.get('/compra/:id', usuarioAuth, (req, res) => {
 							})
 							produtos.total += parseInt(produto.produtos_vendidos.quantidade) * parseFloat(produto.preco)
 						})
-			
+						
 						produtos.data = comprasProdutos.createdAt
 						res.render('compra_detalhada', { isLogado, produtos })
 					})
@@ -108,12 +108,12 @@ router.get('/compras', usuarioAuth, (req, res) => {
 			clienteId: req.session.usuario.id,
 		},
 		include: [
-			{
-				model:  Produtos
-			}
+		{
+			model:  Produtos
+		}
 		],
 		order: [
-			['id', 'DESC']
+		['id', 'DESC']
 		],
 	}).then(historicoCompras => {
 		res.render('compras', {
@@ -214,6 +214,33 @@ router.post('/finalizarCompra', (req, res) => {
 router.get('/cancelarCompra', (req, res) => {
 	req.session.usuario.produtosCompra = []
 	res.redirect('/compras')
+})
+
+// Rotas do administrador
+router.get('/admin/compra/:id', (req, res) => {
+	let id = req.params.id
+	Compras.findByPk(id, {
+		include: [
+		{ model: Produtos }
+		]
+	}).then(comprasProdutos => {
+		let produtos = []
+		produtos.total = 0
+		
+		comprasProdutos.produtos.forEach(produto => {
+			produtos.push({
+				id: produto.id,
+				modelo: produto.modelo,
+				preco: produto.preco,
+				quantidade: produto.produtos_vendidos.quantidade,
+				total: parseInt(produto.produtos_vendidos.quantidade) * parseFloat(produto.preco)
+			})
+			produtos.total += parseInt(produto.produtos_vendidos.quantidade) * parseFloat(produto.preco)
+		})
+		
+		produtos.data = comprasProdutos.createdAt
+		res.render('admin/clientes/compra_detalhada', { produtos })						
+	})
 })
 
 module.exports = router
