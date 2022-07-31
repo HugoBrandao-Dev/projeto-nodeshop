@@ -1,35 +1,56 @@
 <%- include('../../partials/admin/header.ejs') %>
-	<%- include('../../partials/admin/navbar.ejs') %>
-		<main class="principal">
-			<h2>Informações do cliente</h2>
-			<hr>
-			<label>ID:</label>
-			<p><%= cliente.id %></p>
+<%- include('../../partials/admin/navbar.ejs') %>
+<main class="principal">
+  <article class="info-cliente">
+    <section class="cadastrais">
+      <h2>Informações do cliente</h2>
+      <hr>
+      <label>ID:</label>
+      <p><%= cliente.id %></p>
 
-			<label>Nome:</label>
-			<p><%= cliente.nome %></p>
+      <label>Nome:</label>
+      <p><%= cliente.nome %></p>
 
-			<label>CPF:</label>
-			<p><%= cliente.cpf %></p>
+      <label>CPF:</label>
+      <p><%= cliente.cpf %></p>
 
-			<label>Data de nascimento:</label>
-			<p><%= cliente.nascimento %></p>
+      <label>Data de nascimento:</label>
+      <p><%= cliente.nascimento %></p>
 
-			<label>Endereço:</label>
-			<p><%= cliente.endereco %></p>
+      <label>Endereço:</label>
+      <p><%= cliente.endereco %></p>
 
-			<label>Informações adicionais:</label>
-			<p><%= cliente.informacoesAdicionais %></p>
+      <label>Informações adicionais:</label>
+      <p><%= cliente.informacoesAdicionais %></p>
 
-			<label>Email:</label>
-			<p><%= cliente.login_cliente.email %></p>
+      <label>Email:</label>
+      <p><%= cliente.login_cliente.email %></p>
 
-			<label>Telefone:</label>
-			<p><%= cliente.telefone %></p>
+      <label>Telefone:</label>
+      <p><%= cliente.telefone %></p>
 
-			<label>Celular:</label>
-			<p><%= cliente.celular %></p>
+      <label>Celular:</label>
+      <p><%= cliente.celular %></p>
 
-			<a href="/admin/clientes" class="btn-info right">Voltar</a>
-		</main>
-		<%- include('../../partials/admin/footer.ejs') %>
+      <a href="/admin/clientes" class="btn-info right">Voltar</a>
+    </section>
+    <section class="compras">
+      <h2>Compras</h2>
+      <hr>
+      <% historicoCompras.forEach(compra => { %>
+        <div class="compra">
+          <div class="compra-data">
+            <%= compra.createdAt.split(' ')[0] %>
+          </div>
+          <div class="compra-quantidade">
+            Quantidade de produtos: <span><%= compra.produtos.length %></span>
+          </div>
+          <div class="compra-detalhe">
+            <a href="/compra/<%= compra.id %>">Detalhes</a>
+          </div>
+        </div>
+      <% }) %>
+    </section>
+  </article>
+</main>
+<%- include('../../partials/admin/footer.ejs') %>

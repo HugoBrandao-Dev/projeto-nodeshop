@@ -102,3 +102,8 @@ serviço.
 	font-size: 30pt;
 	width: 100%;
 }
+
+.info-cliente section {
+	float: left;
+	width:  100%;
+}

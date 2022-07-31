@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs')
 
 // Models
 const Clientes = require('./ClientesModel')
+const Compras = require('../compras/ComprasModel')
+const Produtos = require('../produtos/ProdutosModel')
 const LoginClientes = require('../login_clientes/LoginClientesModel')
 
 // Funções
@@ -162,7 +164,7 @@ router.post('/cliente/login', (req, res) => {
 
 	LoginClientes.findOne({
 		include: [
-			{ model: Clientes }
+		{ model: Clientes }
 		],
 		where: {
 			email
@@ -203,7 +205,7 @@ router.get('/cliente', (req, res) => {
 	}
 	Clientes.findByPk(req.session.usuario.id, {
 		include: [
-			{ model: LoginClientes }
+		{ model: LoginClientes }
 		]
 	}).then(cliente => {
 		res.render('painel_controle', { cliente, isLogado })
@@ -217,7 +219,7 @@ router.get('/cliente/editar', (req, res) => {
 	}
 	Clientes.findByPk(req.session.usuario.id, {
 		include: [
-			{ model: LoginClientes }
+		{ model: LoginClientes }
 		]
 	})
 	.then(cliente => {
@@ -229,7 +231,7 @@ router.get('/cliente/editar', (req, res) => {
 router.get('/admin/clientes', (req, res) => {
 	Clientes.findAll({
 		include: [
-			{ model: LoginClientes }
+		{ model: LoginClientes }
 		]
 	}).then(clientes => {
 		res.render('admin/clientes/clientesLista', { clientes })
@@ -244,7 +246,7 @@ router.get('/admin/cliente/editar/:id', (req, res) => {
 	let id = req.params.id
 	Clientes.findByPk(id, {
 		include: [
-			{ model: LoginClientes }
+		{ model: LoginClientes }
 		]
 	})
 	.then(cliente => {
@@ -256,11 +258,28 @@ router.get('/admin/cliente/:id', (req, res) => {
 	let id = req.params.id
 	Clientes.findByPk(id, {
 		include: [
-			{ model: LoginClientes }
+		{ model: LoginClientes }
 		]
 	})
 	.then(cliente => {
-		res.render('admin/clientes/clienteInfo', { cliente })
+		Compras.findAll({
+			where: {
+				clienteId: req.params.id,
+			},
+			include: [
+			{
+				model:  Produtos
+			}
+			],
+			order: [
+			['id', 'DESC']
+			],
+		}).then(historicoCompras => {
+			res.render('admin/clientes/clienteInfo', {
+				historicoCompras,
+				cliente
+			})
+		})
 	})
 })
 
