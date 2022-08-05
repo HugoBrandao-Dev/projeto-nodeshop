@@ -63,6 +63,7 @@ const Contratantes = require('./contratantes/ContratantesModel')
 
 // Model Serviços X Contratantes
 const ServicosContratantes = require('./servicos_contratantes/ServicosContratantesModel')
+const StatusContratacoes = require('./status_contratacoes/StatusContratacoesModel')
 
 // Model de Clientes
 const Clientes = require('./clientes/ClientesModel')
