@@ -5,8 +5,19 @@ const usuarioAuth = require('../middlewares/usuarioAuth')
 const Servicos = require('../servicos/ServicosModel')
 const Contratantes = require('../contratantes/ContratantesModel')
 const ServicosContratantes = require('../servicos_contratantes/ServicosContratantesModel')
+const StatusContratacoes = require('../status_contratacoes/StatusContratacoesModel')
 
 router.get('/admin/contratantes', (req, res) => {
+	StatusContratacoes.findAll()
+		.then(resultado => {
+			if (resultado.length == 0) {
+				StatusContratacoes.bulkCreate([
+					{ status: 'aberto' },
+					{ status: 'em andamento' },
+					{ status: 'finalizado' }
+				])
+			}
+		})
 	Servicos.findAll()
 		.then(servicos => {
 			Contratantes.findAll()
@@ -35,7 +46,8 @@ router.post('/admin/contratantes/salvarNovo', (req, res) => {
 	}).then(registro => {
 		ServicosContratantes.create({
 			servicoId: servico,
-			contratanteId: registro.dataValues.id
+			contratanteId: registro.dataValues.id,
+			statusContratacoId: 1
 		}).then(() => {
 			res.redirect('/admin/contratantes')
 		})
@@ -48,7 +60,8 @@ router.post('/admin/contratantes/salvarCadastrado', (req, res) => {
 
 	ServicosContratantes.create({
 		servicoId: servico,
-		contratanteId: contratante
+		contratanteId: contratante,
+		statusContratacoId: 1
 	}).then(() => {
 		res.redirect('/admin/contratantes')
 	}).catch(erro => {
