@@ -3,11 +3,18 @@ const connection = require('../database/database')
 // Models
 const Servicos = require('../servicos/ServicosModel')
 const Contratantes = require('../contratantes/ContratantesModel')
+const StatusContratacoes = require('../status_contratacoes/StatusContratacoesModel')
 
-const ServicosContratantes = connection.define('servicos_contratantes')
+const ServicosContratantes = connection.define('servicos_contratantes', { })
 
-Servicos.belongsToMany(Contratantes, { through: ServicosContratantes })
-Contratantes.belongsToMany(Servicos, { through: ServicosContratantes })
+ServicosContratantes.belongsTo(Servicos)
+Servicos.hasMany(ServicosContratantes)
+
+ServicosContratantes.belongsTo(Contratantes)
+Contratantes.hasMany(ServicosContratantes)
+
+ServicosContratantes.belongsTo(StatusContratacoes)
+StatusContratacoes.hasMany(ServicosContratantes)
 
 ServicosContratantes.sync({ force: false })
 	.then(() => {
