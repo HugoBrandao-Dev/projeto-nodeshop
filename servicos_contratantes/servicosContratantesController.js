@@ -15,7 +15,9 @@ router.get('/admin/contratantes', (req, res) => {
 					{ status: 'aberto' },
 					{ status: 'em andamento' },
 					{ status: 'finalizado' }
-				])
+				]).then(() => {
+					console.log('Registrados os status para contratações.')
+				})
 			}
 		})
 	Servicos.findAll()
