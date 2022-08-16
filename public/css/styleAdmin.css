@@ -107,3 +107,17 @@ serviço.
 	float: left;
 	width:  100%;
 }
+
+/* Cor dos status de uma contratação */
+
+.servico-aberto {
+	fill: #ff0000;
+}
+
+.servico-em-andamento {
+	fill: #ffcc00;
+}
+
+.servico-finalizado {
+	fill: #009933;
+}
