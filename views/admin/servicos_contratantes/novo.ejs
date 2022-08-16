@@ -1,7 +1,7 @@
 <%- include('../../partials/admin/header.ejs') %>
 <%- include('../../partials/admin/navbar.ejs') %>
 <main class="principal">
-	<h2>Cadastrar produto</h2>
+	<h2>Cadastrar contratação</h2>
 	<hr>
   Tipo contratate:
   <ul class="opcao-lista">
@@ -53,7 +53,7 @@
 
   <section id="cadastrado">
     <form method="POST" action="/admin/contratantes/salvarCadastrado">
-    	<label>Serviços</label>
+    	<label>Serviço:</label>
     	<select name="iptServico">
 				<% servicos.forEach(servico => { %>
 					<option value="<%= servico.id %>"><%= servico.servico %></option>
