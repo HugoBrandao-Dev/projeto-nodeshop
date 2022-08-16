@@ -1,0 +1,56 @@
+<%- include('../../partials/admin/header.ejs') %>
+<%- include('../../partials/admin/navbar.ejs') %>
+<main class="principal">
+  <h2>Contratações</h2>
+  <a href="/admin/servico/novo" class="btn-add btn-lista">Nova contratação</a>
+  <hr>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Serviço</th>
+        <th>Contratante</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% contratacoes.forEach(contratacao => { %>
+        <tr>
+          <td>
+            <%= contratacao.id %>
+          </td>
+          <td>
+            <%= contratacao.servico.servico %>
+          </td>
+          <td>
+            <%= contratacao.contratante.contratante %>
+          </td>
+          <td>
+            <%= contratacao.status_contrataco.status %>
+          </td>
+          <td style="display: flex;">
+            <a href="/admin/contratacao/editar/<%= contratacao.id %>" class="btn-redondo btn-editar" title="Editar contratação"><i class="fa fa-edit"></i></a>
+            <form onsubmit="deletarServico(event, this)" class="form-deletar btn-acao" method="post" action="/admin/contratacao/deletar">
+              <input type="hidden" name="iptId" value="<%= contratacao.id %>">
+              <input type="hidden" name="iptServico" value="<%= contratacao.contratacao %>">
+              <button class="btn-redondo btn-deletar" title="Deletar contratação">
+                <i class="fa fa-eraser"></i>
+              </button>
+            </form>
+            <a href="/admin/contratacao/<%= contratacao.id %>" class="btn-redondo btn-info" title="Informações da contratação"><i class="fa fa-info-circle"></i></a>
+          </td>
+        </tr>
+        <% }) %>
+    </tbody>
+  </table>
+</main>
+<script>
+  function deletarServico(event, form) {
+    event.preventDefault()
+    if (confirm(`Deletar serviço => ${ form['iptServico'].value }?`)) {
+      form.submit()
+    }
+  }
+</script>
+<%- include('../../partials/admin/footer.ejs') %>

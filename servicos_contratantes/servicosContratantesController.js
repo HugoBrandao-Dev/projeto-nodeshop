@@ -8,6 +8,18 @@ const ServicosContratantes = require('../servicos_contratantes/ServicosContratan
 const StatusContratacoes = require('../status_contratacoes/StatusContratacoesModel')
 
 router.get('/admin/contratantes', (req, res) => {
+	ServicosContratantes.findAll({
+		include: [
+			{ model: Servicos },
+			{ model: Contratantes },
+			{ model: StatusContratacoes }
+		]
+	}).then(contratacoes => {
+		res.render('admin/servicos_contratantes/ServicosContratantesLista', { contratacoes })
+	})
+})
+
+router.get('/admin/contratantes/cadastrar', (req, res) => {
 	StatusContratacoes.findAll()
 		.then(resultado => {
 			if (resultado.length == 0) {
