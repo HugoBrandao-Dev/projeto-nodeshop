@@ -13,6 +13,9 @@ router.get('/admin/contratantes', (req, res) => {
 			{ model: Servicos },
 			{ model: Contratantes },
 			{ model: StatusContratacoes }
+		],
+		order: [
+			['id', 'ASC']
 		]
 	}).then(contratacoes => {
 		res.render('admin/servicos_contratantes/ServicosContratantesLista', { contratacoes })
