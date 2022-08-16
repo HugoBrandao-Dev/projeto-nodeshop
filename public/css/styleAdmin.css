@@ -121,3 +121,9 @@ serviço.
 .servico-finalizado {
 	fill: #009933;
 }
+
+/* Radios da view de edição de uma contratação */
+
+.tipo-contratante input {
+	width: 20px;
+}

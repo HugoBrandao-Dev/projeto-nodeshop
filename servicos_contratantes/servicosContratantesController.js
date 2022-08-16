@@ -44,6 +44,34 @@ router.get('/admin/contratantes/cadastrar', (req, res) => {
 		})
 })
 
+router.get('/admin/contratacao/editar/:id', (req, res) => {
+	let id = req.params.id
+
+	ServicosContratantes.findByPk(id, {
+		include: [
+				{ model: Servicos },
+				{ model: Contratantes },
+				{ model: StatusContratacoes }
+			]
+		}).then(contratacao => {
+			Servicos.findAll()
+				.then(servicos => {
+					Contratantes.findAll()
+						.then(contratantes => {
+							StatusContratacoes.findAll()
+								.then(statusDisponiveis => {
+									res.render('admin/servicos_contratantes/ServicosContratantesEditar', {
+											contratacao,
+											servicos,
+											contratantes,
+											statusDisponiveis
+									})
+								})
+						})
+				})
+		})
+})
+
 router.post('/admin/contratantes/salvarNovo', (req, res) => {
 	let servico = req.body.iptServico
 	let contratante = req.body.iptContratante

@@ -1,0 +1,74 @@
+<%- include('../../partials/admin/header.ejs') %>
+<%- include('../../partials/admin/navbar.ejs') %>
+<main class="principal">
+  <h2>Editar contratação</h2>
+  <form method="POST" action="/admin/contratantes/salvarNovo">
+    <label>Serviço:</label>
+    <select name="iptServico">
+      <% servicos.forEach(servico => { %>
+      <option value="<%= servico.id %>"><%= servico.servico %></option>
+      <% }) %>
+    </select>
+
+    <div class="tipo-contratante">
+      <label>
+        <input type="radio" name="contratante" value="novo"> Novo
+      </label>
+
+      <label>
+        <input type="radio" name="contratante" value="cadastrado" checked> Cadastrado
+      </label>
+    </div>
+
+    <section id="novo">
+      <label>Contratante:</label>
+      <input type="text" name="iptContratanteNovo">
+    </section>
+
+    <section id="cadastrado">
+      <label>Contratante:</label>
+      <select name="iptContratanteCadastrado">
+        <% contratantes.forEach(contratante => { %>
+          <% if (contratacao.contratanteId == contratante.id) { %>
+            <option value="<%= contratante.id %>" selected><%= contratante.contratante %></option>
+          <% } else { %>
+            <option value="<%= contratante.id %>"><%= contratante.contratante %></option>
+          <% } %>
+        <% }) %>
+      </select>
+    </section>
+
+    <label>CPF/CNPJ:</label>
+    <input type="text" name="iptIdentificacao" value="<%= contratacao.contratante.identificacao %>">
+
+    <label>Email:</label>
+    <input type="email" name="iptEmail" value="<%= contratacao.contratante.email %>">
+
+    <label>Telefone:</label>
+    <input type="tel" name="iptTelefone" value="<%= contratacao.contratante.telefone %>">
+
+    <label>Celular:</label>
+    <input type="tel" name="iptCelular" value="<%= contratacao.contratante.celular %>">
+
+    <label>Informações adicionais:</label>
+    <textarea name="textInformacoes" cols="30" rows="10"><%= contratacao.contratante.informacoesAdicionais %></textarea>
+
+    <label>Contrato assinado:</label>
+    <input type="file" name="iptContrato">
+
+    <label>Status:</label>
+    <select name="iptStatus">
+      <% statusDisponiveis.forEach(status => { %>
+        <% if (contratacao.statusContratacoId == status.id) { %>
+            <option value="<%= status.id %>" selected><%= status.status %></option>
+          <% } else { %>
+            <option value="<%= status.id %>"><%= status.status %></option>
+          <% } %>
+      <% }) %>
+    </select>
+
+    <button type="submit" class="btn-editar">Atualizar contratação</button>
+  </form>
+</main>
+<script src="/js/sectionsRadios.js"></script>
+<%- include('../../partials/admin/footer.ejs') %>
