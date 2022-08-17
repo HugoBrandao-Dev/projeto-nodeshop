@@ -7,7 +7,7 @@ const Contratantes = require('../contratantes/ContratantesModel')
 const ServicosContratantes = require('../servicos_contratantes/ServicosContratantesModel')
 const StatusContratacoes = require('../status_contratacoes/StatusContratacoesModel')
 
-router.get('/admin/contratantes', (req, res) => {
+router.get('/admin/contratacoes', (req, res) => {
 	ServicosContratantes.findAll({
 		include: [
 			{ model: Servicos },
@@ -22,7 +22,7 @@ router.get('/admin/contratantes', (req, res) => {
 	})
 })
 
-router.get('/admin/contratantes/cadastrar', (req, res) => {
+router.get('/admin/contratacao/cadastrar', (req, res) => {
 	StatusContratacoes.findAll()
 		.then(resultado => {
 			if (resultado.length == 0) {
@@ -104,7 +104,7 @@ router.post('/admin/contratacao/atualizar', (req, res) => {
 					id
 				}
 			}).then(() => {
-				res.redirect('/admin/contratantes')
+				res.redirect('/admin/contratacoes')
 			})
 		})
 	} else {
@@ -128,13 +128,13 @@ router.post('/admin/contratacao/atualizar', (req, res) => {
 					id: contratanteCadastrado
 				}
 			}).then(() => {
-				res.redirect('/admin/contratantes')
+				res.redirect('/admin/contratacoes')
 			})
 		})
 	}
 })
 
-router.post('/admin/contratantes/salvarNovo', (req, res) => {
+router.post('/admin/contratacao/salvarNovo', (req, res) => {
 	let servico = req.body.iptServico
 	let contratante = req.body.iptContratante
 	let identificacao = req.body.iptIdentificacao
@@ -156,12 +156,12 @@ router.post('/admin/contratantes/salvarNovo', (req, res) => {
 			contratanteId: registro.dataValues.id,
 			statusContratacoId: 1
 		}).then(() => {
-			res.redirect('/admin/contratantes')
+			res.redirect('/admin/contratacoes')
 		})
 	})
 })
 
-router.post('/admin/contratantes/salvarCadastrado', (req, res) => {
+router.post('/admin/contratacao/salvarCadastrado', (req, res) => {
 	let servico = req.body.iptServico
 	let contratante = req.body.iptContratante
 
@@ -170,7 +170,7 @@ router.post('/admin/contratantes/salvarCadastrado', (req, res) => {
 		contratanteId: contratante,
 		statusContratacoId: 1
 	}).then(() => {
-		res.redirect('/admin/contratantes')
+		res.redirect('/admin/contratacoes')
 	}).catch(erro => {
 		console.log(erro)
 		res.send('A empresa já possui este serviço em aberto.')
