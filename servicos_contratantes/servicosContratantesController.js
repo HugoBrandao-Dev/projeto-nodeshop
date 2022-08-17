@@ -192,4 +192,22 @@ router.get('/admin/contratacao/:id', (req, res) => {
 		})
 })
 
+router.post('/admin/contratacao/deletar', (req, res) => {
+	let id = req.body.iptContratanteID
+
+	ServicosContratantes.destroy({
+		where: {
+			contratanteId: id
+		}
+	}).then(() => {
+		Contratantes.destroy({
+			where: {
+				id
+			}
+		}).then(() => {
+			res.redirect('/admin/contratacoes')
+		})
+	})
+})
+
 module.exports = router
