@@ -72,6 +72,68 @@ router.get('/admin/contratacao/editar/:id', (req, res) => {
 		})
 })
 
+router.post('/admin/contratacao/atualizar', (req, res) => {
+	let id = req.body.iptId
+	let servico = Number.parseInt(req.body.iptServico)
+
+	let contratanteNovo = req.body.iptContratanteNovo
+	let contratanteCadastrado = Number.parseInt(req.body.iptContratanteCadastrado)
+	
+	let identificacao = req.body.iptIdentificacao
+	let email = req.body.iptEmail
+	let telefone = req.body.iptTelefone
+	let celular = req.body.iptCelular
+	let informacoesAdicionais = req.body.textInformacoes
+	let status = Number.parseInt(req.body.iptStatus)
+
+	if (contratanteNovo) {
+		Contratantes.create({
+			contratante: contratanteNovo,
+			identificacao,
+			email,
+			telefone,
+			celular,
+			informacoesAdicionais
+		}).then(registro => {
+			ServicosContratantes.update({
+				servicoId: servico,
+				statusContratacoId: status,
+				contratanteId: registro.dataValues.id
+			}, {
+				where: {
+					id
+				}
+			}).then(() => {
+				res.redirect('/admin/contratantes')
+			})
+		})
+	} else {
+		ServicosContratantes.update({
+			servicoId: servico,
+			contratanteId: contratanteCadastrado,
+			statusContratacoId: status
+		}, {
+			where: {
+				id
+			}
+		}).then(() => {
+			Contratantes.update({
+				identificacao,
+				email,
+				telefone,
+				celular,
+				informacoesAdicionais
+			}, {
+				where: {
+					id: contratanteCadastrado
+				}
+			}).then(() => {
+				res.redirect('/admin/contratantes')
+			})
+		})
+	}
+})
+
 router.post('/admin/contratantes/salvarNovo', (req, res) => {
 	let servico = req.body.iptServico
 	let contratante = req.body.iptContratante

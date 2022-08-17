@@ -2,7 +2,9 @@
 <%- include('../../partials/admin/navbar.ejs') %>
 <main class="principal">
   <h2>Editar contratação</h2>
-  <form method="POST" action="/admin/contratantes/salvarNovo">
+  <form method="POST" action="/admin/contratacao/atualizar">
+    <input type="hidden" name="iptId" value="<%= contratacao.id %>">
+
     <label>Serviço:</label>
     <select name="iptServico">
       <% servicos.forEach(servico => { %>
@@ -10,6 +12,7 @@
       <% }) %>
     </select>
 
+    <label>Tipo de contratante:</label>
     <div class="tipo-contratante">
       <label>
         <input type="radio" name="contratante" value="novo"> Novo
