@@ -18,7 +18,7 @@
   </ul>
 
 	<section id="novo">
-		<form method="POST" action="/admin/contratantes/salvarNovo">
+		<form method="POST" action="/admin/contratacao/salvarNovo">
 			<label>Serviço:</label>
 			<select name="iptServico">
 				<% servicos.forEach(servico => { %>
@@ -52,7 +52,7 @@
 	</section>
 
   <section id="cadastrado">
-    <form method="POST" action="/admin/contratantes/salvarCadastrado">
+    <form method="POST" action="/admin/contratacao/salvarCadastrado">
     	<label>Serviço:</label>
     	<select name="iptServico">
 				<% servicos.forEach(servico => { %>
