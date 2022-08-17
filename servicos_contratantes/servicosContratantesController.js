@@ -177,4 +177,19 @@ router.post('/admin/contratacao/salvarCadastrado', (req, res) => {
 	})
 })
 
+router.get('/admin/contratacao/:id', (req, res) => {
+	let id = req.params.id
+
+	ServicosContratantes.findByPk(id, {
+		include: [
+			{ model: Servicos },
+			{ model: Contratantes },
+			{ model: StatusContratacoes }
+		]
+	}).then(contratacao => {
+			console.log(contratacao)
+			res.render('admin/servicos_contratantes/ServicosContratantesInfo', { contratacao })
+		})
+})
+
 module.exports = router

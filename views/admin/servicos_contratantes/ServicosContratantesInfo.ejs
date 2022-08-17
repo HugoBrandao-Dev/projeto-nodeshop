@@ -1,0 +1,35 @@
+<%- include('../../partials/admin/header.ejs') %>
+<%- include('../../partials/admin/navbar.ejs') %>
+<main class="principal">
+  <h2>Informações</h2>
+  <hr>
+  <label>Serviço:</label>
+  <p><%= contratacao.servico.servico %></p>
+
+  <label>Contratante:</label>
+  <p><%= contratacao.contratante.contratante %></p>
+
+  <label>CPF/CNPJ:</label>
+  <p><%= contratacao.contratante.identificacao %></p>
+
+  <label>Email:</label>
+  <p><%= contratacao.contratante.email %></p>
+
+  <label>Telefone:</label>
+  <p><%= contratacao.contratante.telefone %></p>
+
+  <label>Celular:</label>
+  <p><%= contratacao.contratante.celular %></p>
+
+  <label>Informações adicionais:</label>
+  <p><%= contratacao.contratante.informacoesAdicionais %></p>
+
+  <label>Status:</label>
+  <p><%= contratacao.status_contrataco.status %></p>
+
+  <label>Contrato assinado:</label>
+  <p>PDF</p>
+
+  <a href="/admin/contratacoes" class="btn-info right">Voltar</a>
+</main>
+<%- include('../../partials/admin/footer.ejs') %>
