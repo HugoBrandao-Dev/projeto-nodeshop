@@ -7,6 +7,7 @@ const Clientes = require('./ClientesModel')
 const Compras = require('../compras/ComprasModel')
 const Produtos = require('../produtos/ProdutosModel')
 const LoginClientes = require('../login_clientes/LoginClientesModel')
+const usuarioAuth = require('../middlewares/usuarioAuth')
 
 // Funções
 function getDataMaxima() {
@@ -23,7 +24,7 @@ function getDataMaxima() {
 	return `${ ano }-${ mes() }-${ dia }`
 }
 
-router.post('/cliente/deletar', (req, res) => {
+router.post('/cliente/deletar', usuarioAuth, (req, res) => {
 	let id = req.body.iptId
 	LoginClientes.destroy({
 		where: {
@@ -87,7 +88,7 @@ router.post('/cliente/salvar', (req, res) => {
 	})
 })
 
-router.post('/cliente/atualizar', (req, res) => {
+router.post('/cliente/atualizar', usuarioAuth, (req, res) => {
 	let isLogado = req.session.usuario ? true : false
 	let id = req.body.iptId
 	let nome = req.body.iptNome
@@ -144,6 +145,18 @@ router.post('/cliente/atualizar', (req, res) => {
 							clienteId: id
 						}
 					}).then(() => {
+						req.session.usuario = {
+							id,
+							nome,
+							email,
+							cpf,
+							nascimento,
+							endereco,
+							informacoes,
+							telefone,
+							celular,
+							produtosCompra: []
+						}
 						res.redirect('/cliente')
 					})
 				})
@@ -200,7 +213,7 @@ router.get('/logout', (req, res) => {
 	res.redirect('/')
 })
 
-router.get('/cliente', (req, res) => {
+router.get('/cliente', usuarioAuth, (req, res) => {
 	let isLogado = false
 	if (req.session.usuario) {
 		isLogado = true
