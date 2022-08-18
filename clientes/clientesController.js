@@ -147,6 +147,8 @@ router.post('/cliente/atualizar', (req, res) => {
 						res.redirect('/cliente')
 					})
 				})
+			} else {
+				res.send('A senha informada é inválida.')
 			}
 		})
 	} else {
