@@ -298,4 +298,59 @@ router.get('/admin/cliente/:id', (req, res) => {
 	})
 })
 
+router.post('/admin/cliente/atualizar', (req, res) => {
+	let id = req.body.iptId
+	let nome = req.body.iptNome
+	let cpf = req.body.iptCpf
+	let nascimento = req.body.iptNascimento
+	let endereco = req.body.iptEndereco
+	let informacoes = req.body.iptInformacoes
+	let email = req.body.iptEmail
+	let senhaAntiga = req.body.iptSenhaAntiga
+	let senha = req.body.iptSenha
+	let senhaNovamente = req.body.iptSenhaNovamente
+	let telefone = req.body.iptTelefone
+	let celular = req.body.iptCelular
+
+	let infoCliente = {}
+	let infoLoginCliente = {}
+
+	// Informações que irão para a tabela de clientes
+	infoCliente.nome = nome
+	infoCliente.cpf = cpf
+	infoCliente.nascimento = nascimento
+	infoCliente.endereco = endereco
+	infoCliente.informacoesAdicionais = informacoes
+	infoCliente.telefone = telefone
+	infoCliente.celular = celular
+
+	// Informações que irão para a tabela de login_clientes
+	infoLoginCliente.email = email
+
+	/*
+	Só serão feitas as atualizar se o usuário informar a senha, independente de
+	quais informações foram atualizadas ou não
+	*/
+	if (senha && senhaNovamente) {
+		Clientes.update(infoCliente, {
+			where: {
+				id
+			}
+		}).then(() => {
+			let salt = bcrypt.genSaltSync(10)
+			let hash = bcrypt.hashSync(senha, salt)
+
+			infoLoginCliente.senha = hash
+
+			LoginClientes.update(infoLoginCliente, {
+				where: {
+					clienteId: id
+				}
+			}).then(() => {
+				res.redirect('/admin/clientes')
+			})
+		})
+	}
+})
+
 module.exports = router

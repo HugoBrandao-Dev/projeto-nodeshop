@@ -3,7 +3,7 @@
 		<main class="principal">
 			<h2>Atualizar dados do cliente</h2>
 			<hr>
-			<form action="/cliente/atualizar" method="POST" onsubmit="verificarSenhas(event, this)">
+			<form action="/admin/cliente/atualizar" method="POST" onsubmit="verificarSenhas(event, this)">
 				<input type="hidden" name="iptId" value="<%= cliente.id %>">
 
 				<label>Nome:</label>
@@ -30,13 +30,10 @@
 				<label>Celular:</label>
 				<input type="text" name="iptCelular" value="<%= cliente.celular %>">
 
-				<label>Senha anterior</label>
-				<input type="password" name="iptSenhaAntiga">
-
 				<label>Nova senha:</label>
 				<input type="password" name="iptSenha">
 
-				<label>Digite novamente sua nova senha:</label>
+				<label>Digite novamente a senha:</label>
 				<input type="password" name="iptSenhaNovamente">
 
 				<button type="submit" class="btn-editar right">Atualizar</button>
