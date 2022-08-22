@@ -41,3 +41,4 @@ cadastrado, por exemplo);
 * Remover/corrigir a necessidade de senha (atual e nova) para a alteração de dados do cliente (pelo cliente e admin).
 * Adicionar informação sobre o estoque do produto na tela de detalhamento do mesmo. Além disso, ter o estoque como limite de quantidade na escolha do produto na view.
 * Adicionar o cargo ocupado pelo funcionário ao lado de seu nome, na view de cadastro de um novo serviço.
+* Desenvolver o sistema de pesquisa dentro do site.
